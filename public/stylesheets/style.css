@@ -1,8 +1,49 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+/*  selector    {   sub-attribute: value  }
+        p    {   color: red;  }     .. every instce of the sspecific tag.
+        #id_ {   color: red;  }     .. the object with the specific ID.
+        .class {   color: red;  }   .. all objects with the specific class.
+
+        hexadecimal color coding   .. 0 -> 9 -> A -> F .
+        color: #000         .. basic    .. red, green, blue, etc.
+        color: #000+ max x8 .. expanded .. shades and mixes of all variety.
+
+        Distances (border, padding, etc.): top, right, bottom, left.
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+  color: rgb(0, 89, 255);
+}
+
+body {
+  position: relative;
+  display: flex;
+  
+  justify-content: center;
+  min-height: 100vh;  /*  100% view port height */
+  margin: 0;
+  padding: 25px;
+  background-image: linear-gradient(236deg, #b6e5dc, #a4afdb);
+  
+}
+
+#top-menuBar {
+  color: #fff;  /*  White  */
+  background-color: rgb(132, 187, 253);  /* Light Blue  */
+  padding: 20px 0;
+}
+
+#topMenu {
+  border: 1px solid #fff;  /* For debugging */
+  width: 900px;
 }
