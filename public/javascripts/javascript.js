@@ -29,8 +29,3 @@ function showPage(page) {	// sets the visibility status of the ID'd object; none
 }
 
 initTopMenu();
-
-// Do nothing when activating the dropdown trigger link.
-disabledAhref = function() {
-	return false;
-}
