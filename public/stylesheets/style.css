@@ -1,111 +1,150 @@
 
 /*  selector    {   sub-attribute: value  }
-        p    {   color: red;  }     .. every instce of the sspecific tag.
-        #id_ {   color: red;  }     .. the object with the specific ID.
-        .class {   color: red;  }   .. all objects with the specific class.
+      p    {   color: red;  }     .. every instce of the sspecific tag.
+      #id_ {   color: red;  }     .. the object with the specific ID.
+      .class {   color: red;  }   .. all objects with the specific class.
 
-        hexadecimal color coding   .. 0 -> 9 -> A -> F .
-        color: #000         .. basic    .. red, green, blue, etc.
-        color: #000+ max x8 .. expanded .. shades and mixes of all variety.
+      hexadecimal color coding   .. 0 -> 9 -> A -> F .
+      color: #000         .. basic    .. red, green, blue, etc.
+      color: #000+ max x8 .. expanded .. shades and mixes of all variety.
 
-        Distances (border, padding, etc.): top, right, bottom, left.
+      Distances (border, padding, etc.): top, right, bottom, left.
+		    "Ems" (em) .. scalble unit relative to associated object (usually font) size.
+		    1em = 100%, eg.: IF font size is 12px AND font padding size is 1em THEN padding size = 12px.
+	
+	  "a:hover" MUST come after "a:link" while "a:visited" & "a:active" MUST come after "a:hover"
 */
 
-* {
+* { /*  global presets  */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-:root {
+:root { /*  = the HTML document that uses it.  */
   font-family: Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: rgb(0, 89, 255);
-}
-
-h2 {
-  margin: 5px 0 5px;
-  padding: 5px 25px 5px 25px;  /*  top, right, bottom, left  */
-  float: left;
-  text-align: center;
-}
-
-h3 {
-  margin: 0 0.2em 0; /*  ~= 20%  */
-}
-
-#summary {
-  margin: 0 5px 5px 5px;
-  padding: 40px 5px 0 223px;
-  /* float: right; */
-  color: #eb0c5ac9;
-  text-align: center;
+  color: rgb(0, 0, 0);
 }
 
 body {
   position: relative;
-  justify-content: center;
   display: flex;
+  justify-content: center;
   
   min-height: 100vh;  /*  100% view port height */
   margin: 0;
-  padding: 25px;
+  padding: 5px;
   background-image: linear-gradient(236deg, #b6e5dc, #a4afdb);
 }
 
-#top-menuBar {
-  display: flex;
-  justify-content: center;
+#pageMainContent {
+  justify-content: space-between;
+}
 
-  padding: 20px 0;
-  color: #fff;  /*  White  */
-  background-color: rgb(132, 187, 253);  /* Light Blue  */
+/*  Page title, logo & some catchy summary. Also headers 2 & 3. */
+h2, h3 {
+  margin: 5px 0 5px;
+  padding: 5px 15px 5px 15px;  /*  top, right, bottom, left  */
+  text-align: center;
+}
+
+#page-name {
+  display: flex;
+}
+
+#summary {
+  padding: 10px 0 0 0;
+  color: #eb0c5ac9;
+  text-align: center;
+}
+/*-------------------------*/
+
+#top-menuBar {
+  /* display: flex; */
+  justify-content: center;
+  padding: 5px 0 15px 0;
+  color: #fff;
 }
 
 #topMenu {
-  border: 1px solid #fff;  /* For debugging */
-  width: 900px;
+  /*border: 1px solid #fff; /*  For debugging */
+  width: 100%;
   display: flex;
   justify-content: space-around;
-
-  text-align: center;
 	background-color: #5fa590;
 }
 
 /*  Top menu bar menu items.  */
-.topMenu a {
-	text-decoration: none;
-	color: white;
-	padding: 10px;
+#topMenu li {
+  list-style: none;
+  padding: 5px 15px 5px 15px;
 }
 
-.topMenu a:hover {
-	color: black;
-	background-color: white;
+#topMenu a {
+  text-decoration: none;
+  font-weight: bold;
 }
 
-.topMenu a:active {
+#topMenu a:hover {
+	color: #39526b;
+  background-color: white;
+  cursor: pointer;
+}
+
+#topMenu a:active {
 	color: red;
 }
 /*-------------------------*/
 
 /*  Center page.  */
+#centerContent {
+  display: flex;
+  justify-content: center;
+}
+
 .page {
 	display: none;
+  border: 5px solid rgb(250, 157, 173);
+  padding: 5px;
+  width: 100%;
+  background-color: white;
+}
+/*-------------------------*/
+
+/*  DB Content Table  */
+#searchDiv {
+  padding: 5px 0 5px;  /*  top, right, bottom, left  */
+}
+
+#addresses {
+	width: 100%;
+}
+
+#addresses th, td {
 	padding: 5px;
-	margin: 5px;
-	border: 1px solid pink;
-	background-color: white;
+}
+
+#addresses input {
+  width: 100%;
+  padding: 2.5px;
+}
+
+table, th, td {
+  border: 1px solid black;
+  
+  border-collapse: collapse;
 }
 /*-------------------------*/
 
 footer {
   position: absolute;
   bottom: 0;
-  height: 25px;
+  height: 30px;
   width: 100%;
 	background-color: rgb(175, 137, 137);
   text-align: center;
+  line-height: 30px;  /*  Has to be larger than the font size. */
 }

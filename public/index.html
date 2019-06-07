@@ -5,6 +5,8 @@
 <html>
     
 <head>
+    <meta charset="UTF-8">
+
     <title>Project-Parking</title>
     <link rel="stylesheet" href="stylesheets/style.css">
 </head>
@@ -19,7 +21,7 @@
         <b>Project-Parking</b>
     </h2>
 
-    <h3 id="summary">Register your parking spaces and share it with others when you are not using them!</h3>
+    <h3 id="summary">Register your parking spaces and share them with others when you are not using them!</h3>
 </div>
 
 <!--Top Menu Bar section-->
@@ -27,8 +29,8 @@
     <ul id="topMenu">
             <!--"data-page" properties point to the page IDs. -->
         <li id="menuHome"><a href="#" data-page="homePage">Home</a></li>
-        <li id="menu_2_"><a href="#" data-page="_2_Page">_._</a></li>
-        <li id="menu_3_"><a href="#" data-page="_3_Page">_._</a></li>
+        <li id="menu_2_"><a href="#" data-page="_2_Page">_some menu item_</a></li>
+        <li id="menu_3_"><a href="#" data-page="_3_Page">_some menu item_</a></li>
         <li id="menuAbout"><a href="#" data-page="aboutPage">About</a></li>
     </ul>
 </div> <!-- Top Menu Bar -->
@@ -37,13 +39,45 @@
 <!--Content section-->
 <section id="centerContent">
 
-<div id="home" class="page" style="display: block;"><h3>_center content_</h3></div>
-    
-<div id="_2_" class="page" style="display: none"><h3>_._</h3></div>
+<div id="home" class="page" style="display: block;"><h3>_Home, center content_</h3>
+<div id="searchDiv">
+    <input id="search" type="text" placeholder="Search..." tabindex="1" autofocus>
+        <!-- Clickable label used as button. -->
+        <label for="search">&#128270</label>
+</div> <!-- Search Button -->
 
-<div id="_3_" class="page" style="display: none;"><h3>_._</h3></div>
+<!--Database Table View section-->
+<table id="addresses">
+<col style="width: 60%"> <!--Column sizes.-->
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 10%">
+<thead>
+    <tr>
+        <th>Address</th>
+        <th>From</th>
+        <th>Until</th>
+    </tr>
+</thead>
+<tbody></tbody> <!-- Table content, script generated. -->
+<tfoot>
+    <tr>
+        <td title="The full address is: location address + parking space or spot-registered car number.">
+            <input type="text" placeholder="Address" required="required" name="address"tabindex="2"></td>
+        <td><input type="text" placeholder="From Time" required="required" name="fromTime"tabindex="3"></td>
+        <td><input type="text" placeholder="To Time" required="required" name="toTime"tabindex="4"></td>
+        <td><button type="submit" onclick="saveAddress()" aria-colspan="" tabindex="5">Save</button></td>
+        <div id="tabIndexReset" tabindex="0"></div>
+    </tr>
+</tfoot>
+</table>
+</div>
     
-<div id="about" class="page" style="display: none;"><h3>_._</h3></div>
+<div id="_2_Page" class="page" style="display: none"><h3>_2_Page</h3></div>
+
+<div id="_3_Page" class="page" style="display: none;"><h3>_3_Page</h3></div>
+    
+<div id="about" class="page" style="display: none;"><h3>About</h3></div>
 </section> <!-- page main content Center Section -->
 
 </div> <!-- page Main Content -->
