@@ -30,7 +30,19 @@
             <!--"data-page" properties point to the page IDs. -->
         <li id="menuHome"><a href="#" data-page="homePage">Home</a></li>
         <li id="menu_2_"><a href="#" data-page="_2_Page">_some menu item_</a></li>
-        <li id="menu_3_"><a href="#" data-page="_3_Page">_some menu item_</a></li>
+
+        <!-- WILL CHANGE THIS LATER TO USE FLEXBOX TOO -->
+        <li class="dropdown">
+            <a href="#" class="dropTrigger" onclick="return disabledAhref()">_some menu item_</a>
+
+            <ul class="dropMenu">
+                <li><a href="#" id="menu_3_" class="dropItem" data-page="_3_Page">_no use_</a></li>
+                    <li role="separator" class="divider"></li>
+                <li><a href="#" id="menu_4_" class="dropItem" data-page="_4_Page">_no use_</a></li>
+            </ul>
+        </li>
+
+
         <li id="menuAbout"><a href="#" data-page="aboutPage">About</a></li>
     </ul>
 </div> <!-- Top Menu Bar -->
@@ -76,6 +88,8 @@
 <div id="_2_Page" class="page" style="display: none"><h3>_2_Page</h3></div>
 
 <div id="_3_Page" class="page" style="display: none"><h3>_3_Page</h3></div>
+
+<div id="_4_Page" class="page" style="display: none"><h3>_4_Page</h3></div>
     
 <div id="aboutPage" class="page" style="display: none"><h3>About</h3></div>
 </section> <!-- page main content Center Section -->

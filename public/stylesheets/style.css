@@ -42,6 +42,7 @@ body {
 
 #pageMainContent {
   justify-content: space-between;
+  padding-bottom: 30px;
 }
 
 /*  Page title, logo & some catchy summary. Also headers 2 & 3. */
@@ -111,6 +112,28 @@ h2, h3 {
   padding: 5px;
   width: 100%;
   background-color: white;
+}
+/*-------------------------*/
+
+/*  The container <li> - to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/*  Dropdown Content (hidden by default)  */
+.dropMenu {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1d7;
+  min-width: 180px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/*  Show the dropdown menu on hover  */
+.dropdown:hover .dropMenu {
+  display: block;
 }
 /*-------------------------*/
 
