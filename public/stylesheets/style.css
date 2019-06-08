@@ -10,7 +10,9 @@
 
       Distances (border, padding, etc.): top, right, bottom, left.
 		    "Ems" (em) .. scalble unit relative to associated object (usually font) size.
-		    1em = 100%, eg.: IF font size is 12px AND font padding size is 1em THEN padding size = 12px.
+        1em = 100%, eg.: IF font size is 12px AND font padding size is 1em THEN padding size = 12px.
+        1% = compared to the parent element's size cap.
+        1vw / 1vh = relative to the "current" view port (browser content area) heigth / width.
 	
 	  "a:hover" MUST come after "a:link" while "a:visited" & "a:active" MUST come after "a:hover"
 */
@@ -43,6 +45,7 @@ body {
 #pageMainContent {
   justify-content: space-between;
   padding-bottom: 30px;
+  min-width: 73vw;
 }
 
 /*  Page title, logo & some catchy summary. Also headers 2 & 3. */
@@ -63,40 +66,132 @@ h2, h3 {
 }
 /*-------------------------*/
 
-#top-menuBar {
-  /* display: flex; */
-  justify-content: center;
-  padding: 5px 0 15px 0;
-  color: #fff;
+/*  Top menu bar. */
+.top-menuBar {
+  border-radius: 5px;
+  margin: 15px auto 5px;
+  padding: 5px 0 10px;
+  background-color: rgb(44, 47, 63);  /*  Padding allows to show. */
 }
 
-#topMenu {
-  /*border: 1px solid #fff; /*  For debugging */
-  width: 100%;
+/*  Top menu bar items.  */
+.top-menuBar a {
   display: flex;
-  justify-content: space-around;
-	background-color: #5fa590;
-}
-
-/*  Top menu bar menu items.  */
-#topMenu li {
-  list-style: none;
-  padding: 5px 15px 5px 15px;
-}
-
-#topMenu a {
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  color: #fff;
   text-decoration: none;
+  text-transform: uppercase;
   font-weight: bold;
+  letter-spacing: 0.2em;  /*  Relative to font size. */
 }
 
-#topMenu a:hover {
-	color: #39526b;
-  background-color: white;
+.top-menuBar a:hover {
+  background-color: rgb(77, 83, 117);
+  transition: background-color 0.5s ease;
   cursor: pointer;
 }
 
-#topMenu a:active {
-	color: red;
+.top-menuBar ul {
+  list-style: none;
+  display: flex;
+}
+
+.top-menuBar li {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.top-menuBar li:hover .dropdown_1 > li {
+  display: block;
+  top: 0;
+}
+
+.dropdown_1 li {
+  display: none;
+  position: relative;
+  background-color: rgb(44, 47, 63);
+}
+
+.dropdown_1 {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.dropdown_1 li:hover .dropdown_2 li {
+  display: block;
+  background-color: rgb(44, 47, 63);
+}
+
+.dropdown_2 li {
+  display: none;
+}
+
+.dropdown_2 {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 200px;
+}
+
+/*  Miscellaneous.  */
+#topMenu a:active { 
+	color: rgb(252, 156, 172);
+}
+
+.divider {
+  height: 0;
+  width: 0;
+  border: 2px solid grey;
+}
+
+/* Little pointing triangle for the dropdown trgger links.
+Made from really short border line with 2 rounded edges (z-index: 2). */
+a.dropTrigger_1:after {
+  position: absolute;
+  bottom: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 0;
+  width: 0;
+  border: 8px solid transparent;
+  border-top-color: #25283d;
+  z-index: 2;
+}
+
+a.dropTrigger_2:after {
+  position: absolute;
+  left: 103%;
+  transform: translateX(-50%) rotateZ(-90deg);
+  height: 0;
+  width: 0;
+  border: 8px solid transparent;
+  border-top-color: #25283d;
+  z-index: 2;
+}
+
+li:hover a.dropTrigger_1:after {
+  content: "";
+  border-top-color: rgb(77, 83, 117);
+}
+
+/* This doesn't work (keeping the triangle visible & darker when hovering on first drop item), might try again later.
+.firstDrop:hover a.dropTrigger_1:after {
+  content: "";
+  border-top-color: rgb(42, 46, 66);
+} */
+
+li:hover li:hover a.dropTrigger_2:after {
+  content: "";
+  border-top-color: rgb(77, 83, 117);
 }
 /*-------------------------*/
 
@@ -112,28 +207,6 @@ h2, h3 {
   padding: 5px;
   width: 100%;
   background-color: white;
-}
-/*-------------------------*/
-
-/*  The container <li> - to position the dropdown content */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-/*  Dropdown Content (hidden by default)  */
-.dropMenu {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1d7;
-  min-width: 180px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-/*  Show the dropdown menu on hover  */
-.dropdown:hover .dropMenu {
-  display: block;
 }
 /*-------------------------*/
 

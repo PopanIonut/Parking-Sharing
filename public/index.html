@@ -6,7 +6,6 @@
     
 <head>
     <meta charset="UTF-8">
-
     <title>Project-Parking</title>
     <link rel="stylesheet" href="stylesheets/style.css">
 </head>
@@ -25,32 +24,33 @@
 </div>
 
 <!--Top Menu Bar section-->
-<div id="top-menuBar">
-    <ul id="topMenu">
-            <!--"data-page" properties point to the page IDs. -->
-        <li id="menuHome"><a href="#" data-page="homePage">Home</a></li>
-        <li id="menu_2_"><a href="#" data-page="_2_Page">_some menu item_</a></li>
-
-        <!-- WILL CHANGE THIS LATER TO USE FLEXBOX TOO -->
-        <li class="dropdown">
-            <a href="#" class="dropTrigger">_some menu item_</a>
-
-            <ul class="dropMenu">
-                <li><a href="#" id="menu_3_" class="dropItem" data-page="_3_Page">_no use_</a></li>
-                    <li role="separator" class="divider"></li>
-                <li><a href="#" id="menu_4_" class="dropItem" data-page="_4_Page">_no use_</a></li>
-            </ul>
-        </li>
-
-
-        <li id="menuAbout"><a href="#" data-page="aboutPage">About</a></li>
-    </ul>
-</div> <!-- Top Menu Bar -->
+<nav id="top-menuBar" class="top-menuBar">
+<ul id="topMenu" class="topMenu">
+        <!--"data-page" properties point to the page IDs. -->
+    <li><a href="#" data-page="homePage">Home</a></li>
+    <li><a href="#" data-page="_2_Page">_menu item_</a></li>
+    <li><a href="#" class="dropTrigger_1">_drop menu_</a>
+        <ul class="dropdown_1">
+            <!--<li class="firstDrop">-->
+            <li><a href="#" class="dropItem" data-page="_3_Page">_sub 1 item_</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#" class="dropTrigger_2 dropItem">_drop 2 menu_</a>
+                <ul class="dropdown_2">
+                    <!--<li class="firstDrop">-->
+                    <li><a href="#" class="dropItem" data-page="_4_Page">_sub 2 item_</a></li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li id="menuAbout"><a href="#" data-page="aboutPage">About</a></li>
+</ul>
+</nav> <!-- Top Menu Bar -->
 </header>
 
 <!--Content section-->
 <section id="centerContent">
 
+<!-- The IDs have to match the connected link's data-page value. -->
 <div id="homePage" class="page" style="display: block"><h3>_Home, center content_</h3>
 <div id="searchDiv">
     <input id="search" type="text" placeholder="Search..." tabindex="1" autofocus>
