@@ -153,8 +153,8 @@ h2, h3 {
   border: 2px solid grey;
 }
 
-/* Little pointing triangle for the dropdown trgger links.
-Made from really short border line with 2 rounded edges (z-index: 2). */
+/* Little pointing triangle for the dropdown trigger links.
+Made from "non-existent" object's borders with 2 rounded edges (z-index: 2). */
 a.dropTrigger_1:after {
   position: absolute;
   bottom: -16px;
