@@ -3,103 +3,114 @@
 
 <!DOCTYPE HTML>
 <html>
-    
+
 <head>
     <meta charset="UTF-8">
     <title>Project-Parking</title>
     <link rel="stylesheet" href="stylesheets/style.css">
 </head>
-    
+
 <body>
-<div id="pageMainContent">
+    <div id="pageMainContent">
 
-<header>
-<div id="page-name"> <!--Page title, logo & some catchy summary.-->
-    <h2 id="pageName">
-        <!--<img src="#" alt="awesome logo" />-->
-        <b>Project-Parking</b>
-    </h2>
+        <header>
+            <div id="page-name">
+                <!--Page title, logo & some catchy summary.-->
+                <h2 id="pageName">
+                    <!--<img src="#" alt="awesome logo" />-->
+                    <b>Project-Parking</b>
+                </h2>
 
-    <h3 id="summary">Register your parking spaces and share them with others when you are not using them!</h3>
-</div>
+                <h3 id="summary">Register your parking spaces and share them with others when you are not using them!
+                </h3>
+            </div>
 
-<!--Top Menu Bar section-->
-<nav id="top-menuBar" class="top-menuBar">
-<ul id="topMenu" class="topMenu">
-        <!--"data-page" properties point to the page IDs. -->
-    <li><a href="#" data-page="homePage">Home</a></li>
-    <li><a href="#" data-page="_2_Page">_menu item_</a></li>
-    <li><a href="#" class="dropTrigger_1">_drop menu_</a>
-        <ul class="dropdown_1">
-            <!--<li class="firstDrop">-->
-            <li><a href="#" class="dropItem" data-page="_3_Page">_sub 1 item_</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#" class="dropTrigger_2 dropItem">_drop 2 menu_</a>
-                <ul class="dropdown_2">
-                    <!--<li class="firstDrop">-->
-                    <li><a href="#" class="dropItem" data-page="_4_Page">_sub 2 item_</a></li>
+            <!--Top Menu Bar section-->
+            <nav id="top-menuBar" class="top-menuBar">
+                <ul id="topMenu" class="topMenu">
+                    <!--"data-page" properties point to the page IDs. -->
+                    <li><a href="#" data-page="homePage">Acasa</a></li>
+                    <li><a href="#" data-page="_2_Page">Vreau sa donez!</a></li>
+                    <li><a href="#" data-page="searchPage">Locuri libere!</a></li>
+                    <li id="menuAbout"><a href="#" data-page="aboutPage">Despre noi!</a></li>
                 </ul>
-            </li>
-        </ul>
-    </li>
-    <li id="menuAbout"><a href="#" data-page="aboutPage">About</a></li>
-</ul>
-</nav> <!-- Top Menu Bar -->
-</header>
+            </nav> <!-- Top Menu Bar -->
+        </header>
 
-<!--Content section-->
-<section id="centerContent">
+        <!--Content section-->
+        <section id="centerContent">
 
-<!-- The IDs have to match the connected link's data-page value. -->
-<div id="homePage" class="page" style="display: block"><h3>_Home, center content_</h3>
-<div id="searchDiv">
-    <input id="search" type="text" placeholder="Search..." tabindex="1" autofocus>
-        <!-- Clickable label used as button. -->
-        <label for="search">&#128270</label>
-</div> <!-- Search Button -->
+            <!-- The IDs have to match the connected link's data-page value. -->
+            <div id="searchPage" class="page" style="display: block">
+                <h3>_Home, center content_</h3>
+                <div id="searchDiv">
+                    <input id="search" type="text" placeholder="Search..." tabindex="1" autofocus>
+                    <!-- Clickable label used as button. -->
+                    <label for="search">&#128270</label>
+                </div> <!-- Search Button -->
 
-<!--Database Table View section-->
-<table id="addresses">
-<col style="width: 60%"> <!--Column sizes.-->
-<col style="width: 15%">
-<col style="width: 15%">
-<col style="width: 10%">
-<thead>
-    <tr>
-        <th>Address</th>
-        <th>From</th>
-        <th>Until</th>
-    </tr>
-</thead>
-<tbody></tbody> <!-- Table content, script generated. -->
-<tfoot>
-    <tr>
-        <td title="The full address is: location address + parking space or spot-registered car number.">
-            <input type="text" placeholder="Address" required="required" name="address"tabindex="2"></td>
-        <td><input type="text" placeholder="From Time" required="required" name="fromTime"tabindex="3"></td>
-        <td><input type="text" placeholder="To Time" required="required" name="toTime"tabindex="4"></td>
-        <td><button type="submit" onclick="saveAddress()" aria-colspan="" tabindex="5">Save</button></td>
-        <div id="tabIndexReset" tabindex="0"></div>
-    </tr>
-</tfoot>
-</table>
-</div>
-    
-<div id="_2_Page" class="page" style="display: none"><h3>_2_Page</h3></div>
+                <!--Database Table View section-->
+                <table id="addresses">
+                    <col style="width: 20%">
+                    <!--Column sizes.-->
+                    <col style="width: 45%">
+                    <col style="width: 15%">
+                    <col style="width: 10%">
+                    <thead>
+                        <tr>
+                            <th>Town</th>
+                            <th>Adress</th>
+                            <th>From</th>
+                            <th>Until</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody> <!-- Table content, script generated. -->
+                    <tfoot>
+                        <tr>
+                            <td
+                                title="The full address is: location address + parking space or spot-registered car number.">
+                                <input type="text" placeholder="Town" required="required" name="address" tabindex="1">
+                            </td>
+                            <td><input type="text" placeholder="Addres" required="required" name="address" tabindex="2">
+                            </td>
+                            <td><input type="text" placeholder="From Time" required="required" name="fromTime"
+                                    tabindex="3"></td>
+                            <td><input type="text" placeholder="To Time" required="required" name="toTime" tabindex="4">
+                            <td><button type="submit" onclick="saveAddress()" aria-colspan="" tabindex="5">Save</button>
+                            </td>
+                            </td>
+                            <div id="tabIndexReset" tabindex="0"></div>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
 
-<div id="_3_Page" class="page" style="display: none"><h3>_3_Page</h3></div>
+            <div id="_2_Page" class="page" style="display: none">
+                <h3>_2_Page</h3>
+            </div>
 
-<div id="_4_Page" class="page" style="display: none"><h3>_4_Page</h3></div>
-    
-<div id="aboutPage" class="page" style="display: none"><h3>About</h3></div>
-</section> <!-- page main content Center Section -->
+            <div id="_3_Page" class="page" style="display: none">
+                <h3>_3_Page</h3>
+            </div>
 
-</div> <!-- page Main Content -->
-    
-<footer id="footer"><a href="https://www.fasttrackit.org/" target="_blank">FastTrackIT homepage</a></footer>
+            <div id="_4_Page" class="page" style="display: none">
+                <h3>_4_Page</h3>
+            </div>
 
-<!-- JavaScript -->
-<div><script src="javascripts/javascript.js"></script></div>
+            <div id="aboutPage" class="page" style="display: none">
+                <h3>About</h3>
+            </div>
+        </section> <!-- page main content Center Section -->
+
+    </div> <!-- page Main Content -->
+
+    <footer id="footer"><a href="https://www.fasttrackit.org/" target="_blank">FastTrackIT homepage</a></footer>
+
+    <!-- JavaScript -->
+    <div>
+        <script src="javascripts/javascript.js"></script>
+    </div>
 
 </body>
+
 </html>
