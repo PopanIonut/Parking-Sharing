@@ -21,7 +21,7 @@
                     <b>Project-Parking</b>
                 </h2>
 
-                <h3 id="summary">Register your parking spaces and share them with others when you are not using them!
+                <h3 id="summary">Înregistrați-vă spațiile de parcare și permiteți-le și altora să le folosească atunci când nu le folosiți!
                 </h3>
             </div>
 
@@ -29,8 +29,8 @@
             <nav id="top-menuBar" class="top-menuBar">
                 <ul id="topMenu" class="topMenu">
                     <!--"data-page" properties point to the page IDs. -->
-                    <li><a href="#" data-page="homePage">Acasa</a></li>
-                    <li><a href="#" data-page="_2_Page">Vreau sa donez!</a></li>
+                    <li><a href="#" data-page="homePage">Acasă</a></li>
+                    <li><a href="#" data-page="_2_Page">Vreau să donez!</a></li>
                     <li><a href="#" data-page="searchPage">Locuri libere!</a></li>
                     <li id="menuAbout"><a href="#" data-page="aboutPage">Despre noi!</a></li>
                 </ul>
@@ -41,8 +41,18 @@
         <section id="centerContent">
 
             <!-- The IDs have to match the connected link's data-page value. -->
-            <div id="searchPage" class="page" style="display: block">
-                <h3>_Home, center content_</h3>
+            <div id="homePage" class="page" style="display: none"> <!--Style display "none" ONLY while testing the DB, ELSE "block" !! -->
+                <h3>Acasă</h3>
+                <p>Ceva text.</p>
+            </div>
+
+            <div id="_2_Page" class="page" style="display: none">
+                <h3>Pagina de donare</h3>
+                <p>Vreau să donez!</p>
+            </div>
+            
+            <div id="searchPage" class="page" style="display: block"> <!--Style display "block" ONLY while testing the DB, ELSE "none" !! -->
+                <h3>Locuri libere</h3>
                 <div id="searchDiv">
                     <input id="search" type="text" placeholder="Search..." tabindex="1" autofocus>
                     <!-- Clickable label used as button. -->
@@ -58,25 +68,24 @@
                     <col style="width: 10%">
                     <thead>
                         <tr>
-                            <th>Town</th>
-                            <th>Adress</th>
-                            <th>From</th>
-                            <th>Until</th>
+                            <th>Localitatea</th>
+                            <th>Adresa</th>
+                            <th>De la</th>
+                            <th>Până la</th>
                         </tr>
                     </thead>
                     <tbody></tbody> <!-- Table content, script generated. -->
                     <tfoot>
                         <tr>
-                            <td
-                                title="The full address is: location address + parking space or spot-registered car number.">
-                                <input type="text" placeholder="Town" required="required" name="address" tabindex="1">
+                            <td>
+                                <input type="text" placeholder="Localitatea" required="required" name="address" tabindex="1">
                             </td>
-                            <td><input type="text" placeholder="Addres" required="required" name="address" tabindex="2">
+                            <td><input type="text" placeholder="Adresa" required="required" name="address" tabindex="2">
                             </td>
-                            <td><input type="text" placeholder="From Time" required="required" name="fromTime"
+                            <td><input type="text" placeholder="De la" required="required" name="fromTime"
                                     tabindex="3"></td>
-                            <td><input type="text" placeholder="To Time" required="required" name="toTime" tabindex="4">
-                            <td><button type="submit" onclick="saveAddress()" aria-colspan="" tabindex="5">Save</button>
+                            <td><input type="text" placeholder="Până la" required="required" name="toTime" tabindex="4">
+                            <td><button type="submit" onclick="saveAddress()" aria-colspan="" tabindex="5">Salvare</button>
                             </td>
                             </td>
                             <div id="tabIndexReset" tabindex="0"></div>
@@ -85,20 +94,13 @@
                 </table>
             </div>
 
-            <div id="_2_Page" class="page" style="display: none">
-                <h3>_2_Page</h3>
-            </div>
-
             <div id="_3_Page" class="page" style="display: none">
                 <h3>_3_Page</h3>
             </div>
 
-            <div id="_4_Page" class="page" style="display: none">
-                <h3>_4_Page</h3>
-            </div>
-
             <div id="aboutPage" class="page" style="display: none">
-                <h3>About</h3>
+                <h3>Despre noi</h3>
+                <p>Ceva text.</p>
             </div>
         </section> <!-- page main content Center Section -->
 
