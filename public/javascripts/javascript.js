@@ -33,7 +33,24 @@ function showPage(page) {	// sets the visibility status of the ID'd object; none
 	document.getElementById(page).style.display = "block";
 }
 
+initTopMenu();	// Top-menu functions.
 
+// Data transfer handlers:
+var API_URL = {
+	ADD: 'data/parkingData.json',
+	READ: 'data/parkingData.json',
+};
+
+var API_METHOD = {
+	ADD: 'POST'
+};
+
+fetch(API_URL.READ).then(function (r) {
+	return r.json()
+}).then(function (parkingData) {
+	allPersons = parkingData;
+	display(parkingData);
+})
 
 function display(persons) {
 	var list = persons.map(function (person) {
@@ -45,23 +62,10 @@ function display(persons) {
 	});
 	document.querySelector('#addresses tbody').innerHTML = list.join('');
 }
+// --END-- Data transfer handling.
 
 
-var API_URL = {
-	ADD: 'data/parkingData.json',
-	READ: 'data/parkingData.json',
-  };
-  
-  var API_METHOD = {
-	ADD: 'POST'
-  };
-  
-  fetch(API_URL.READ).then(function(r){
-	return r.json()
-  }).then(function(parkingData){
-	allPersons = parkingData;
-	display(parkingData);
-  })
+
   
 
-initTopMenu();
+
