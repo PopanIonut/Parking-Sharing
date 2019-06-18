@@ -33,7 +33,18 @@ function showPage(page) {	// sets the visibility status of the ID'd object; none
 	document.getElementById(page).style.display = "block";
 }
 
-initTopMenu();	// Top-menu functions.
+initTopMenu();
+// --END-- Top-menu functions.
+
+
+function dateTimeControl() {
+	var fromDtCtrl = document.querySelector('input[name="fromTime"]');
+	console.log("The default STARTING date-time is: " + fromDtCtrl.value);
+	var toDtCtrl = document.querySelector('input[name="toTime"]');
+	console.log("The default ENDING date-time is: " + toDtCtrl.value);
+}
+dateTimeControl();
+
 
 // Data transfer handlers:
 var API_URL = {
@@ -54,7 +65,8 @@ fetch(API_URL.READ).then(function (r) {
 
 function display(persons) {
 	var list = persons.map(function (person) {
-		return `<tr data-id="${person.town}">
+		return `<tr data-id="${person.id}">
+			<td>${person.town}</td>
             <td>${person.adress}</td>
             <td>${person.from}</td>
             <td>${person.until}</td>

@@ -61,11 +61,11 @@
 
                 <!--Database Table View section-->
                 <table id="addresses">
-                    <col style="width: 20%">
                     <!--Column sizes.-->
-                    <col style="width: 45%">
-                    <col style="width: 15%">
-                    <col style="width: 10%">
+                    <col style="width: 20%">
+                    <col style="width: 40%">
+                    <col style="width: 20%">
+                    <col style="width: 20%">
                     <thead>
                         <tr>
                             <th>Localitatea</th>
@@ -82,9 +82,9 @@
                             </td>
                             <td><input type="text" placeholder="Adresa" required="required" name="address" tabindex="2">
                             </td>
-                            <td><input type="text" placeholder="De la" required="required" name="fromTime"
+                            <td><input type="datetime-local" value="2019-01-01T00:00" min="2019-06-18T00:00" max="9999-12-31T23:59" required="required" name="fromTime"
                                     tabindex="3"></td>
-                            <td><input type="text" placeholder="Până la" required="required" name="toTime" tabindex="4">
+                            <td><input type="datetime-local" value="2019-01-01T00:00" min="2019-06-18T00:00" max="9999-12-31T23:59" required="required" name="toTime" tabindex="4">
                             <td><button type="submit" onclick="saveAddress()" aria-colspan="" tabindex="5">Salvare</button>
                             </td>
                             </td>
@@ -110,7 +110,7 @@
 
     <!-- JavaScript -->
     <div>
-        <script src="javascripts/javascript.js"></script>
+        <script src="javascripts/parking.js"></script>
     </div>
 
 </body>
