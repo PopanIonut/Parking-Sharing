@@ -1,4 +1,26 @@
+var editingSpotsId;
+var allSpots = [];
 
+var API_URL = {
+/* 	ADD: 'data/parkingData.json',
+	READ: 'data/parkingData.json', */
+
+//	ADD: "spots/add",	//	CREATE
+	READ: "spots"
+//	UPDATE: "spots/update",
+//	DELETE: "spots/delete"
+};
+
+var API_METHOD = {
+/* 	ADD: 'POST' */
+
+//	CREATE: "POST",
+	READ: "GET"
+//	UPDATE: "PUT",
+//	DELETE: "DELETE"
+};
+
+// Top-menu handlers:
 function initTopMenu() {	// find all top-menu items and handle their "onclick" events.
 	const links = document.querySelectorAll("#topMenu a");
 	console.info(links);
@@ -47,30 +69,27 @@ dateTimeControl();
 
 
 // Data transfer handlers:
-var API_URL = {
-	ADD: 'data/parkingData.json',
-	READ: 'data/parkingData.json',
-};
-
-var API_METHOD = {
-	ADD: 'POST'
-};
-
-fetch(API_URL.READ).then(function (r) {
-	return r.json()
+fetch(API_URL.READ).then(function (resp) {
+	return resp.json()
 }).then(function (parkingData) {
-	allPersons = parkingData;
+	console.log("All spots: ", parkingData);
+	allSpots = parkingData;
 	display(parkingData);
 })
 
-function display(persons) {
-	var list = persons.map(function (person) {
-		return `<tr data-id="${person.id}">
-			<td>${person.town}</td>
-            <td>${person.adress}</td>
-            <td>${person.from}</td>
-            <td>${person.until}</td>
-            </tr>`;
+function display(parkingData) {
+	var list = parkingData.map(function (spot) {
+		return `<tr data-id="${spot.id}">
+			<td>${spot.city_town}</td>
+			<td>${spot.str_address}</td>
+			<td>${spot.spot_nr}</td>
+            <td class="dt">${spot.t_from.slice(0,-8).replace('T', ',  ')}</td>
+            <td class="dt">${spot.t_until.slice(0,-8).replace('T', ',  ')}</td>
+			<td>
+				<a href="#" class="delete" tabindex="-1">&#10006;</a>
+				<a href="#" class="edit" tabindex="-1">&#9998;</a>
+			</td>
+		</tr>`;
 	});
 	document.querySelector('#addresses tbody').innerHTML = list.join('');
 }

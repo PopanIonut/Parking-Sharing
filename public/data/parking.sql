@@ -1,12 +1,18 @@
-CREATE DATABASE parking;
-CREATE TABLE IF NOT EXISTS "spaces" (
-  "id" int(5) NOT NULL AUTO_INCREMENT,
-  "city_town" varchar(255) NOT NULL,
-  "spot_address" varchar(255) NOT NULL,
-  "from" datetime NOT NULL,
-  "until" datetime NOT NULL,
-  PRIMARY KEY (`id`)
-)
-ENGINE=InnoDB
-DEFAULT CHARSET=utf8_general_ci
-AUTO_INCREMENT=1;
+USE parking;
+
+DROP TABLE IF EXISTS spots;
+CREATE TABLE spots
+(
+	id INT unsigned NOT NULL auto_increment,
+	city_town VARCHAR(50) NOT NULL,		# City or town name where the parking spot is.
+	str_address VARCHAR(255) NOT NULL,	# Street address & spot ID of the alotted parking spot.
+	space_nr VARCHAR(10) NOT NULL,		# Lawful id. number of the alotted parking spot.
+	t_from datetime NOT NULL,
+  	t_until datetime NOT NULL,
+
+# ?? separate the date & time fields from this as into a table of their own ??
+
+	PRIMARY KEY (id)
+	
+	# ENGINE=InnoDB DEFAULT CHARSET=utf8_general_ci.
+); 

@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <title>Project-Parking</title>
     <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="icon" href="data:,"> <!--Hack to prevent "the favicon error".-->
 </head>
 
 <body>
@@ -63,13 +64,15 @@
                 <table id="addresses">
                     <!--Column sizes.-->
                     <col style="width: 20%">
-                    <col style="width: 40%">
-                    <col style="width: 20%">
-                    <col style="width: 20%">
+                    <col style="width: 35%">
+                    <col style="width: 9%">
+                    <col style="width: 18%">
+                    <col style="width: 18%">
                     <thead>
                         <tr>
                             <th>Localitatea</th>
                             <th>Adresa</th>
+                            <th>Nr. Loc</th>
                             <th>De la</th>
                             <th>Până la</th>
                         </tr>
@@ -77,16 +80,12 @@
                     <tbody></tbody> <!-- Table content, script generated. -->
                     <tfoot>
                         <tr>
-                            <td>
-                                <input type="text" placeholder="Localitatea" required="required" name="address" tabindex="1">
-                            </td>
-                            <td><input type="text" placeholder="Adresa" required="required" name="address" tabindex="2">
-                            </td>
-                            <td><input type="datetime-local" value="2019-01-01T00:00" min="2019-06-18T00:00" max="9999-12-31T23:59" required="required" name="fromTime"
-                                    tabindex="3"></td>
-                            <td><input type="datetime-local" value="2019-01-01T00:00" min="2019-06-18T00:00" max="9999-12-31T23:59" required="required" name="toTime" tabindex="4">
-                            <td><button type="submit" onclick="saveAddress()" aria-colspan="" tabindex="5">Salvare</button>
-                            </td>
+                            <td><input type="text" placeholder="Localitatea" required="required" name="cityTown" tabindex="1"></td>
+                            <td><input type="text" placeholder="Adresa" required="required" name="address" tabindex="2"></td>
+                            <td><input type="text" placeholder="Nr. Loc" required="required" name="spotNr"tabindex="3"></td>
+                            <td><input type="datetime-local" value="2019-01-01T00:00" min="2019-06-18T00:00" max="9999-12-31T23:59" required="required" name="fromTime" tabindex="4"></td>
+                            <td><input type="datetime-local" value="2019-01-01T00:00" min="2019-06-18T00:00" max="9999-12-31T23:59" required="required" name="toTime" tabindex="5">
+                            <td><button type="submit" onclick="saveAddress()" aria-colspan="" tabindex="6">Salvare</button></td>
                             </td>
                             <div id="tabIndexReset" tabindex="0"></div>
                         </tr>
