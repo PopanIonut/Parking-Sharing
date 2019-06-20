@@ -71,7 +71,7 @@ dateTimeControl();
 // Data transfer handlers:
 fetch(API_URL.READ).then(function (resp) {
 	return resp.json()
-}).then(function (parkingData) {
+}).then(function (parkingData) { // = the succesfully returned "resp".
 	console.log("All spots: ", parkingData);
 	allSpots = parkingData;
 	display(parkingData);
@@ -93,6 +93,13 @@ function display(parkingData) {
 	});
 	document.querySelector('#addresses tbody').innerHTML = list.join('');
 }
+
+
+// TODO: ADD /CREATE new record in "spots".  http://localhost:3000/spots/add
+// TODO: UPDATE record in "spots".  http://localhost:3000/spots/update
+// TODO: DELETE record from "spots".  http://localhost:3000/spots/delete
+
+
 // --END-- Data transfer handling.
 
 
