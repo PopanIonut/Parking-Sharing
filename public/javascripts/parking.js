@@ -7,7 +7,7 @@ var API_URL = {
 
 	ADD: "spots/add",	//	CREATE
 	READ: "spots",
-//	UPDATE: "spots/update",
+	UPDATE: "spots/update",
 	DELETE: "spots/delete"
 };
 
@@ -16,7 +16,7 @@ var API_METHOD = {
 
 	ADD: "POST",	//	CREATE
 	READ: "GET",
-//	UPDATE: "PUT",
+	UPDATE: "PUT",
 	DELETE: "DELETE"
 };
 
@@ -135,9 +135,28 @@ function submitNewSpot(cityTown, strAddress, spotNr,tFrom, tUntil) {
 	});
 }
 
-//
-// TODO: UPDATE -- submitEditedSpot()
-//
+function submitEditedSpot(id, cityTown, strAddress, spotNr,tFrom, tUntil) {
+	console.warn("Save edited spot: ", id + " " + cityTown + " " + strAddress + " " + spotNr + " " + tFrom + " " + tUntil);
+	
+	var body = null;
+	const method = API_METHOD.UPDATE;
+
+	if(method === "PUT"){
+		body = JSON.stringify({ id, cityTown, strAddress, spotNr,tFrom, tUntil });
+	}
+
+	fetch(API_URL.UPDATE, { method, body, headers: {"Content-Type": "application/json"}
+	}).then(function(response){
+		return response.json();
+	}).then(function(status){
+		if(status.success){
+			console.warn("Saved.", status);
+			inlineEditSpot(id, cityTown, strAddress, spotNr,tFrom, tUntil);
+		} else {
+			console.warn("Not saved!", status);
+		}
+	});
+}
 
 function inlineAddSpot(id, cityTown, strAddress, spotNr,tFrom, tUntil) {
 	console.log("Data: ", cityTown + " " + strAddress + " " + spotNr + " " + tFrom + " " + tUntil);
@@ -159,9 +178,19 @@ function inlineAddSpot(id, cityTown, strAddress, spotNr,tFrom, tUntil) {
 	document.querySelector("[name=toTime]").value = "2019-01-01T00:00";
 }
 
-//
-// TODO: UPDATE -- inlineEditSpot()
-//
+function inlineEditSpot(id, cityTown, strAddress, spotNr,tFrom, tUntil) {
+	console.log("Edited Data: ", id + " " + cityTown + " " + strAddress + " " + spotNr + " " + tFrom + " " + tUntil);
+
+	window.location.reload(); // reload the page and put the new data from memory to file.
+	
+	display(allPeople);
+
+	editingPersonsId = "";
+
+	document.querySelector("[name=cityTown]").value = "";
+	document.querySelector("[name=strAddress]").value = "";
+	document.querySelector("[name=spotNr]").value = "";
+}
 
 function inlineDeleteSpot(id) {
 	console.warn("Refresh page!", id);
@@ -195,8 +224,22 @@ function deleteSpot(id) {
 	});
 }
 
+const editSpot = function(id) {
+	var spot = allSpots.find(function(p){
+		return p.id == id;
+	});
+	console.warn("Found: ", spot);
+
+	document.querySelector("[name=cityTown]").value = spot.cityTown;
+	document.querySelector("[name=strAddress]").value = spot.strAddress;
+	document.querySelector("[name=spotNr]").value = spot.spotNr;
+	document.querySelector("[name=fromTime]").value = spot.tFrom;
+	document.querySelector("[name=toTime]").value = spot.tUntil;
+	editingSpotsId = id;
+};
+
 //
-// TODO: UPDATE -- define constant "editSpot" & "searchSpot" variables
+// TODO: -- define constant "searchSpot" variable
 //
 
 // Delete, Edit & Search - Event listeners.
