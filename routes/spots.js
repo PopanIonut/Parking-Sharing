@@ -27,8 +27,55 @@ router.get('/', function(req, res, next) {
   });
 });
 
-// TODO: ADD /CREATE new record in "spots".  http://localhost:3000/spots/add
+/// ADD /CREATE new record in "spots".  http://localhost:3000/spots/add
+router.post('/add', function(req, res, next) {
+  var cityTown = req.body.city_town;
+  var strAddress = req.body.str_address;
+  var spotNr = req.body.spot_nr;
+  var tFrom = req.body.t_from;
+  var tUntil = req.body.t_until;
+  
+  console.warn("Add: ", cityTown, strAddress, spotNr, tFrom, tUntil);
+  
+  pool.getConnection((err, connection) => {
+    const sql = `INSERT INTO spots 
+      (id, city_town, str_address, spot_nr, t_from, t_until)
+      VALUES (NULL, "${cityTown}", "${strAddress}", "${spotNr}", "${tFrom}", "${tUntil}")`;
+      
+    console.log(sql);
+    connection.query(sql, (err, result) => {
+      const id = result.insertId;
+      res.json({
+        success: true,
+        id,
+        message: "Done!"
+      });
+      
+      connection.release();
+    });
+  });
+});
+
 // TODO: UPDATE record in "spots".  http://localhost:3000/spots/update
-// TODO: DELETE record from "spots".  http://localhost:3000/spots/delete
+
+// DELETE record from "spots".  http://localhost:3000/spots/delete
+router.delete('/delete', function(req, res, next) {
+  var id = req.body.id;
+  
+  console.warn("Remove: ", id);
+
+  pool.getConnection((err, connection) => {
+    const sql = `DELETE FROM spots WHERE id = ${(id)}`;
+      
+    connection.query(sql, (err, results) => {
+      res.json({
+        success: true,
+        message: "Done!"
+      });
+      
+      connection.release();
+    });
+  });
+});
 
 module.exports = router;

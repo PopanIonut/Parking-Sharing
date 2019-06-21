@@ -5,19 +5,19 @@ var API_URL = {
 /* 	ADD: 'data/parkingData.json',
 	READ: 'data/parkingData.json', */
 
-//	ADD: "spots/add",	//	CREATE
-	READ: "spots"
+	ADD: "spots/add",	//	CREATE
+	READ: "spots",
 //	UPDATE: "spots/update",
-//	DELETE: "spots/delete"
+	DELETE: "spots/delete"
 };
 
 var API_METHOD = {
 /* 	ADD: 'POST' */
 
-//	CREATE: "POST",
-	READ: "GET"
+	ADD: "POST",	//	CREATE
+	READ: "GET",
 //	UPDATE: "PUT",
-//	DELETE: "DELETE"
+	DELETE: "DELETE"
 };
 
 // Top-menu handlers:
@@ -77,6 +77,7 @@ fetch(API_URL.READ).then(function (resp) {
 	display(parkingData);
 })
 
+// Show data on page.
 function display(parkingData) {
 	var list = parkingData.map(function (spot) {
 		return `<tr data-id="${spot.id}">
@@ -94,12 +95,140 @@ function display(parkingData) {
 	document.querySelector('#addresses tbody').innerHTML = list.join('');
 }
 
+function saveSpot(){
+	console.log("Save spot.");
 
-// TODO: ADD /CREATE new record in "spots".  http://localhost:3000/spots/add
-// TODO: UPDATE record in "spots".  http://localhost:3000/spots/update
-// TODO: DELETE record from "spots".  http://localhost:3000/spots/delete
+	var cityTown = document.querySelector("[name=cityTown]").value;
+	var strAddress = document.querySelector("[name=strAddress]").value;
+	var spotNr = document.querySelector("[name=spotNr]").value;
+	var tFrom = document.querySelector("[name=fromTime]").value;
+	var tUntil = document.querySelector("[name=toTime]").value;
+	console.warn("Save new spot data: ", cityTown + " " + strAddress + " " + spotNr + " " + tFrom + " " + tUntil);
 
+	if(editingSpotsId) {
+		submitEditedSpot(editingSpotsId, cityTown, strAddress, spotNr,tFrom, tUntil);
+	} else {
+		submitNewSpot(cityTown, strAddress, spotNr,tFrom, tUntil);
+	}
+}
 
+function submitNewSpot(cityTown, strAddress, spotNr,tFrom, tUntil) {
+	console.warn("Save new spot: ", cityTown + " " + strAddress + " " + spotNr + " " + tFrom + " " + tUntil);
+	
+	var body = null;
+	const method = API_METHOD.ADD;
+
+	if(method === "POST"){
+		body = JSON.stringify({ cityTown, strAddress, spotNr,tFrom, tUntil });
+	}
+
+	fetch(API_URL.ADD, { method, body, headers: {"Content-Type": "application/json"}
+	}).then(function(response){
+		return response.json();
+	}).then(function(status){
+		if(status.success){
+			console.warn("Saved.", status);
+			inlineAddSpot(status.id, cityTown, strAddress, spotNr,tFrom, tUntil);
+		} else {
+			console.warn("Not saved!", status);
+		}
+	});
+}
+
+//
+// TODO: UPDATE -- submitEditedSpot()
+//
+
+function inlineAddSpot(id, cityTown, strAddress, spotNr,tFrom, tUntil) {
+	console.log("Data: ", cityTown + " " + strAddress + " " + spotNr + " " + tFrom + " " + tUntil);
+
+	allSpots.push({		// DB field names have underscores.
+		id,
+		cityTown: cityTown,	// city_town
+		strAddress: strAddress,	// str_address
+		spotNr: spotNr,	// spot_nr
+		tFrom: tFrom,	// t_from
+		tUntil: tUntil	// t_until
+	});
+	display(allSpots);
+
+	document.querySelector("[name=cityTown]").value = "";
+	document.querySelector("[name=strAddress]").value = "";
+	document.querySelector("[name=spotNr]").value = "";
+	document.querySelector("[name=fromTime]").value = "2019-01-01T00:00";
+	document.querySelector("[name=toTime]").value = "2019-01-01T00:00";
+}
+
+//
+// TODO: UPDATE -- inlineEditSpot()
+//
+
+function inlineDeleteSpot(id) {
+	console.warn("Refresh page!", id);
+
+	allSpots = allSpots.filter(function(spot){
+		return spot.id != id;
+	});
+	display(allSpots);
+}
+
+function deleteSpot(id) {
+	var body = null;
+	
+	if(API_METHOD.DELETE === "DELETE"){
+		body = JSON.stringify({ id });
+	}
+
+	fetch(API_URL.DELETE, {
+		method: API_METHOD.DELETE,
+		body: body,
+		headers: {"Content-Type": "application/json"}
+	}).then(function(response){
+		return response.json();
+	}).then(function(status){
+		if(status.success){
+			console.warn("Removed.", status);
+			inlineDeleteSpot(id);
+		} else {
+			console.warn("Not removed!", status);
+		}
+	});
+}
+
+//
+// TODO: UPDATE -- define constant "editSpot" & "searchSpot" variables
+//
+
+// Delete, Edit & Search - Event listeners.
+function initEvents() {
+	const tbody = document.querySelector("#addresses tbody");
+	const searchBox = document.querySelector("#search");
+
+	tbody.addEventListener("click", function(e) {
+		if (e.target.className == "delete") {
+			const tr = e.target.parentNode.parentNode;
+			const id = tr.getAttribute("data-id");
+			
+			console.warn("Parent?", e.target.parentNode.parentNode);
+			console.warn("Parent?", id);
+
+			deleteSpot(id);
+		} else if(e.target.className == "edit") {
+			const tr = e.target.parentNode.parentNode;
+			const id = tr.getAttribute("data-id");
+
+			console.warn("edit", id);
+
+			editSpot(id);
+		}
+	});
+
+	searchBox.addEventListener("input", (e) => {
+		console.warn("Search input: " + e.target.value);
+		searchSpot(e.target.value);
+	});
+}
+initEvents();
 // --END-- Data transfer handling.
 
 
