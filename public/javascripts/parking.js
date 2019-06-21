@@ -238,9 +238,15 @@ const editSpot = function(id) {
 	editingSpotsId = id;
 };
 
-//
-// TODO: -- define constant "searchSpot" variable
-//
+const searchSpot = value => {	/*	If the array only ever has 1 value the parrentheses can be left out.	*/
+	value = value.toLowerCase().trim();
+	const filtered = allSpots.filter(spot => {
+		return spot.cityTown.toLowerCase().includes(value) ||
+			spot.strAddress.toLowerCase().includes(value) ||
+			spot.spotNr.toLowerCase().includes(value);
+	});
+	display(filtered);
+};
 
 // Delete, Edit & Search - Event listeners.
 function initEvents() {
