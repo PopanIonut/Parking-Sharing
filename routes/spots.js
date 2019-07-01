@@ -30,9 +30,10 @@ router.get('/', function(req, res, next) {
 
 /// ADD /CREATE new record in "spots".  http://localhost:3000/spots/add
 router.post('/add', function(req, res, next) {
-  var cityTown = req.body.city_town;
+	// DB field names have underscores.
+  var cityTown = req.body.city;
   var area = req.body.area;
-  var strAddress = req.body.str_address;
+  var strAddress = req.body.address;
   var spotNr = req.body.spot_nr;
   var tFrom = req.body.t_from;
   var tUntil = req.body.t_until;
@@ -62,9 +63,10 @@ router.post('/add', function(req, res, next) {
 
 // TODO: UPDATE record in "spots".  http://localhost:3000/spots/update
 router.put('/update', function(req, res, next) {
+  // DB field names have underscores.
   var id = req.body.id;
-  var cityTown = req.body.city_town;
-  var strAddress = req.body.str_address;
+  var cityTown = req.body.city;
+  var strAddress = req.body.address;
   var spotNr = req.body.spot_nr;
   var tFrom = req.body.t_from;
   var tUntil = req.body.t_until;

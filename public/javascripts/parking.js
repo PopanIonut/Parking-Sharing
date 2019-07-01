@@ -78,12 +78,13 @@ fetch(API_URL.READ).then(function (resp) {
 })
 
 // Show data on page.
+	// DB field names have underscores.
 function display(parkingData) {
 	var list = parkingData.map(function (spot) {
 		return `<tr data-id="${spot.id}">
-			<td>${spot.city_town}</td>
+			<td>${spot.city}</td>
 			<td>${spot.area}</td>
-			<td>${spot.str_address}</td>
+			<td>${spot.address}</td>
 			<td>${spot.spot_nr}</td>
             <td class="t">${spot.t_from}</td>
             <td class="t">${spot.t_until}</td>
