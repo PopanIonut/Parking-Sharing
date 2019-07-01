@@ -114,4 +114,21 @@ router.delete('/delete', function(req, res, next) {
   });
 });
 
+
+// GET /READ entire "reservations" listed.  http://localhost:3000/get
+router.get('/', function(req, res, next) {
+  //  res.send('respond with a resource');
+  pool.getConnection((err, connection) => {
+    const sql = `SELECT * FROM reservations`;
+
+    connection.query(sql, (err, results) => {
+      if(!!err){  console.log(err);   } else {
+        console.log("DB \"parking\" Connected! :)");
+        res.json(results);
+        connection.release();
+      }
+    });
+  });
+});
+
 module.exports = router;

@@ -68,7 +68,7 @@ function timeControl() {
 timeControl();
 
 
-// Data transfer handlers:
+// "Spots" DB Data transfer handlers:
 fetch(API_URL.READ).then(function (resp) {
 	return resp.json()
 }).then(function (parkingData) { // = the succesfully returned "resp".
@@ -77,7 +77,7 @@ fetch(API_URL.READ).then(function (resp) {
 	display(parkingData);
 })
 
-// Show data on page.
+// Show "spots" DB data on page.
 	// DB field names have underscores.
 function display(parkingData) {
 	var list = parkingData.map(function (spot) {
@@ -252,7 +252,7 @@ const editSpot = function(id) {
 	document.querySelector("[name=description]").value = spot.description;
 	editingSpotsId = id;
 };
-// --END-- Data transfer handling.
+// --END-- "spots" DB Data transfer handling.
 
 // Search "bar".
 const searchCity = value => {	/*	If the array only ever has 1 value the parrentheses can be left out.	*/
@@ -280,7 +280,7 @@ const searchAddress = value => {
 };
 // --END-- Search handling.
 
-// Delete, Edit & Search - Event listeners.
+// Delete, Edit & Search "Spots" DB - Event listeners.
 function initEvents() {
 	const tbody = document.querySelector("#addresses tbody");
 	const searchBox = document.querySelector("#search");
@@ -314,6 +314,32 @@ function initEvents() {
 initEvents();
 
 
+// "reservations" DB Data transfer handlers:
+fetch(API_URL.READ).then(function (resp) {
+	return resp.json()
+}).then(function (bookingData) { // = the succesfully returned "resp".
+	console.log("All reservations: ", bookingData);
+	allReservations = bookingData;
+	display(bookingData);
+})
+
+// Show "reservations" DB data on page.
+	// DB field names have underscores.
+	function display(bookingData) {
+		var list = bookingData.map(function (reservation) {
+			return `<tr data-id="${reservation.id}">
+				<td>${reservation.person_id}</td>
+				<td>${reservation.spot_id}</td>
+				<td class="t">${reservation.start}</td>
+				<td class="t">${reservation.ending}</td>
+				<td>
+					<a href="#" class="delete" tabindex="-1">&#10006;</a>
+					<a href="#" class="edit" tabindex="-1">&#9998;</a>
+				</td>
+			</tr>`;
+		});
+		document.querySelector('#booking tbody').innerHTML = list.join('');
+	}
 
 
   
