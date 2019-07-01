@@ -252,17 +252,33 @@ const editSpot = function(id) {
 	document.querySelector("[name=description]").value = spot.description;
 	editingSpotsId = id;
 };
+// --END-- Data transfer handling.
 
-const searchSpot = value => {	/*	If the array only ever has 1 value the parrentheses can be left out.	*/
+// Search "bar".
+const searchCity = value => {	/*	If the array only ever has 1 value the parrentheses can be left out.	*/
 	value = value.toLowerCase().trim();
 	const filtered = allSpots.filter(spot => {
-		return spot.cityTown.toLowerCase().includes(value) ||
-			spot.area.toLowerCase().includes(value) ||
-			spot.strAddress.toLowerCase().includes(value) ||
-			spot.spotNr.toLowerCase().includes(value);
+		return spot.cityTown.toLowerCase().includes(value);
 	});
 	display(filtered);
 };
+
+const searchArea = value => {
+	value = value.toLowerCase().trim();
+	const filtered = allSpots.filter(spot => {
+		return spot.area.toLowerCase().includes(value);
+	});
+	display(filtered);
+};
+
+const searchAddress = value => {
+	value = value.toLowerCase().trim();
+	const filtered = allSpots.filter(spot => {
+		return spot.strAddress.toLowerCase().includes(value);
+	});
+	display(filtered);
+};
+// --END-- Search handling.
 
 // Delete, Edit & Search - Event listeners.
 function initEvents() {
@@ -290,11 +306,13 @@ function initEvents() {
 
 	searchBox.addEventListener("input", (e) => {
 		console.warn("Search input: " + e.target.value);
-		searchSpot(e.target.value);
+		searchCity(e.target.value);
+		searchArea(e.target.value);
+		searchAddress(e.target.value);
 	});
 }
 initEvents();
-// --END-- Data transfer handling.
+
 
 
 
