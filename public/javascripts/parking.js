@@ -332,7 +332,7 @@ function displayReservations(bookingData) {
 		return `<tr data-id="${reservation.id}">
 				<td>${reservation.person_id}</td>
 				<td>${reservation.spot_id}</td>
-				<td class="t">${reservation.start}</td>
+				<td class="t">${reservation.start.substring(0, 19).split('T').join(', ')}</td>
 				<td class="t">${reservation.ending}</td>
 				<td>
 					<a href="#" class="delete" tabindex="-1">&#10006;</a>

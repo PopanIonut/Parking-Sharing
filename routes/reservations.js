@@ -16,7 +16,7 @@ const pool = mysql.createPool({
 router.get('/', function(req, res, next) {
   //  res.send('respond with a resource');
   pool.getConnection((err, connection) => {
-    const sql = `SELECT * FROM reservations`;
+    const sql = `SELECT * FROM reservations WHERE ending IS NOT NULL`;
 
     connection.query(sql, (err, results) => {
       if(!!err){  console.log(err);   } else {

@@ -14,9 +14,11 @@ const pool = mysql.createPool({
 
 // GET /READ entire "spots" listed.  http://localhost:3000/get
 router.get('/', function(req, res, next) {
+  const city = false ? ` AND city = "Cluj"` : ``;
+  const area = false ? ` AND area = "Gruia"` : ``;
   //  res.send('respond with a resource');
   pool.getConnection((err, connection) => {
-    const sql = `SELECT * FROM spots`;
+    const sql = `SELECT * FROM spots WHERE id not in(SELECT spot_id from reservations WHERE ending IS NULL) ${city} ${area} ORDER BY address ASC`;
 
     connection.query(sql, (err, results) => {
       if(!!err){  console.log(err);   } else {
