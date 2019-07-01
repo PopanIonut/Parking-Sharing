@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 24, 2019 at 08:41 PM
+-- Generation Time: Jul 01, 2019 at 05:48 PM
 -- Server version: 10.1.40-MariaDB
 -- PHP Version: 7.3.5
 
@@ -42,8 +42,16 @@ CREATE TABLE `people` (
 --
 
 INSERT INTO `people` (`id`, `firstName`, `lastName`, `phone`, `email`, `car_nr`) VALUES
-(1, 'Ioan', 'Marcel', 23452, 'fdgdhdg@dfgd', 'Cj345fg'),
-(2, 'Maria', 'Bob', 35644, 'dfgdhf', 'cj3435gf');
+(1, 'Ioan', 'Marcel', 744888564, 'Marcel2008@yahoo.com', 'TM90PAW'),
+(2, 'Maria', 'Bob', 744855075, 'MariaBobMaria@yahoo.com', 'BV18MIA'),
+(3, 'Dobrescu', 'Vlad', 769951753, 'Dobrescu.Vlad@gmail.com', 'CJ25DOC'),
+(4, 'Dobrescu', 'Vlad', 769951753, 'Dobrescu.Vlad@gmail.com', 'CJ25DOC'),
+(5, 'Munteanu', 'Cristian', 769555426, 'CristianMunteanu@gmail.com', 'CJ01BOS'),
+(6, 'Lacatus', 'Aurel', 768735915, 'Lacatus.Aurel@yahoo.com', 'CJ88ZWZ'),
+(7, 'Vlaicu', 'Ionut', 766447122, 'VlaicuIonut@hotmail.com', 'CJ10NUT'),
+(8, 'Vaida', 'Bogdan', 766645282, 'VaidaBogdan@gmail.com', 'CJ20BBB'),
+(9, 'Antonescu', 'Mircea', 769246837, 'AntonescuMircea@yahoo.com', 'CJ15WIZ'),
+(10, 'Botezatu', 'Alin', 767850785, 'Alin.Botezatu@gmail.com', 'BN88ALN');
 
 -- --------------------------------------------------------
 
@@ -90,7 +98,32 @@ CREATE TABLE `spots` (
 --
 
 INSERT INTO `spots` (`id`, `city`, `area`, `address`, `spot_nr`, `t_from`, `t_until`, `description`) VALUES
-(1, 'Cluj', 'Zorilor', 'zorilor 24', 'A2', '00:00:22', '00:00:23', 'dgfhj');
+(1, 'Cluj', 'Zorilor', 'Str. Caisului', '1', '00:00:22', '00:00:23', ''),
+(2, 'Cluj', 'Gruia', 'Str. 16 Februarie', '2', '02:00:00', '00:00:00', ''),
+(3, 'Cluj', 'Marasti', 'Str. 13 Septembrie', '3', '08:00:00', '06:00:00', ''),
+(4, 'Cluj', 'Marasti', 'Str. 13 Septembrie', '4', '08:00:00', '06:00:00', ''),
+(5, 'Cluj', 'Gheorgheni', 'Str. Actorului', '5', '09:00:00', '06:00:00', ''),
+(6, 'Cluj', 'Faget', 'Str. Afinului', '6', '08:00:00', '06:00:00', ''),
+(7, 'Cluj', 'Manastur', 'Str. Agricultorilor', '7', '02:00:00', '01:00:00', ''),
+(8, 'Cluj', 'Someseni', 'Str. Aiudului', '8', '03:00:00', '06:00:00', ''),
+(9, 'Cluj', 'Gruia', 'Str. Brizei', '9', '08:00:00', '02:00:00', ''),
+(10, 'Cluj', 'Gruia', 'Str. Buhusi', '10', '07:00:00', '01:00:00', ''),
+(11, 'Cluj', 'Gruia', 'Str. Calarasilor', '12', '08:00:00', '10:00:00', ''),
+(12, 'Cluj', 'Gruia', 'Str. Calarasilor', '12', '08:00:00', '10:00:00', ''),
+(13, 'Cluj', 'Gruia', 'Str. Campeni', '13', '01:00:00', '03:00:00', ''),
+(14, 'Cluj', 'Gruia', 'Str. Dornei', '14', '04:00:00', '06:00:00', ''),
+(15, 'Cluj', 'Gruia', 'Str. Haiducului', '15', '07:00:00', '11:00:00', ''),
+(16, 'Cluj', 'Gruia', 'Str. Lemnului', '16', '01:00:00', '01:00:00', ''),
+(17, 'Cluj', 'Gruia', 'Str. Mecanicilor', '17', '04:00:00', '03:00:00', ''),
+(18, 'Cluj', 'Gruia', 'Str. Pescarilor', '18', '02:00:00', '05:00:00', ''),
+(19, 'Cluj', 'Someseni', 'Str. Ciocanului', '19', '02:00:00', '04:00:00', ''),
+(20, 'Cluj', 'Someseni', 'Str. Ciocanului', '19', '02:00:00', '01:00:00', ''),
+(21, 'Cluj', 'Someseni', 'Str. Dobrogei', '20', '06:00:00', '03:00:00', ''),
+(22, 'Cluj', 'Someseni', 'Str. Lucernei', '21', '03:00:00', '01:00:00', ''),
+(23, 'Cluj', 'Someseni', 'Str. Morii', '22', '07:00:00', '03:00:00', ''),
+(24, 'Cluj', 'Someseni', 'Str. Prieteniei', '23', '05:00:00', '02:00:00', ''),
+(25, 'Cluj', 'Someseni', 'Str. Rozelor', '24', '09:00:00', '06:00:00', ''),
+(26, 'Cluj', 'Someseni', 'Str. Sportului', '25', '03:00:00', '02:00:00', '');
 
 --
 -- Indexes for dumped tables
@@ -124,7 +157,7 @@ ALTER TABLE `spots`
 -- AUTO_INCREMENT for table `people`
 --
 ALTER TABLE `people`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `reservations`
@@ -136,7 +169,7 @@ ALTER TABLE `reservations`
 -- AUTO_INCREMENT for table `spots`
 --
 ALTER TABLE `spots`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Constraints for dumped tables

@@ -327,7 +327,6 @@ fetch(API_URL.READ_RESERVATIONS).then(function (resp) {
 
 // Show "reservations" DB data on page.
 // DB field names have underscores.
-//TODO - rename function
 function displayReservations(bookingData) {
 	var list = bookingData.map(function (reservation) {
 		return `<tr data-id="${reservation.id}">
