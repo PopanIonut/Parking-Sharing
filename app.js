@@ -7,6 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 //var usersRouter = require('./routes/users');  // json data list
 var usersRouter = require('./routes/spots');  // sql db
+var reservationsRouter = require('./routes/reservations');  // sql db
 
 var app = express();
 
@@ -23,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 //app.use('/users', usersRouter);  // json data list
 app.use('/spots', usersRouter); // sql db
+app.use('/reservations', reservationsRouter); // sql db
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

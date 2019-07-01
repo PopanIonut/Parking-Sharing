@@ -2,18 +2,18 @@ var editingSpotsId;
 var allSpots = [];
 
 var API_URL = {
-/* 	ADD: 'data/parkingData.json',
-	READ: 'data/parkingData.json', */
+	/* 	ADD: 'data/parkingData.json',
+		READ: 'data/parkingData.json', */
 
 	ADD: "spots/add",	//	CREATE
-	READ: "spots",
+	READ_SPOTS: "spots",
+	READ_RESERVATIONS: "reservations",
 	UPDATE: "spots/update",
 	DELETE: "spots/delete"
 };
 
 var API_METHOD = {
-/* 	ADD: 'POST' */
-
+	/* 	ADD: 'POST' */
 	ADD: "POST",	//	CREATE
 	READ: "GET",
 	UPDATE: "PUT",
@@ -69,17 +69,17 @@ timeControl();
 
 
 // "Spots" DB Data transfer handlers:
-fetch(API_URL.READ).then(function (resp) {
+fetch(API_URL.READ_SPOTS).then(function (resp) {
 	return resp.json()
 }).then(function (parkingData) { // = the succesfully returned "resp".
 	console.log("All spots: ", parkingData);
 	allSpots = parkingData;
-	display(parkingData);
+	displaySpots(parkingData);
 })
 
 // Show "spots" DB data on page.
-	// DB field names have underscores.
-function display(parkingData) {
+// DB field names have underscores.
+function displaySpots(parkingData) {
 	var list = parkingData.map(function (spot) {
 		return `<tr data-id="${spot.id}">
 			<td>${spot.city}</td>
@@ -98,7 +98,7 @@ function display(parkingData) {
 	document.querySelector('#addresses tbody').innerHTML = list.join('');
 }
 
-function saveSpot(){
+function saveSpot() {
 	console.log("Save spot.");
 
 	var cityTown = document.querySelector("[name=cityTown]").value;
@@ -110,60 +110,62 @@ function saveSpot(){
 	var description = document.querySelector("[name=description]").value;
 	console.warn("Save new spot data: ", cityTown + " " + area + " " + strAddress + " " + spotNr + " " + tFrom + " " + tUntil + " " + description);
 
-	if(editingSpotsId) {
-		submitEditedSpot(editingSpotsId, cityTown, area, strAddress, spotNr,tFrom, tUntil, description);
+	if (editingSpotsId) {
+		submitEditedSpot(editingSpotsId, cityTown, area, strAddress, spotNr, tFrom, tUntil, description);
 	} else {
-		submitNewSpot(cityTown, area, strAddress, spotNr,tFrom, tUntil, description);
+		submitNewSpot(cityTown, area, strAddress, spotNr, tFrom, tUntil, description);
 	}
 }
 
-function submitNewSpot(cityTown, area, strAddress, spotNr,tFrom, tUntil, description) {
+function submitNewSpot(cityTown, area, strAddress, spotNr, tFrom, tUntil, description) {
 	console.warn("Save new spot: ", cityTown + " " + area + " " + strAddress + " " + spotNr + " " + tFrom + " " + tUntil + " " + description);
-	
+
 	var body = null;
 	const method = API_METHOD.ADD;
 
-	if(method === "POST"){
-		body = JSON.stringify({ cityTown, area, strAddress, spotNr,tFrom, tUntil, description });
+	if (method === "POST") {
+		body = JSON.stringify({ cityTown, area, strAddress, spotNr, tFrom, tUntil, description });
 	}
 
-	fetch(API_URL.ADD, { method, body, headers: {"Content-Type": "application/json"}
-	}).then(function(response){
+	fetch(API_URL.ADD, {
+		method, body, headers: { "Content-Type": "application/json" }
+	}).then(function (response) {
 		return response.json();
-	}).then(function(status){
-		if(status.success){
+	}).then(function (status) {
+		if (status.success) {
 			console.warn("Saved.", status);
-			inlineAddSpot(status.id, cityTown, area, strAddress, spotNr,tFrom, tUntil, description);
+			inlineAddSpot(status.id, cityTown, area, strAddress, spotNr, tFrom, tUntil, description);
 		} else {
 			console.warn("Not saved!", status);
 		}
 	});
 }
 
-function submitEditedSpot(id, cityTown, area, strAddress, spotNr,tFrom, tUntil, description) {
+function submitEditedSpot(id, cityTown, area, strAddress, spotNr, tFrom, tUntil, description) {
 	console.warn("Save edited spot: ", id + " " + cityTown + " " + area + " " + strAddress + " " + spotNr + " " + tFrom + " " + tUntil + " " + description);
-	
+
 	var body = null;
 	const method = API_METHOD.UPDATE;
 
-	if(method === "PUT"){
-		body = JSON.stringify({ id, cityTown, area, strAddress, spotNr,tFrom, tUntil, description });
+	if (method === "PUT") {
+		body = JSON.stringify({ id, cityTown, area, strAddress, spotNr, tFrom, tUntil, description });
 	}
 
-	fetch(API_URL.UPDATE, { method, body, headers: {"Content-Type": "application/json"}
-	}).then(function(response){
+	fetch(API_URL.UPDATE, {
+		method, body, headers: { "Content-Type": "application/json" }
+	}).then(function (response) {
 		return response.json();
-	}).then(function(status){
-		if(status.success){
+	}).then(function (status) {
+		if (status.success) {
 			console.warn("Saved.", status);
-			inlineEditSpot(id, cityTown, area, strAddress, spotNr,tFrom, tUntil, description);
+			inlineEditSpot(id, cityTown, area, strAddress, spotNr, tFrom, tUntil, description);
 		} else {
 			console.warn("Not saved!", status);
 		}
 	});
 }
 
-function inlineAddSpot(id, cityTown, area, strAddress, spotNr,tFrom, tUntil, description) {
+function inlineAddSpot(id, cityTown, area, strAddress, spotNr, tFrom, tUntil, description) {
 	console.log("Data: ", cityTown + " " + area + " " + strAddress + " " + spotNr + " " + tFrom + " " + tUntil + " " + description);
 
 	allSpots.push({		// DB field names have underscores.
@@ -176,7 +178,7 @@ function inlineAddSpot(id, cityTown, area, strAddress, spotNr,tFrom, tUntil, des
 		tUntil: tUntil,	// t_until
 		description: description	// description
 	});
-	display(allSpots);
+	displaySpots(allSpots);
 
 	document.querySelector("[name=cityTown]").value = "";
 	document.querySelector("[name=area]").value = "";
@@ -187,12 +189,12 @@ function inlineAddSpot(id, cityTown, area, strAddress, spotNr,tFrom, tUntil, des
 	document.querySelector("[name=description]").value = "";
 }
 
-function inlineEditSpot(id, cityTown, area, strAddress, spotNr,tFrom, tUntil, description) {
+function inlineEditSpot(id, cityTown, area, strAddress, spotNr, tFrom, tUntil, description) {
 	console.log("Edited Data: ", id + " " + cityTown + " " + area + " " + strAddress + " " + spotNr + " " + tFrom + " " + tUntil + " " + description);
 
 	window.location.reload(); // reload the page and put the new data from memory to file.
-	
-	display(allPeople);
+
+	displaySpots(allPeople);
 
 	editingPersonsId = "";
 
@@ -208,27 +210,27 @@ function inlineEditSpot(id, cityTown, area, strAddress, spotNr,tFrom, tUntil, de
 function inlineDeleteSpot(id) {
 	console.warn("Refresh page!", id);
 
-	allSpots = allSpots.filter(function(spot){
+	allSpots = allSpots.filter(function (spot) {
 		return spot.id != id;
 	});
-	display(allSpots);
+	displaySpots(allSpots);
 }
 
 function deleteSpot(id) {
 	var body = null;
-	
-	if(API_METHOD.DELETE === "DELETE"){
+
+	if (API_METHOD.DELETE === "DELETE") {
 		body = JSON.stringify({ id });
 	}
 
 	fetch(API_URL.DELETE, {
 		method: API_METHOD.DELETE,
 		body: body,
-		headers: {"Content-Type": "application/json"}
-	}).then(function(response){
+		headers: { "Content-Type": "application/json" }
+	}).then(function (response) {
 		return response.json();
-	}).then(function(status){
-		if(status.success){
+	}).then(function (status) {
+		if (status.success) {
 			console.warn("Removed.", status);
 			inlineDeleteSpot(id);
 		} else {
@@ -237,8 +239,8 @@ function deleteSpot(id) {
 	});
 }
 
-const editSpot = function(id) {
-	var spot = allSpots.find(function(p){
+const editSpot = function (id) {
+	var spot = allSpots.find(function (p) {
 		return p.id == id;
 	});
 	console.warn("Found: ", spot);
@@ -260,7 +262,7 @@ const searchCity = value => {	/*	If the array only ever has 1 value the parrenth
 	const filtered = allSpots.filter(spot => {
 		return spot.cityTown.toLowerCase().includes(value);
 	});
-	display(filtered);
+	displaySpots(filtered);
 };
 
 const searchArea = value => {
@@ -268,7 +270,7 @@ const searchArea = value => {
 	const filtered = allSpots.filter(spot => {
 		return spot.area.toLowerCase().includes(value);
 	});
-	display(filtered);
+	displaySpots(filtered);
 };
 
 const searchAddress = value => {
@@ -276,7 +278,7 @@ const searchAddress = value => {
 	const filtered = allSpots.filter(spot => {
 		return spot.strAddress.toLowerCase().includes(value);
 	});
-	display(filtered);
+	displaySpots(filtered);
 };
 // --END-- Search handling.
 
@@ -285,16 +287,16 @@ function initEvents() {
 	const tbody = document.querySelector("#addresses tbody");
 	const searchBox = document.querySelector("#search");
 
-	tbody.addEventListener("click", function(e) {
+	tbody.addEventListener("click", function (e) {
 		if (e.target.className == "delete") {
 			const tr = e.target.parentNode.parentNode;
 			const id = tr.getAttribute("data-id");
-			
+
 			console.warn("Parent?", e.target.parentNode.parentNode);
 			console.warn("Parent?", id);
 
 			deleteSpot(id);
-		} else if(e.target.className == "edit") {
+		} else if (e.target.className == "edit") {
 			const tr = e.target.parentNode.parentNode;
 			const id = tr.getAttribute("data-id");
 
@@ -315,19 +317,20 @@ initEvents();
 
 
 // "reservations" DB Data transfer handlers:
-fetch(API_URL.READ).then(function (resp) {
+fetch(API_URL.READ_RESERVATIONS).then(function (resp) {
 	return resp.json()
 }).then(function (bookingData) { // = the succesfully returned "resp".
 	console.log("All reservations: ", bookingData);
 	allReservations = bookingData;
-	display(bookingData);
+	displayReservations(bookingData);
 })
 
 // Show "reservations" DB data on page.
-	// DB field names have underscores.
-	function display(bookingData) {
-		var list = bookingData.map(function (reservation) {
-			return `<tr data-id="${reservation.id}">
+// DB field names have underscores.
+//TODO - rename function
+function displayReservations(bookingData) {
+	var list = bookingData.map(function (reservation) {
+		return `<tr data-id="${reservation.id}">
 				<td>${reservation.person_id}</td>
 				<td>${reservation.spot_id}</td>
 				<td class="t">${reservation.start}</td>
@@ -337,11 +340,11 @@ fetch(API_URL.READ).then(function (resp) {
 					<a href="#" class="edit" tabindex="-1">&#9998;</a>
 				</td>
 			</tr>`;
-		});
-		document.querySelector('#booking tbody').innerHTML = list.join('');
-	}
+	});
+	document.querySelector('#booking tbody').innerHTML = list.join('');
+}
 
 
-  
+
 
 
