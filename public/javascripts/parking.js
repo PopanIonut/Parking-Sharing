@@ -59,13 +59,13 @@ initTopMenu();
 // --END-- Top-menu functions.
 
 
-function dateTimeControl() {
-	var fromDtCtrl = document.querySelector('input[name="fromTime"]');
-	console.log("The default STARTING date-time is: " + fromDtCtrl.value);
-	var toDtCtrl = document.querySelector('input[name="toTime"]');
-	console.log("The default ENDING date-time is: " + toDtCtrl.value);
+function timeControl() {
+	var fromTCtrl = document.querySelector('input[name="fromTime"]');
+	console.log("The default STARTING time is: " + fromTCtrl.value);
+	var toTCtrl = document.querySelector('input[name="toTime"]');
+	console.log("The default ENDING time is: " + toTCtrl.value);
 }
-dateTimeControl();
+timeControl();
 
 
 // Data transfer handlers:
@@ -82,10 +82,12 @@ function display(parkingData) {
 	var list = parkingData.map(function (spot) {
 		return `<tr data-id="${spot.id}">
 			<td>${spot.city_town}</td>
+			<td>${spot.area}</td>
 			<td>${spot.str_address}</td>
 			<td>${spot.spot_nr}</td>
-            <td class="dt">${spot.t_from.slice(0,-8).replace('T', ',  ')}</td>
-            <td class="dt">${spot.t_until.slice(0,-8).replace('T', ',  ')}</td>
+            <td class="t">${spot.t_from}</td>
+            <td class="t">${spot.t_until}</td>
+			<td>${spot.description}</td>
 			<td>
 				<a href="#" class="delete" tabindex="-1">&#10006;</a>
 				<a href="#" class="edit" tabindex="-1">&#9998;</a>
@@ -99,27 +101,29 @@ function saveSpot(){
 	console.log("Save spot.");
 
 	var cityTown = document.querySelector("[name=cityTown]").value;
+	var area = document.querySelector("[name=area]").value;
 	var strAddress = document.querySelector("[name=strAddress]").value;
 	var spotNr = document.querySelector("[name=spotNr]").value;
 	var tFrom = document.querySelector("[name=fromTime]").value;
 	var tUntil = document.querySelector("[name=toTime]").value;
-	console.warn("Save new spot data: ", cityTown + " " + strAddress + " " + spotNr + " " + tFrom + " " + tUntil);
+	var description = document.querySelector("[name=description]").value;
+	console.warn("Save new spot data: ", cityTown + " " + area + " " + strAddress + " " + spotNr + " " + tFrom + " " + tUntil + " " + description);
 
 	if(editingSpotsId) {
-		submitEditedSpot(editingSpotsId, cityTown, strAddress, spotNr,tFrom, tUntil);
+		submitEditedSpot(editingSpotsId, cityTown, area, strAddress, spotNr,tFrom, tUntil, description);
 	} else {
-		submitNewSpot(cityTown, strAddress, spotNr,tFrom, tUntil);
+		submitNewSpot(cityTown, area, strAddress, spotNr,tFrom, tUntil, description);
 	}
 }
 
-function submitNewSpot(cityTown, strAddress, spotNr,tFrom, tUntil) {
-	console.warn("Save new spot: ", cityTown + " " + strAddress + " " + spotNr + " " + tFrom + " " + tUntil);
+function submitNewSpot(cityTown, area, strAddress, spotNr,tFrom, tUntil, description) {
+	console.warn("Save new spot: ", cityTown + " " + area + " " + strAddress + " " + spotNr + " " + tFrom + " " + tUntil + " " + description);
 	
 	var body = null;
 	const method = API_METHOD.ADD;
 
 	if(method === "POST"){
-		body = JSON.stringify({ cityTown, strAddress, spotNr,tFrom, tUntil });
+		body = JSON.stringify({ cityTown, area, strAddress, spotNr,tFrom, tUntil, description });
 	}
 
 	fetch(API_URL.ADD, { method, body, headers: {"Content-Type": "application/json"}
@@ -128,21 +132,21 @@ function submitNewSpot(cityTown, strAddress, spotNr,tFrom, tUntil) {
 	}).then(function(status){
 		if(status.success){
 			console.warn("Saved.", status);
-			inlineAddSpot(status.id, cityTown, strAddress, spotNr,tFrom, tUntil);
+			inlineAddSpot(status.id, cityTown, area, strAddress, spotNr,tFrom, tUntil, description);
 		} else {
 			console.warn("Not saved!", status);
 		}
 	});
 }
 
-function submitEditedSpot(id, cityTown, strAddress, spotNr,tFrom, tUntil) {
-	console.warn("Save edited spot: ", id + " " + cityTown + " " + strAddress + " " + spotNr + " " + tFrom + " " + tUntil);
+function submitEditedSpot(id, cityTown, area, strAddress, spotNr,tFrom, tUntil, description) {
+	console.warn("Save edited spot: ", id + " " + cityTown + " " + area + " " + strAddress + " " + spotNr + " " + tFrom + " " + tUntil + " " + description);
 	
 	var body = null;
 	const method = API_METHOD.UPDATE;
 
 	if(method === "PUT"){
-		body = JSON.stringify({ id, cityTown, strAddress, spotNr,tFrom, tUntil });
+		body = JSON.stringify({ id, cityTown, area, strAddress, spotNr,tFrom, tUntil, description });
 	}
 
 	fetch(API_URL.UPDATE, { method, body, headers: {"Content-Type": "application/json"}
@@ -151,35 +155,39 @@ function submitEditedSpot(id, cityTown, strAddress, spotNr,tFrom, tUntil) {
 	}).then(function(status){
 		if(status.success){
 			console.warn("Saved.", status);
-			inlineEditSpot(id, cityTown, strAddress, spotNr,tFrom, tUntil);
+			inlineEditSpot(id, cityTown, area, strAddress, spotNr,tFrom, tUntil, description);
 		} else {
 			console.warn("Not saved!", status);
 		}
 	});
 }
 
-function inlineAddSpot(id, cityTown, strAddress, spotNr,tFrom, tUntil) {
-	console.log("Data: ", cityTown + " " + strAddress + " " + spotNr + " " + tFrom + " " + tUntil);
+function inlineAddSpot(id, cityTown, area, strAddress, spotNr,tFrom, tUntil, description) {
+	console.log("Data: ", cityTown + " " + area + " " + strAddress + " " + spotNr + " " + tFrom + " " + tUntil + " " + description);
 
 	allSpots.push({		// DB field names have underscores.
 		id,
 		cityTown: cityTown,	// city_town
+		area: area,	// area
 		strAddress: strAddress,	// str_address
 		spotNr: spotNr,	// spot_nr
 		tFrom: tFrom,	// t_from
-		tUntil: tUntil	// t_until
+		tUntil: tUntil,	// t_until
+		description: description	// description
 	});
 	display(allSpots);
 
 	document.querySelector("[name=cityTown]").value = "";
+	document.querySelector("[name=area]").value = "";
 	document.querySelector("[name=strAddress]").value = "";
 	document.querySelector("[name=spotNr]").value = "";
-	document.querySelector("[name=fromTime]").value = "2019-01-01T00:00";
-	document.querySelector("[name=toTime]").value = "2019-01-01T00:00";
+	document.querySelector("[name=fromTime]").value = "00:00";
+	document.querySelector("[name=toTime]").value = "00:00";
+	document.querySelector("[name=description]").value = "";
 }
 
-function inlineEditSpot(id, cityTown, strAddress, spotNr,tFrom, tUntil) {
-	console.log("Edited Data: ", id + " " + cityTown + " " + strAddress + " " + spotNr + " " + tFrom + " " + tUntil);
+function inlineEditSpot(id, cityTown, area, strAddress, spotNr,tFrom, tUntil, description) {
+	console.log("Edited Data: ", id + " " + cityTown + " " + area + " " + strAddress + " " + spotNr + " " + tFrom + " " + tUntil + " " + description);
 
 	window.location.reload(); // reload the page and put the new data from memory to file.
 	
@@ -188,8 +196,12 @@ function inlineEditSpot(id, cityTown, strAddress, spotNr,tFrom, tUntil) {
 	editingPersonsId = "";
 
 	document.querySelector("[name=cityTown]").value = "";
+	document.querySelector("[name=area]").value = "";
 	document.querySelector("[name=strAddress]").value = "";
 	document.querySelector("[name=spotNr]").value = "";
+	document.querySelector("[name=fromTime]").value = "00:00";
+	document.querySelector("[name=toTime]").value = "00:00";
+	document.querySelector("[name=description]").value = "";
 }
 
 function inlineDeleteSpot(id) {
@@ -231,10 +243,12 @@ const editSpot = function(id) {
 	console.warn("Found: ", spot);
 
 	document.querySelector("[name=cityTown]").value = spot.cityTown;
+	document.querySelector("[name=area]").value = spot.area;
 	document.querySelector("[name=strAddress]").value = spot.strAddress;
 	document.querySelector("[name=spotNr]").value = spot.spotNr;
 	document.querySelector("[name=fromTime]").value = spot.tFrom;
 	document.querySelector("[name=toTime]").value = spot.tUntil;
+	document.querySelector("[name=description]").value = spot.description;
 	editingSpotsId = id;
 };
 
@@ -242,6 +256,7 @@ const searchSpot = value => {	/*	If the array only ever has 1 value the parrenth
 	value = value.toLowerCase().trim();
 	const filtered = allSpots.filter(spot => {
 		return spot.cityTown.toLowerCase().includes(value) ||
+			spot.area.toLowerCase().includes(value) ||
 			spot.strAddress.toLowerCase().includes(value) ||
 			spot.spotNr.toLowerCase().includes(value);
 	});

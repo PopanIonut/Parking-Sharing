@@ -63,30 +63,36 @@
                 <!--Database Table View section-->
                 <table id="addresses">
                     <!--Column sizes.-->
-                    <col style="width: 20%">
-                    <col style="width: 35%">
-                    <col style="width: 9%">
-                    <col style="width: 18%">
-                    <col style="width: 18%">
+                    <col style="width: 15%">
+                    <col style="width: 15%">
+                    <col style="width: 24%">
+                    <col style="width: 8%">
+                    <col style="width: 8%">
+                    <col style="width: 8%">
+                    <col style="width: 22%">
                     <thead>
                         <tr>
                             <th>Localitatea</th>
+                            <th>Cartier</th>
                             <th>Adresa</th>
                             <th>Nr. Loc</th>
                             <th>De la</th>
                             <th>Până la</th>
+                            <th>Comentariu</th>
                         </tr>
                     </thead>
                     <tbody></tbody> <!-- Table content, script generated. -->
                     <tfoot>
                         <tr>
                             <td><input type="text" placeholder="Localitatea" required="required" name="cityTown" tabindex="1"></td>
-                            <td><input type="text" placeholder="Adresa" required="required" name="strAddress" tabindex="2"></td>
-                            <td><input type="text" placeholder="Nr. Loc" required="required" name="spotNr"tabindex="3"></td>
-                            <td><input type="datetime-local" value="2019-01-01T00:00" min="2019-06-18T00:00" max="9999-12-31T23:59" required="required" name="fromTime" tabindex="4"></td>
-                            <td><input type="datetime-local" value="2019-01-01T00:00" min="2019-06-18T00:00" max="9999-12-31T23:59" required="required" name="toTime" tabindex="5">
-                            <td><button type="submit" onclick="saveSpot()" aria-colspan="" tabindex="6">Salvare</button></td>
-                            </td>
+                            <td><input type="text" placeholder="Cartier" required="required" name="area" tabindex="2"></td>
+                            <td><input type="text" placeholder="Adresa" required="required" name="strAddress" tabindex="3"></td>
+                            <td><input type="text" placeholder="Nr. Loc" required="required" name="spotNr"tabindex="4"></td>
+                            <td><form><input type="time" value="00:00" min="00:00" max="23:59" required="required" name="fromTime" tabindex="5"></form></td>
+                            <td><form><input type="time" value="00:00" min="00:00" max="23:59" required="required" name="toTime" tabindex="6"></form></td>
+                            <td><input type="text" placeholder="Comentariu" required="required" name="description" tabindex="7"></td>
+                            <td><button type="submit" onclick="saveSpot()" aria-colspan="" tabindex="8">Salvare</button></td>
+                            
                             <div id="tabIndexReset" tabindex="0"></div>
                         </tr>
                     </tfoot>

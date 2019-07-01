@@ -31,17 +31,19 @@ router.get('/', function(req, res, next) {
 /// ADD /CREATE new record in "spots".  http://localhost:3000/spots/add
 router.post('/add', function(req, res, next) {
   var cityTown = req.body.city_town;
+  var area = req.body.area;
   var strAddress = req.body.str_address;
   var spotNr = req.body.spot_nr;
   var tFrom = req.body.t_from;
   var tUntil = req.body.t_until;
-  
-  console.warn("Add: ", cityTown, strAddress, spotNr, tFrom, tUntil);
+  var description = req.body.description;
+
+  console.warn("Add: ", cityTown, area, strAddress, spotNr,tFrom, tUntil, description);
   
   pool.getConnection((err, connection) => {
     const sql = `INSERT INTO spots 
       (id, city_town, str_address, spot_nr, t_from, t_until)
-      VALUES (NULL, "${cityTown}", "${strAddress}", "${spotNr}", "${tFrom}", "${tUntil}")`;
+      VALUES (NULL, "${cityTown}", "${area}", "${strAddress}", "${spotNr}", "${tFrom}", "${tUntil}", "${description}")`;
       
     console.log(sql);
     connection.query(sql, (err, result) => {
@@ -67,7 +69,7 @@ router.put('/update', function(req, res, next) {
   var tFrom = req.body.t_from;
   var tUntil = req.body.t_until;
   
-  console.warn("Update: ", id, cityTown, strAddress, spotNr, tFrom, tUntil);
+  console.warn("Update: ", id, cityTown, area, strAddress, spotNr,tFrom, tUntil, description);
   
   var id = req.body.id;
     
@@ -75,7 +77,7 @@ router.put('/update', function(req, res, next) {
   
   pool.getConnection((err, connection) => {
     const sql = `UPDATE contacts 
-    SET city_town = "${cityTown}", str_address = "${strAddress}", spot_nr = "${spotNr}", t_from = "${tFrom}", t_until = "${tUntil}"
+    SET city_town = "${cityTown}", area = "${area}", str_address = "${strAddress}", spot_nr = "${spotNr}", t_from = "${tFrom}", t_until = "${tUntil}, description = "${description}"
     WHERE id = ${id}`;
         
     connection.query(sql, (err, results) => {
