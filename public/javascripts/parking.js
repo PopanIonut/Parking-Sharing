@@ -98,6 +98,7 @@ function displaySpots(parkingData) {
 	document.querySelector('#addresses tbody').innerHTML = list.join('');
 }
 
+// "Save" button onclick event.
 function saveSpot() {
 	console.log("Save spot.");
 
@@ -168,11 +169,11 @@ function submitEditedSpot(id, cityTown, area, strAddress, spotNr, tFrom, tUntil,
 function inlineAddSpot(id, cityTown, area, strAddress, spotNr, tFrom, tUntil, description) {
 	console.log("Data: ", cityTown + " " + area + " " + strAddress + " " + spotNr + " " + tFrom + " " + tUntil + " " + description);
 
-	allSpots.push({		// DB field names have underscores.
+	allSpots.push({		// DB field names are commented.
 		id,
-		cityTown: cityTown,	// city_town
+		cityTown: cityTown,	// city
 		area: area,	// area
-		strAddress: strAddress,	// str_address
+		strAddress: strAddress,	// address
 		spotNr: spotNr,	// spot_nr
 		tFrom: tFrom,	// t_from
 		tUntil: tUntil,	// t_until
@@ -316,6 +317,9 @@ function initEvents() {
 initEvents();
 
 
+//-------------------------------------------------
+//	NOTE :: the following and the "reservations.js" is not needed until there are accounts.
+//-------------------------------------------------
 // "reservations" DB Data transfer handlers:
 fetch(API_URL.READ_RESERVATIONS).then(function (resp) {
 	return resp.json()

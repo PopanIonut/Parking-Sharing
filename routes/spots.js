@@ -9,15 +9,24 @@ const pool = mysql.createPool({
   user : 'root',
   password : '',
   database : 'parking',
-  timezone: '+00:00'
+  timezone: '+00:00'  //set to "neutral".
 });
 
 // GET /READ entire "spots" listed.  http://localhost:3000/get
+// Takes into consideration the search inputs too.
 router.get('/', function(req, res, next) {
-  const city = false ? ` AND city = "Cluj"` : ``;
-  const area = false ? ` AND area = "Gruia"` : ``;
+  const city = false ? ` AND city = "Cluj"` : ``; // TODO:: swap static values to dynamc ${} ones.
+  const area = false ? ` AND area = "Gruia"` : ``;  // TODO:: if "false" it doesn't get used in the query -> make if or case selection based on the "search inputs".
   //  res.send('respond with a resource');
   pool.getConnection((err, connection) => {
+    /* Select those records from the "spots" table whose "id" value
+     * has no reference records in the "reservations" table 
+     * where those records' "ending" variable IS NULL (has no value),
+     * and --^^--IF either a "city" or "area" column is asked 
+     * include those records that have the asked values in them--^^--,
+     * AAAND arrange the result of all this so that the 
+     * "address" values will be in alphanumerical ASCending order.
+     */
     const sql = `SELECT * FROM spots WHERE id not in(SELECT spot_id from reservations WHERE ending IS NULL) ${city} ${area} ORDER BY address ASC`;
 
     connection.query(sql, (err, results) => {
@@ -32,7 +41,7 @@ router.get('/', function(req, res, next) {
 
 /// ADD /CREATE new record in "spots".  http://localhost:3000/spots/add
 router.post('/add', function(req, res, next) {
-	// DB field names have underscores.
+	// DB field names are right side.
   var cityTown = req.body.city;
   var area = req.body.area;
   var strAddress = req.body.address;
@@ -45,7 +54,7 @@ router.post('/add', function(req, res, next) {
   
   pool.getConnection((err, connection) => {
     const sql = `INSERT INTO spots 
-      (id, city_town, str_address, spot_nr, t_from, t_until)
+      (id, city, area, address, spot_nr, t_from, t_until, description)
       VALUES (NULL, "${cityTown}", "${area}", "${strAddress}", "${spotNr}", "${tFrom}", "${tUntil}", "${description}")`;
       
     console.log(sql);
@@ -65,13 +74,15 @@ router.post('/add', function(req, res, next) {
 
 // TODO: UPDATE record in "spots".  http://localhost:3000/spots/update
 router.put('/update', function(req, res, next) {
-  // DB field names have underscores.
+  // DB field names are right side.
   var id = req.body.id;
   var cityTown = req.body.city;
+  var area = req.body.area;
   var strAddress = req.body.address;
   var spotNr = req.body.spot_nr;
   var tFrom = req.body.t_from;
   var tUntil = req.body.t_until;
+  var description = req.body.description;
   
   console.warn("Update: ", id, cityTown, area, strAddress, spotNr,tFrom, tUntil, description);
   
@@ -80,8 +91,8 @@ router.put('/update', function(req, res, next) {
   console.warn("Remove: ", id);
   
   pool.getConnection((err, connection) => {
-    const sql = `UPDATE contacts 
-    SET city_town = "${cityTown}", area = "${area}", str_address = "${strAddress}", spot_nr = "${spotNr}", t_from = "${tFrom}", t_until = "${tUntil}, description = "${description}"
+    const sql = `UPDATE spots 
+    SET city = "${cityTown}", area = "${area}" address = "${strAddress}", spot_nr = "${spotNr}", t_from = "${tFrom}", t_until = "${tUntil}", description = "${description}"
     WHERE id = ${id}`;
         
     connection.query(sql, (err, results) => {
@@ -96,7 +107,7 @@ router.put('/update', function(req, res, next) {
 });
 
 
-// DELETE record from "spots".  http://localhost:3000/spots/delete
+// DELETE record from "spots" DB.  http://localhost:3000/spots/delete
 router.delete('/delete', function(req, res, next) {
   var id = req.body.id;
   
