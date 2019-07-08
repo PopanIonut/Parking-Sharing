@@ -46,9 +46,9 @@
 
             <!-- The IDs have to match the connected link's data-page value. -->
             <div id="homePage" class="page"> <!--Style display "block" ONLY after pressing the "login" link else "none" !! -->
-                <form onsubmit="return false">
-                    <div><input type="text" placeholder="Nume Prenume" required="required" name="lgName" tabindex="1"></div>
-                    <div><input type="text" placeholder="Adresa de mail" required="required" name="lgEmail" tabindex="2"></div>
+                <form id="lgForm" onsubmit="return false">
+                    <div><input type="text" placeholder="Adresa de mail" required="required" name="lgMail" tabindex="1"></div>
+                    <div><input type="text" placeholder="Nr. Masina" required="required" name="lgCar" tabindex="2"></div>
                     <div><input type="text" placeholder="Nr. Telefon" required="required" name="lgPhone" tabindex="3"></div>
                     <input type="submit" value="Login" onclick="clickLogin()">
                 </form>
