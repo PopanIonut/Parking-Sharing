@@ -15,8 +15,8 @@ const pool = mysql.createPool({
 // GET /READ entire "spots" listed.  http://localhost:3000/get
 // Takes into consideration the search inputs too.
 router.get('/', function(req, res, next) {
-  const city = false ? ` AND city = "Cluj"` : ``; // TODO:: swap static values to dynamc ${} ones.
-  const area = false ? ` AND area = "Gruia"` : ``;  // TODO:: if "false" it doesn't get used in the query -> make if or case selection based on the "search inputs".
+  const city = true ? ` AND city = "Cluj"` : ``; // TODO:: swap static values to dynamc ${} ones.
+  const area = true ? ` AND area = "Gruia"` : ``;  // TODO:: if "false" it doesn't get used in the query -> make if or case selection based on the "search inputs".
   //  res.send('respond with a resource');
   pool.getConnection((err, connection) => {
     /* Select those records from the "spots" table whose "id" value
@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
      * where those records' "ending" variable IS NULL (has no value),
      * and --^^--IF either a "city" or "area" column is asked 
      * include those records that have the asked values in them--^^--,
-     * AAAND arrange the result of all this so that the 
+     * AND arrange the result of all this so that the 
      * "address" values will be in alphanumerical ASCending order.
      */
     const sql = `SELECT * FROM spots WHERE id not in(SELECT spot_id from reservations WHERE ending IS NULL) ${city} ${area} ORDER BY address ASC`;

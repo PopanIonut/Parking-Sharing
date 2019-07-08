@@ -25,13 +25,15 @@
 
                 <h3 id="summary">Înregistrați-vă spațiile de parcare și permiteți-le și altora să le folosească atunci când nu le folosiți!
                 </h3>
+
+                
             </div>
 
             <!--Top Menu Bar section-->
             <nav id="top-menuBar" class="top-menuBar">
                 <ul id="topMenu" class="topMenu">
                     <!--"data-page" properties point to the page IDs. -->
-                    <li><a href="#" data-page="homePage">Acasă</a></li>
+                    <li><a href="#" data-page="homePage">Login</a></li>
                     <li><a href="#" data-page="_2_Page">Vreau să donez!</a></li>
                     <li><a href="#" data-page="searchPage">Locuri libere!</a></li>
                     <li id="menuAbout"><a href="#" data-page="aboutPage">Despre noi!</a></li>
@@ -43,44 +45,25 @@
         <section id="centerContent">
 
             <!-- The IDs have to match the connected link's data-page value. -->
-            <div id="homePage" class="page" style="display: block"> <!--Style display "none" ONLY while testing the DB, ELSE "block" !! -->
-                <h3>Acasă - Rezervări</h3>
-
-                <!--Spots Database Table View section-->
-                <table id="booking" class="tbl">
-                    <!--Column sizes.-->
-                    <col style="width: 25%">
-                    <col style="width: 25%">
-                    <col style="width: 25%">
-                    <col style="width: 25%">
-                    <thead>
-                        <tr>
-                            <th>Persoană</th>
-                            <th>Loc</th>
-                            <th>Data reg.</th>
-                            <th>Data sfârșit</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody> <!-- Table content, script generated. -->
-                    <tfoot>
-                        <tr>
-                            <td><input type="text" placeholder="Persoana" required="required" name="persID" tabindex="1"></td>
-                            <td><input type="text" placeholder="Loc" required="required" name="spotID" tabindex="2"></td>
-                            <td><input type="datetime-local" value="2019-01-01T00:00" min="2019-06-18T00:00" max="9999-12-31T23:59" required="required" name="starting" tabindex="3"></td>
-                            <td><input type="datetime-local" value="2019-01-01T00:00" min="2019-06-18T00:00" max="9999-12-31T23:59" required="required" name="ending" tabindex="4"></td>
-
-                            <div id="tabIndexReset" tabindex="0"></div>
-                        </tr>
-                    </tfoot>
-                </table>
+            <div id="homePage" class="page"> <!--Style display "block" ONLY after pressing the "login" link else "none" !! -->
+                <form onsubmit="return false">
+                    <div><input type="text" placeholder="Nume Prenume" required="required" name="lgName" tabindex="1"></div>
+                    <div><input type="text" placeholder="Adresa de mail" required="required" name="lgEmail" tabindex="2"></div>
+                    <div><input type="text" placeholder="Nr. Telefon" required="required" name="lgPhone" tabindex="3"></div>
+                    <input type="submit" value="Login" onclick="clickLogin()">
+                </form>
+            </div>
+            
+            <div id="homePage" class="page"> <!--Style display "none" ONLY while testing the DB, ELSE "block" !! -->
+                <h3>Acasă</h3>
             </div>
 
-            <div id="_2_Page" class="page" style="display: none">
+            <div id="_2_Page" class="page">
                 <h3>Pagina de donare</h3>
                 <p>Vreau să donez!</p>
             </div>
 
-            <div id="searchPage" class="page" style="display: none"> <!--Style display "block" ONLY while testing the DB, ELSE "none" !! -->
+            <div id="searchPage" class="page" style="display: block"> <!--Style display "block" ONLY while testing the DB, ELSE "none" !! -->
                 <h3>Locuri libere</h3>
                 <div class="searchDiv">
                     <div id="searchCity"><input id="search" type="text" placeholder="Search..." tabindex="1" autofocus></div>
@@ -112,7 +95,7 @@
                     <tbody></tbody> <!-- Table content, script generated. -->
                     <tfoot>
                         <tr>
-                            <td><input type="text" placeholder="Localitatea" required="required" name="cityTown" tabindex="4"></td>
+                            <!-- <td><input type="text" placeholder="Localitatea" required="required" name="cityTown" tabindex="4"></td>
                             <td><input type="text" placeholder="Cartier" required="required" name="area" tabindex="5"></td>
                             <td><input type="text" placeholder="Adresa" required="required" name="strAddress" tabindex="6"></td>
                             <td><input type="text" placeholder="Nr. Loc" required="required" name="spotNr" tabindex="7"></td>
@@ -121,7 +104,7 @@
                             <td><input type="text" placeholder="Comentariu" required="required" name="description" tabindex="10"></td>
                             <td><button type="submit" onclick="saveSpot()" aria-colspan="" tabindex="11">Salvare</button></td>
 
-                            <div id="tabIndexReset" tabindex="0"></div>
+                            <div id="tabIndexReset" tabindex="0"></div> -->
                         </tr>
                     </tfoot>
                 </table>

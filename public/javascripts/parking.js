@@ -7,7 +7,6 @@ var API_URL = {
 
 	ADD: "spots/add",	//	CREATE
 	READ_SPOTS: "spots",
-	READ_RESERVATIONS: "reservations",
 	UPDATE: "spots/update",
 	DELETE: "spots/delete"
 };
@@ -59,13 +58,27 @@ initTopMenu();
 // --END-- Top-menu functions.
 
 
-function timeControl() {
-	var fromTCtrl = document.querySelector('input[name="fromTime"]');
-	console.log("The default STARTING time is: " + fromTCtrl.value);
-	var toTCtrl = document.querySelector('input[name="toTime"]');
-	console.log("The default ENDING time is: " + toTCtrl.value);
-}
-timeControl();
+// Login handler
+function hideLogin() {
+	var page = document.querySelector(".page");
+	page.style.display = "none";
+};
+
+function showLogin(page) {
+	console.warn(page);
+	page.style.display = "block";
+};
+
+function clickLogin(){
+	console.warn("clicked on login", this);	
+
+	var lgName = document.querySelector("[name=lgName]").value;
+	var lgEmail = document.querySelector("[name=lgEmail]").value;
+	var lgPhone = document.querySelector("[name=lgPhone]").value;
+
+	console.log();
+};
+// --END-- Login functions.
 
 
 // "Spots" DB Data transfer handlers:
@@ -90,8 +103,7 @@ function displaySpots(parkingData) {
             <td class="t">${spot.t_until}</td>
 			<td>${spot.description}</td>
 			<td>
-				<a href="#" class="delete" tabindex="-1">&#10006;</a>
-				<a href="#" class="edit" tabindex="-1">&#9998;</a>
+				<a href="#" class="book" tabindex="-1">Rezervă</a>
 			</td>
 		</tr>`;
 	});
@@ -321,7 +333,7 @@ initEvents();
 //	NOTE :: the following and the "reservations.js" is not needed until there are accounts.
 //-------------------------------------------------
 // "reservations" DB Data transfer handlers:
-fetch(API_URL.READ_RESERVATIONS).then(function (resp) {
+/* fetch(API_URL.READ_RESERVATIONS).then(function (resp) {
 	return resp.json()
 }).then(function (bookingData) { // = the succesfully returned "resp".
 	console.log("All reservations: ", bookingData);
@@ -345,7 +357,7 @@ function displayReservations(bookingData) {
 			</tr>`;
 	});
 	document.querySelector('#booking tbody').innerHTML = list.join('');
-}
+} */
 
 
 
