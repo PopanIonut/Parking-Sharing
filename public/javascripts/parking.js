@@ -3,17 +3,14 @@ var allSpots = [];
 const lgData = [];
 
 var API_URL = {
-	/* 	ADD: 'data/parkingData.json',
-		READ: 'data/parkingData.json', */
-
 	ADD: "spots/add",	//	CREATE
 	READ_SPOTS: "spots",
+	READ_PEOPLE: "login",	// login data is in the "people" DBT.
 	UPDATE: "spots/update",
 	DELETE: "spots/delete"
 };
 
 var API_METHOD = {
-	/* 	ADD: 'POST' */
 	ADD: "POST",	//	CREATE
 	READ: "GET",
 	UPDATE: "PUT",
@@ -60,34 +57,33 @@ initTopMenu();
 
 
 // Login handler
-function hideLogin() {
-	var page = document.querySelector(".page");
-	page.style.display = "none";
-};
-
-function showLogin(page) {
-	console.warn(page);
-	page.style.display = "block";
-};
+fetch(API_URL.READ_PEOPLE).then(function (resp) {
+	return resp.json()
+}).then(function (loginData) { // = the succesfully returned "resp"-onse.
+	console.log("Login input: ", loginData);
+	lgData = loginData;
+	//submitLogin(loginData);
+	console.log("lgData: ", lgData);
+})
 
 function clickLogin(){
 	console.warn("clicked on login", this);	
 
+	var lgPhone = document.querySelector("[name=lgPhone]").value;
 	var lgEmail = document.querySelector("[name=lgMail]").value;
 	var lgCar = document.querySelector("[name=lgCar]").value;
-	var lgPhone = document.querySelector("[name=lgPhone]").value;
 
-	console.warn("Click Login passes data: ", lgEmail + " " + lgCar + " " + lgPhone);
+	console.warn("Click Login passes data: ", lgPhone + " " + lgEmail + " " + lgCar);
 
-	submitLogin(lgEmail, lgCar, lgPhone);
+	submitLogin(lgPhone, lgEmail, lgCar);
 };
 
-function submitLogin(lgEmail, lgCar, lgPhone){
-	console.warn("Submit Login got data: ", lgEmail + " " + lgCar + " " + lgPhone);
-	console.log("Matching id: ");
+function submitLogin(lgPhone, lgEmail, lgCar){
+	console.warn("Submit Login got data: ", lgPhone + " " + lgEmail + " " + lgCar);
+	console.log("Matching id: ", lgData.id);
 	// TODO //
 	//var body = JSON.stringify({ lgEmail, lgCar, lgPhone });
-}
+};
 // --END-- Login functions.
 
 

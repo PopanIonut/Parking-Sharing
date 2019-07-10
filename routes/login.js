@@ -14,9 +14,9 @@ const pool = mysql.createPool({
 
 // GET /READ login related data.  http://localhost:3000/get
 router.get('/', function(req, res, next) {
-  const lgEmail = true ? ` AND email = "${document.querySelector("[name=lgMail]").value}"` : ``;
-  const lgCar = true ? ` AND car_nr = "${document.querySelector("[name=lgCar]").value}"` : ``; // TODO:: swap static values to dynamc ${} ones.
-  const lgPhone = true ? ` phone = "${document.querySelector("[name=lgPhone]").value}"` : ``;
+  const lgPhone = true ? ` AND phone = "${document.getElementById("lgPhone").value}"` : ``;
+  const lgEmail = true ? ` AND email = "${document.getElementById("lgMail").value}"` : ``;
+  const lgCar = true ? ` AND car_nr = "${document.getElementById("lgCar").value}"` : ``; // TODO:: swap static values to dynamc ${} ones.
 
   pool.getConnection((err, connection) => {
     const sql = `SELECT * FROM people WHERE ${lgPhone} ${lgEmail} ${lgCar}`;
