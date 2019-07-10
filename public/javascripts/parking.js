@@ -72,23 +72,20 @@ function showLogin(page) {
 function clickLogin(){
 	console.warn("clicked on login", this);	
 
-	var lgMail = document.querySelector("[name=lgMail]").value;
+	var lgEmail = document.querySelector("[name=lgMail]").value;
 	var lgCar = document.querySelector("[name=lgCar]").value;
 	var lgPhone = document.querySelector("[name=lgPhone]").value;
 
-	console.warn("Login input: ", lgMail + " " + lgCar + " " + lgPhone);
+	console.warn("Login input: ", lgEmail + " " + lgCar + " " + lgPhone);
 
-	submitLogin(lgMail, lgCar, lgPhone);
+	submitLogin(lgEmail, lgCar, lgPhone);
 };
 
-function submitLogin(lgMail, lgCar, lgPhone){
-	
-	//const sql = `SELECT * FROM people WHERE phone="769555426" AND email="CristianMunteanu@gmail.com" AND car_nr="CJ01BOS"`;
-
-	var body = JSON.stringify({ lgMail, lgCar, lgPhone });
-
+function submitLogin(lgEmail, lgCar, lgPhone){
+	console.warn("Save new spot: ", lgEmail + " " + lgCar + " " + lgPhone);
+	// TODO //
+	var body = JSON.stringify({ lgEmail, lgCar, lgPhone });
 }
-
 // --END-- Login functions.
 
 

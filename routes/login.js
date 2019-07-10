@@ -12,11 +12,14 @@ const pool = mysql.createPool({
   timezone: '+00:00'
 });
 
-// GET /READ entire "spots" listed.  http://localhost:3000/get
+// GET /READ login related data.  http://localhost:3000/get
 router.get('/', function(req, res, next) {
-  //  res.send('respond with a resource');
+  const lgPhone = true ? ` phone = "769555426"` : ``; // TODO:: swap static values to dynamc ${} ones.
+  const lgEmail = true ? ` AND email = "CristianMunteanu@gmail.com"` : ``;
+  const lgCar = true ? ` AND car_nr = "CJ01BOS"` : ``;
+  
   pool.getConnection((err, connection) => {
-    const sql = `SELECT * FROM reservations WHERE ending IS NOT NULL`;
+    const sql = `SELECT * FROM people WHERE ${lgPhone} ${lgEmail} ${lgCar}`;
 
     connection.query(sql, (err, results) => {
       if(!!err){  console.log(err);   } else {

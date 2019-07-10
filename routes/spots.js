@@ -17,7 +17,8 @@ const pool = mysql.createPool({
 router.get('/', function(req, res, next) {
   const city = true ? ` AND city = "Cluj"` : ``; // TODO:: swap static values to dynamc ${} ones.
   const area = true ? ` AND area = "Gruia"` : ``;  // TODO:: if "false" it doesn't get used in the query -> make if or case selection based on the "search inputs".
-  //  res.send('respond with a resource');
+  const strAddress = true ? ` AND address = "Str. Calarasilor"` : ``; // TODO:: swap static values to dynamc ${} ones.
+  
   pool.getConnection((err, connection) => {
     /* Select those records from the "spots" table whose "id" value
      * has no reference records in the "reservations" table 
@@ -27,7 +28,7 @@ router.get('/', function(req, res, next) {
      * AND arrange the result of all this so that the 
      * "address" values will be in alphanumerical ASCending order.
      */
-    const sql = `SELECT * FROM spots WHERE id not in(SELECT spot_id from reservations WHERE ending IS NULL) ${city} ${area} ORDER BY address ASC`;
+    const sql = `SELECT * FROM spots WHERE id not in(SELECT spot_id from reservations WHERE ending IS NULL) ${city} ${area} ${strAddress} ORDER BY address ASC`;
 
     connection.query(sql, (err, results) => {
       if(!!err){  console.log(err);   } else {
