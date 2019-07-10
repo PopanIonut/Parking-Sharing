@@ -45,7 +45,7 @@
         <section id="centerContent">
 
             <!-- The IDs have to match the connected link's data-page value. -->
-            <div id="homePage" class="page"> <!--Style display "block" ONLY after pressing the "login" link else "none" !! -->
+            <div id="homePage" class="page" style="display: block"> <!--Style display "block" ONLY after pressing the "login" link else "none" !! -->
                 <form id="lgForm" onsubmit="return false">
                     <div><input type="text" placeholder="Adresa de mail" required="required" name="lgMail" tabindex="1"></div>
                     <div><input type="text" placeholder="Nr. Masina" required="required" name="lgCar" tabindex="2"></div>
@@ -63,12 +63,12 @@
                 <p>Vreau să donez!</p>
             </div>
 
-            <div id="searchPage" class="page" style="display: block"> <!--Style display "block" ONLY while testing the DB, ELSE "none" !! -->
+            <div id="searchPage" class="page"> <!--Style display "block" ONLY while testing, ELSE nothing !! -->
                 <h3>Locuri libere</h3>
                 <div class="searchDiv">
-                    <div id="searchCity"><input id="search" type="text" placeholder="Search..." tabindex="1" autofocus></div>
-                    <div id="searchArea"><input id="search" type="text" placeholder="Search..." tabindex="2"></div>
-                    <div id="searchAddr"><input id="search" type="text" placeholder="Search..." tabindex="3"></div>
+                    <div><input id="searchCity" class="searchSpot" name="searchCity" type="text" placeholder="Caută oraș.." tabindex="1" autofocus></div>
+                    <div><input id="searchArea" class="searchSpot" name="searchArea" type="text" placeholder="Caută cartier.." tabindex="2"></div>
+                    <div><input id="searchAddr" class="searchSpot" name="searchAddr" type="text" placeholder="Caută adresă.." tabindex="3"></div>
                 </div>
 
                 <!--Spots Database Table View section-->

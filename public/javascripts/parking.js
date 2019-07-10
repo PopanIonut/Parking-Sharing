@@ -1,5 +1,6 @@
 var editingSpotsId;
 var allSpots = [];
+const lgData = [];
 
 var API_URL = {
 	/* 	ADD: 'data/parkingData.json',
@@ -76,15 +77,16 @@ function clickLogin(){
 	var lgCar = document.querySelector("[name=lgCar]").value;
 	var lgPhone = document.querySelector("[name=lgPhone]").value;
 
-	console.warn("Login input: ", lgEmail + " " + lgCar + " " + lgPhone);
+	console.warn("Click Login passes data: ", lgEmail + " " + lgCar + " " + lgPhone);
 
 	submitLogin(lgEmail, lgCar, lgPhone);
 };
 
 function submitLogin(lgEmail, lgCar, lgPhone){
-	console.warn("Save new spot: ", lgEmail + " " + lgCar + " " + lgPhone);
+	console.warn("Submit Login got data: ", lgEmail + " " + lgCar + " " + lgPhone);
+	console.log("Matching id: ");
 	// TODO //
-	var body = JSON.stringify({ lgEmail, lgCar, lgPhone });
+	//var body = JSON.stringify({ lgEmail, lgCar, lgPhone });
 }
 // --END-- Login functions.
 
@@ -92,7 +94,7 @@ function submitLogin(lgEmail, lgCar, lgPhone){
 // "Spots" DB Data transfer handlers:
 fetch(API_URL.READ_SPOTS).then(function (resp) {
 	return resp.json()
-}).then(function (parkingData) { // = the succesfully returned "resp".
+}).then(function (parkingData) { // = the succesfully returned "resp"-onse.
 	console.log("All spots: ", parkingData);
 	allSpots = parkingData;
 	displaySpots(parkingData);
@@ -278,15 +280,17 @@ const editSpot = function (id) {
 // --END-- "spots" DB Data transfer handling.
 
 // Search "bar".
-const searchCity = value => {	/*	If the array only ever has 1 value the parrentheses can be left out.	*/
+const searchSpot = value => {	/*	If the array only ever has 1 value the parrentheses can be left out.	*/
 	value = value.toLowerCase().trim();
 	const filtered = allSpots.filter(spot => {
-		return spot.cityTown.toLowerCase().includes(value);
+		return spot.cityTown.toLowerCase().includes(value) ||
+		spot.area.toLowerCase().includes(value) ||
+		spot.strAddress.toLowerCase().includes(value);
 	});
 	displaySpots(filtered);
 };
 
-const searchArea = value => {
+/* const searchArea = value => {
 	value = value.toLowerCase().trim();
 	const filtered = allSpots.filter(spot => {
 		return spot.area.toLowerCase().includes(value);
@@ -300,13 +304,13 @@ const searchAddress = value => {
 		return spot.strAddress.toLowerCase().includes(value);
 	});
 	displaySpots(filtered);
-};
+}; */
 // --END-- Search handling.
 
 // Delete, Edit & Search "Spots" DB - Event listeners.
 function initEvents() {
 	const tbody = document.querySelector("#addresses tbody");
-	const searchBox = document.querySelector("#search");
+	const searchBox = document.querySelector(".searchSpot");
 
 	tbody.addEventListener("click", function (e) {
 		if (e.target.className == "delete") {
@@ -329,45 +333,10 @@ function initEvents() {
 
 	searchBox.addEventListener("input", (e) => {
 		console.warn("Search input: " + e.target.value);
-		searchCity(e.target.value);
-		searchArea(e.target.value);
-		searchAddress(e.target.value);
+		searchSpot(e.target.value);
+		//searchCity(e.target.value);
+		//searchArea(e.target.value);
+		//searchAddress(e.target.value);
 	});
 }
 initEvents();
-
-
-//-------------------------------------------------
-//	NOTE :: the following and the "reservations.js" is not needed until there are accounts.
-//-------------------------------------------------
-// "reservations" DB Data transfer handlers:
-/* fetch(API_URL.READ_RESERVATIONS).then(function (resp) {
-	return resp.json()
-}).then(function (bookingData) { // = the succesfully returned "resp".
-	console.log("All reservations: ", bookingData);
-	allReservations = bookingData;
-	displayReservations(bookingData);
-})
-
-// Show "reservations" DB data on page.
-// DB field names have underscores.
-function displayReservations(bookingData) {
-	var list = bookingData.map(function (reservation) {
-		return `<tr data-id="${reservation.id}">
-				<td>${reservation.person_id}</td>
-				<td>${reservation.spot_id}</td>
-				<td class="t">${reservation.start.substring(0, 19).split('T').join(', ')}</td>
-				<td class="t">${reservation.ending}</td>
-				<td>
-					<a href="#" class="delete" tabindex="-1">&#10006;</a>
-					<a href="#" class="edit" tabindex="-1">&#9998;</a>
-				</td>
-			</tr>`;
-	});
-	document.querySelector('#booking tbody').innerHTML = list.join('');
-} */
-
-
-
-
-
