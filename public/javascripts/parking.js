@@ -162,29 +162,9 @@ const searchAddress = value => {
 }; */
 // --END-- Search handling.
 
-// Delete, Edit & Search "Spots" DB - Event listeners.
+// Search, dynamic in "Spots" DB - Event listener.
 function initEvents() {
-	const tbody = document.querySelector("#addresses tbody");
 	const searchBox = document.querySelector(".searchSpot");
-
-	tbody.addEventListener("click", function (e) {
-		if (e.target.className == "delete") {
-			const tr = e.target.parentNode.parentNode;
-			const id = tr.getAttribute("data-id");
-
-			console.warn("Parent?", e.target.parentNode.parentNode);
-			console.warn("Parent?", id);
-
-			deleteSpot(id);
-		} else if (e.target.className == "edit") {
-			const tr = e.target.parentNode.parentNode;
-			const id = tr.getAttribute("data-id");
-
-			console.warn("edit", id);
-
-			editSpot(id);
-		}
-	});
 
 	searchBox.addEventListener("input", (e) => {
 		console.warn("Search input: " + e.target.value);
