@@ -14,10 +14,10 @@ const pool = mysql.createPool({
 
 // GET /READ entire "spots" listed.  http://localhost:3000/get
 // Takes into consideration the search inputs too.
-router.get('/', function(req, res, next) {
-  const city = req.query.city;
-  const area = req.query.area;
-  const address = req.query.address;
+router.post('/', function(req, res, next) {
+  const city = req.body.city;
+  const area = req.body.area;
+  const address = req.body.address;
   // internal queries, for sql.
   const cityQ = city ? ` AND city = "${city}"` : ``;
   const areaQ = area ? ` AND area = "${area}"` : ``;

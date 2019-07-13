@@ -13,10 +13,10 @@ const pool = mysql.createPool({
 });
 
 // GET /READ login related data.  http://localhost:3000/get
-router.get('/', function(req, res, next) {
-  const lgPhone = req.query.phone;
-  const lgEmail = req.query.email;
-  const lgCar = req.query.car_nr;
+router.post('/', function(req, res, next) {
+  const lgPhone = req.body.phone;
+  const lgEmail = req.body.email;
+  const lgCar = req.body.car_nr;
   // internal queries, for sql. 
   const lgPhoneQ = lgPhone ? ` AND phone = "${lgPhone}"` : ``;
   const lgEmailQ = lgEmail ? ` AND email = "${lgEmail}"` : ``;

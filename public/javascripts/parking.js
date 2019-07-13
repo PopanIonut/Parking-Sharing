@@ -102,11 +102,18 @@ function submitLogin(lgPhone, lgEmail, lgCar){
 //TODO: Search:
 // 1. o functie search spots request
 // 2. search spots (citeste cele 3 inp si apeleaza funct din sus); sa apeleaza automat
+// 
+
 
 // "Spots" DB Data transfer handlers:
 // Search on page init.
-function searchSpotReq(){
-	fetch(API_URL.READ_SPOTS + "?city=Cluj&area=Gruia?address=Str. Buhusi").then(function (resp) {
+function searchSpotReq(city, area, address){
+	//var queryStr = "?city=" + city + "&area=" + area + "?address=" + address;
+	
+	
+	var queryStr = "?city=Cluj&area=Gruia?address=Str. Buhusi"
+	
+	fetch(API_URL.READ_SPOTS + queryStr).then(function (resp) {
 		return resp.json()
 	}).then(function (parkingData) { // = the succesfully returned "resp"-onse.
 		console.log("All spots: ", parkingData);
@@ -136,59 +143,26 @@ function displaySpots(parkingData) {
 // --END-- "spots" DB Data transfer handling.
 
 // Search "bar".
-const searchSpot = value => {	/*	If the array only ever has 1 value the parrentheses can be left out.	*/
-	
-	var sCity = document.getElementById("searchCity").value;
-	var sArea = document.getElementById("searchArea").value;
-	var sAddr = document.getElementById("searchAddr").value;
-	console.warn("Dynamic Search passes data: City: ", + sCity + " |Area: " + sArea + " |Address: " + sAddr);
-	
-	value = value.toLowerCase().trim();
-	const filtered = allSpots.filter(spot => {
-		return spot.city.toLowerCase().includes(value) ||
-		spot.area.toLowerCase().includes(value) ||
-		spot.address.toLowerCase().includes(value);
-	});
-	displaySpots(filtered);
-};
+const searchSpot = () => {	/*	If the array only ever has 1 value the parrentheses can be left out.	*/	
+	var city = document.getElementById("searchCity").value;
+	var area = document.getElementById("searchArea").value;
+	var address = document.getElementById("searchAddr").value;
+	console.warn("Dynamic Search passes data: " +"\n"+ "City: ", city , " |Area: " , area , " |Address: " , address);
 
-/* const searchArea = value => {
-	value = value.toLowerCase().trim();
-	const filtered = allSpots.filter(spot => {
-		return spot.area.toLowerCase().includes(value);
-	});
-	displaySpots(filtered);
+	// ?????
 };
-
-const searchAddress = value => {
-	value = value.toLowerCase().trim();
-	const filtered = allSpots.filter(spot => {
-		return spot.strAddress.toLowerCase().includes(value);
-	});
-	displaySpots(filtered);
-}; */
 // --END-- Search handling.
 
 // Search, dynamic in "Spots" DB - Event listener.
 function initEvents() {
-	//const searchBox = document.querySelector(".searchSpot");
-
+	// array.
 	let searchBox = document.querySelectorAll(".searchSpot");
 
 	searchBox.forEach(function (elem) {
 		elem.addEventListener("input", (e) => {
-			console.warn("Search input: " + e.target.value);
-			searchSpot(e.target.value);
+			//console.warn("Search input: " + e.target.value);
+			searchSpot();
 		}, true);
 	});
-
-	//const sCityBox = document.getElementById("searchCity");
-	//const sAreaBox = document.getElementById("searchArea");
-	//const sAddrBox = document.getElementById("searchAddr");
-
-	/* searchBox.addEventListener("input", (e) => {
-		console.warn("Search input: " + e.target.value);
-		searchSpot(e.target.value);
-	}, true); */
 }
 initEvents();
