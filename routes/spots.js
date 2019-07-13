@@ -15,7 +15,7 @@ const pool = mysql.createPool({
 // GET /READ entire "spots" listed.  http://localhost:3000/get
 // Takes into consideration the search inputs too.
 router.get('/', function(req, res, next) {
-  const city = true ? ` AND city = "Cluj"` : ``;
+  const city = true ? ` AND city = "Cluj"` : ``; // TODO: "dynamic variables".
   const area = true ? ` AND area = "Gruia"` : ``;
   const address = true ? ` AND address = "Str. Buhusi"` : ``;
   

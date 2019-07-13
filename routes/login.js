@@ -16,7 +16,7 @@ const pool = mysql.createPool({
 router.get('/', function(req, res, next) {
   const lgPhone = true ? ` AND phone = "${document.getElementById("lgPhone").value}"` : ``;
   const lgEmail = true ? ` AND email = "${document.getElementById("lgMail").value}"` : ``;
-  const lgCar = true ? ` AND car_nr = "${document.getElementById("lgCar").value}"` : ``; // TODO:: swap static values to dynamc ${} ones.
+  const lgCar = true ? ` AND car_nr = "${document.getElementById("lgCar").value}"` : ``;
 
   pool.getConnection((err, connection) => {
     const sql = `SELECT * FROM people WHERE ${lgPhone} ${lgEmail} ${lgCar}`;

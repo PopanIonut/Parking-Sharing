@@ -72,10 +72,14 @@ function clickLogin(){
 	var lgPhone = document.querySelector("[name=lgPhone]").value;
 	var lgEmail = document.querySelector("[name=lgMail]").value;
 	var lgCar = document.querySelector("[name=lgCar]").value;
+	console.warn("Click Login passes data: Phone: ", + lgPhone + " |Email: " + lgEmail + " |Car: " + lgCar);
 
-	console.warn("Click Login passes data: ", lgPhone + " " + lgEmail + " " + lgCar);
-
-	submitLogin(lgPhone, lgEmail, lgCar);
+	if(lgPhone == "" || lgEmail == "" || lgCar == "") {
+		alert("Completați toate !");
+		break;
+	} else {
+		submitLogin(lgPhone, lgEmail, lgCar);
+	}
 };
 
 function submitLogin(lgPhone, lgEmail, lgCar){
