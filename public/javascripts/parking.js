@@ -101,7 +101,7 @@ function submitLogin(lgPhone, lgEmail, lgCar){
 
 //TODO: Search:
 // 1. o functie search spots request
-// 2. search spots (citeste cele 3 inp si apeleaza funct din sus); sa apeleaza automat
+// 2. search spots (citeste cele 3 inputuri si apeleaza functia din searchSpotReq); sa apeleaza automat
 // 
 
 
@@ -110,9 +110,8 @@ function submitLogin(lgPhone, lgEmail, lgCar){
 function searchSpotReq(city, area, address){
 	//var queryStr = "?city=" + city + "&area=" + area + "?address=" + address;
 	
-	
 	var queryStr = "?city=Cluj&area=Gruia?address=Str. Buhusi"
-	
+
 	fetch(API_URL.READ_SPOTS + queryStr).then(function (resp) {
 		return resp.json()
 	}).then(function (parkingData) { // = the succesfully returned "resp"-onse.
