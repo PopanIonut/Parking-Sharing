@@ -99,27 +99,22 @@ function submitLogin(lgPhone, lgEmail, lgCar){
 };
 // --END-- Login functions.
 
-
-// "Spots" DB Data transfer handlers:
-//fetch(API_URL.READ_SPOTS).then(function (resp) {
-//function searchSpot
-
 //TODO: Search:
 // 1. o functie search spots request
 // 2. search spots (citeste cele 3 inp si apeleaza funct din sus); sa apeleaza automat
-// 
 
-
-fetch(API_URL.READ_SPOTS + "?city=Cluj&area=Gruia?address=Str. Buhusi").then(function (resp) {
-	return resp.json()
-}).then(function (parkingData) { // = the succesfully returned "resp"-onse.
-	console.log("All spots: ", parkingData);
-	allSpots = parkingData;
-	displaySpots(parkingData);
-})
+// "Spots" DB Data transfer handlers:
+function searchSpotRoute(){
+	fetch(API_URL.READ_SPOTS + "?city=Cluj&area=Gruia?address=Str. Buhusi").then(function (resp) {
+		return resp.json()
+	}).then(function (parkingData) { // = the succesfully returned "resp"-onse.
+		console.log("All spots: ", parkingData);
+		allSpots = parkingData;
+		displaySpots(parkingData);
+	})
+}
 
 // Show "spots" DB data on page.
-// DB field names have underscores.
 function displaySpots(parkingData) {
 	var list = parkingData.map(function (spot) {
 		return `<tr data-id="${spot.id}">
@@ -137,164 +132,6 @@ function displaySpots(parkingData) {
 	});
 	document.querySelector('#addresses tbody').innerHTML = list.join('');
 }
-
-// "Save" button onclick event.
-function saveSpot() {
-	console.log("Save spot.");
-
-	var cityTown = document.querySelector("[name=cityTown]").value;
-	var area = document.querySelector("[name=area]").value;
-	var strAddress = document.querySelector("[name=strAddress]").value;
-	var spotNr = document.querySelector("[name=spotNr]").value;
-	var tFrom = document.querySelector("[name=fromTime]").value;
-	var tUntil = document.querySelector("[name=toTime]").value;
-	var description = document.querySelector("[name=description]").value;
-	console.warn("Save new spot data: ", cityTown + " " + area + " " + strAddress + " " + spotNr + " " + tFrom + " " + tUntil + " " + description);
-
-	if (editingSpotsId) {
-		submitEditedSpot(editingSpotsId, cityTown, area, strAddress, spotNr, tFrom, tUntil, description);
-	} else {
-		submitNewSpot(cityTown, area, strAddress, spotNr, tFrom, tUntil, description);
-	}
-}
-
-function submitNewSpot(cityTown, area, strAddress, spotNr, tFrom, tUntil, description) {
-	console.warn("Save new spot: ", cityTown + " " + area + " " + strAddress + " " + spotNr + " " + tFrom + " " + tUntil + " " + description);
-
-	var body = null;
-	const method = API_METHOD.ADD;
-
-	if (method === "POST") {
-		body = JSON.stringify({ cityTown, area, strAddress, spotNr, tFrom, tUntil, description });
-	}
-
-	fetch(API_URL.ADD, {
-		method, body, headers: { "Content-Type": "application/json" }
-	}).then(function (response) {
-		return response.json();
-	}).then(function (status) {
-		if (status.success) {
-			console.warn("Saved.", status);
-			inlineAddSpot(status.id, cityTown, area, strAddress, spotNr, tFrom, tUntil, description);
-		} else {
-			console.warn("Not saved!", status);
-		}
-	});
-}
-
-function submitEditedSpot(id, cityTown, area, strAddress, spotNr, tFrom, tUntil, description) {
-	console.warn("Save edited spot: ", id + " " + cityTown + " " + area + " " + strAddress + " " + spotNr + " " + tFrom + " " + tUntil + " " + description);
-
-	var body = null;
-	const method = API_METHOD.UPDATE;
-
-	if (method === "PUT") {
-		body = JSON.stringify({ id, cityTown, area, strAddress, spotNr, tFrom, tUntil, description });
-	}
-
-	fetch(API_URL.UPDATE, {
-		method, body, headers: { "Content-Type": "application/json" }
-	}).then(function (response) {
-		return response.json();
-	}).then(function (status) {
-		if (status.success) {
-			console.warn("Saved.", status);
-			inlineEditSpot(id, cityTown, area, strAddress, spotNr, tFrom, tUntil, description);
-		} else {
-			console.warn("Not saved!", status);
-		}
-	});
-}
-
-function inlineAddSpot(id, cityTown, area, strAddress, spotNr, tFrom, tUntil, description) {
-	console.log("Data: ", cityTown + " " + area + " " + strAddress + " " + spotNr + " " + tFrom + " " + tUntil + " " + description);
-
-	allSpots.push({		// DB field names are commented.
-		id,
-		cityTown: cityTown,	// city
-		area: area,	// area
-		strAddress: strAddress,	// address
-		spotNr: spotNr,	// spot_nr
-		tFrom: tFrom,	// t_from
-		tUntil: tUntil,	// t_until
-		description: description	// description
-	});
-	displaySpots(allSpots);
-
-	document.querySelector("[name=cityTown]").value = "";
-	document.querySelector("[name=area]").value = "";
-	document.querySelector("[name=strAddress]").value = "";
-	document.querySelector("[name=spotNr]").value = "";
-	document.querySelector("[name=fromTime]").value = "00:00";
-	document.querySelector("[name=toTime]").value = "00:00";
-	document.querySelector("[name=description]").value = "";
-}
-
-function inlineEditSpot(id, cityTown, area, strAddress, spotNr, tFrom, tUntil, description) {
-	console.log("Edited Data: ", id + " " + cityTown + " " + area + " " + strAddress + " " + spotNr + " " + tFrom + " " + tUntil + " " + description);
-
-	window.location.reload(); // reload the page and put the new data from memory to file.
-
-	displaySpots(allPeople);
-
-	editingPersonsId = "";
-
-	document.querySelector("[name=cityTown]").value = "";
-	document.querySelector("[name=area]").value = "";
-	document.querySelector("[name=strAddress]").value = "";
-	document.querySelector("[name=spotNr]").value = "";
-	document.querySelector("[name=fromTime]").value = "00:00";
-	document.querySelector("[name=toTime]").value = "00:00";
-	document.querySelector("[name=description]").value = "";
-}
-
-function inlineDeleteSpot(id) {
-	console.warn("Refresh page!", id);
-
-	allSpots = allSpots.filter(function (spot) {
-		return spot.id != id;
-	});
-	displaySpots(allSpots);
-}
-
-function deleteSpot(id) {
-	var body = null;
-
-	if (API_METHOD.DELETE === "DELETE") {
-		body = JSON.stringify({ id });
-	}
-
-	fetch(API_URL.DELETE, {
-		method: API_METHOD.DELETE,
-		body: body,
-		headers: { "Content-Type": "application/json" }
-	}).then(function (response) {
-		return response.json();
-	}).then(function (status) {
-		if (status.success) {
-			console.warn("Removed.", status);
-			inlineDeleteSpot(id);
-		} else {
-			console.warn("Not removed!", status);
-		}
-	});
-}
-
-const editSpot = function (id) {
-	var spot = allSpots.find(function (p) {
-		return p.id == id;
-	});
-	console.warn("Found: ", spot);
-
-	document.querySelector("[name=cityTown]").value = spot.cityTown;
-	document.querySelector("[name=area]").value = spot.area;
-	document.querySelector("[name=strAddress]").value = spot.strAddress;
-	document.querySelector("[name=spotNr]").value = spot.spotNr;
-	document.querySelector("[name=fromTime]").value = spot.tFrom;
-	document.querySelector("[name=toTime]").value = spot.tUntil;
-	document.querySelector("[name=description]").value = spot.description;
-	editingSpotsId = id;
-};
 // --END-- "spots" DB Data transfer handling.
 
 // Search "bar".
