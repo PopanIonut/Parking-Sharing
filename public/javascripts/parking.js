@@ -104,7 +104,7 @@ function submitLogin(lgPhone, lgEmail, lgCar){
 // 2. search spots (citeste cele 3 inp si apeleaza funct din sus); sa apeleaza automat
 
 // "Spots" DB Data transfer handlers:
-function searchSpotRoute(){
+function searchSpotReq(){
 	fetch(API_URL.READ_SPOTS + "?city=Cluj&area=Gruia?address=Str. Buhusi").then(function (resp) {
 		return resp.json()
 	}).then(function (parkingData) { // = the succesfully returned "resp"-onse.
@@ -136,9 +136,16 @@ function displaySpots(parkingData) {
 
 // Search "bar".
 const searchSpot = value => {	/*	If the array only ever has 1 value the parrentheses can be left out.	*/
-	value = value.toLowerCase().trim();
+	
+	var sCity = document.querySelector("[name=searchCity]").value;
+	var sArea = document.querySelector("[name=searchArea]").value;
+	var sAddr = document.querySelector("[name=searchAddr]").value;
+	console.warn("Dynamic Search passes data: City: ", + sCity + " |Area: " + sArea + " |Address: " + sAddr);
+	var val = sCity + "" + sArea + "" + sAddr;
+	//value = value.toLowerCase().trim();
+	value = val.toLowerCase().trim();
 	const filtered = allSpots.filter(spot => {
-		return spot.cityTown.toLowerCase().includes(value) ||
+		return spot.city.toLowerCase().includes(value) ||
 		spot.area.toLowerCase().includes(value) ||
 		spot.strAddress.toLowerCase().includes(value);
 	});
