@@ -76,7 +76,7 @@ function clickLogin(){
 
 	if(lgPhone == "" || lgEmail == "" || lgCar == "") {
 		alert("Completați toate !");
-		break;
+		return;
 	} else {
 		submitLogin(lgPhone, lgEmail, lgCar);
 	}

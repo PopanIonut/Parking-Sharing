@@ -15,9 +15,9 @@ const pool = mysql.createPool({
 // GET /READ entire "spots" listed.  http://localhost:3000/get
 // Takes into consideration the search inputs too.
 router.get('/', function(req, res, next) {
-  const city = true ? ` AND city = "Cluj"` : ``; // TODO: "dynamic variables".
-  const area = true ? ` AND area = "Gruia"` : ``;
-  const address = true ? ` AND address = "Str. Buhusi"` : ``;
+  const city = false ? ` AND city = "${document.getElementById("searchCity").value}"` : ``; // TODO: "dynamic variables".
+  const area = false ? ` AND area = "Gruia"` : ``;
+  const address = false ? ` AND address = "Str. Buhusi"` : ``;
   
   pool.getConnection((err, connection) => {
     /* Select those records from the "spots" table whose "id" value
