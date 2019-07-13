@@ -104,6 +104,7 @@ function submitLogin(lgPhone, lgEmail, lgCar){
 // 2. search spots (citeste cele 3 inp si apeleaza funct din sus); sa apeleaza automat
 
 // "Spots" DB Data transfer handlers:
+// Search on page init.
 function searchSpotReq(){
 	fetch(API_URL.READ_SPOTS + "?city=Cluj&area=Gruia?address=Str. Buhusi").then(function (resp) {
 		return resp.json()
@@ -137,17 +138,16 @@ function displaySpots(parkingData) {
 // Search "bar".
 const searchSpot = value => {	/*	If the array only ever has 1 value the parrentheses can be left out.	*/
 	
-	var sCity = document.querySelector("[name=searchCity]").value;
-	var sArea = document.querySelector("[name=searchArea]").value;
-	var sAddr = document.querySelector("[name=searchAddr]").value;
+	var sCity = document.getElementById("searchCity").value;
+	var sArea = document.getElementById("searchArea").value;
+	var sAddr = document.getElementById("searchAddr").value;
 	console.warn("Dynamic Search passes data: City: ", + sCity + " |Area: " + sArea + " |Address: " + sAddr);
-	var val = sCity + "" + sArea + "" + sAddr;
-	//value = value.toLowerCase().trim();
-	value = val.toLowerCase().trim();
+	
+	value = value.toLowerCase().trim();
 	const filtered = allSpots.filter(spot => {
 		return spot.city.toLowerCase().includes(value) ||
 		spot.area.toLowerCase().includes(value) ||
-		spot.strAddress.toLowerCase().includes(value);
+		spot.address.toLowerCase().includes(value);
 	});
 	displaySpots(filtered);
 };
@@ -171,14 +171,24 @@ const searchAddress = value => {
 
 // Search, dynamic in "Spots" DB - Event listener.
 function initEvents() {
-	const searchBox = document.querySelector(".searchSpot");
+	//const searchBox = document.querySelector(".searchSpot");
 
-	searchBox.addEventListener("input", (e) => {
+	let searchBox = document.querySelectorAll(".searchSpot");
+
+	searchBox.forEach(function (elem) {
+		elem.addEventListener("input", (e) => {
+			console.warn("Search input: " + e.target.value);
+			searchSpot(e.target.value);
+		}, true);
+	});
+
+	//const sCityBox = document.getElementById("searchCity");
+	//const sAreaBox = document.getElementById("searchArea");
+	//const sAddrBox = document.getElementById("searchAddr");
+
+	/* searchBox.addEventListener("input", (e) => {
 		console.warn("Search input: " + e.target.value);
 		searchSpot(e.target.value);
-		//searchCity(e.target.value);
-		//searchArea(e.target.value);
-		//searchAddress(e.target.value);
-	});
+	}, true); */
 }
 initEvents();
