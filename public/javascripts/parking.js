@@ -5,7 +5,7 @@ const lgData = [];
 var API_URL = {
 	ADD: "spots/add",	//	CREATE
 	READ_SPOTS: "spots",
-	READ_PEOPLE: "login",	// login data is in the "people" DBT.
+	LOGIN: "login",
 	UPDATE: "spots/update",
 	DELETE: "spots/delete"
 };
@@ -13,6 +13,7 @@ var API_URL = {
 var API_METHOD = {
 	ADD: "POST",	//	CREATE
 	READ: "GET",
+	LOGIN: "POST",
 	UPDATE: "PUT",
 	DELETE: "DELETE"
 };
@@ -56,16 +57,6 @@ initTopMenu();
 // --END-- Top-menu functions.
 
 
-// Login handler
-fetch(API_URL.READ_PEOPLE).then(function (resp) {
-	return resp.json()
-}).then(function (loginData) { // = the succesfully returned "resp"-onse.
-	console.log("Login input: ", loginData);
-	lgData = loginData;
-	//submitLogin(loginData);
-	console.log("lgData: ", lgData);
-})
-
 function clickLogin(){
 	console.warn("clicked on login", this);	
 
@@ -85,14 +76,41 @@ function clickLogin(){
 function submitLogin(lgPhone, lgEmail, lgCar){
 	console.warn("Submit Login got data: ", lgPhone + " " + lgEmail + " " + lgCar);
 	console.log("Matching id: ", lgData.id);
-	// TODO //
-	//var body = JSON.stringify({ lgEmail, lgCar, lgPhone });
+	
+	let body = null;
+	const method = API_METHOD.LOGIN;
+
+	if (method === "POST") {
+		body = JSON.stringify({ lgPhone, lgEmail, lgCar });
+	}
+
+	// Login handler
+	fetch(API_URL.LOGIN, {
+		method, body, headers: { "Content-Type": "application/json" }
+	}).then(function (resp) {
+		return resp.json()
+	}).then(function (loginData) { // = the succesfully returned "resp"-onse.
+		console.log("Login input: ", loginData);
+		lgData = loginData;
+		//submitLogin(loginData);
+		console.log("lgData: ", lgData);
+	})
+	
 };
 // --END-- Login functions.
 
 
 // "Spots" DB Data transfer handlers:
-fetch(API_URL.READ_SPOTS).then(function (resp) {
+//fetch(API_URL.READ_SPOTS).then(function (resp) {
+//function searchSpot
+
+//TODO: Search:
+// 1. o functie search spots request
+// 2. search spots (citeste cele 3 inp si apeleaza funct din sus); sa apeleaza automat
+// 
+
+
+fetch(API_URL.READ_SPOTS + "?city=Cluj&area=Gruia?address=Str. Buhusi").then(function (resp) {
 	return resp.json()
 }).then(function (parkingData) { // = the succesfully returned "resp"-onse.
 	console.log("All spots: ", parkingData);

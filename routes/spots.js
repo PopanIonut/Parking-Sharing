@@ -15,9 +15,13 @@ const pool = mysql.createPool({
 // GET /READ entire "spots" listed.  http://localhost:3000/get
 // Takes into consideration the search inputs too.
 router.get('/', function(req, res, next) {
-  const city = false ? ` AND city = "${document.getElementById("searchCity").value}"` : ``; // TODO: "dynamic variables".
-  const area = false ? ` AND area = "Gruia"` : ``;
-  const address = false ? ` AND address = "Str. Buhusi"` : ``;
+  const city = req.query.city;
+  const area = req.query.area;
+  const address = req.query.address;
+  // internal queries, for sql.
+  const cityQ = city ? ` AND city = "${city}"` : ``;
+  const areaQ = area ? ` AND area = "${area}"` : ``;
+  const addressQ = address ? ` AND address = "${address}"` : ``;
   
   pool.getConnection((err, connection) => {
     /* Select those records from the "spots" table whose "id" value
@@ -28,7 +32,7 @@ router.get('/', function(req, res, next) {
      * AND arrange the result of all this so that the 
      * "address" values will be in alphanumerical ASCending order.
      */
-    const sql = `SELECT * FROM spots WHERE id not in(SELECT spot_id from reservations WHERE ending IS NULL) ${city} ${area} ${address} ORDER BY address ASC`;
+    const sql = `SELECT * FROM spots WHERE id not in(SELECT spot_id from reservations WHERE ending IS NULL) ${cityQ} ${areaQ} ${addressQ} ORDER BY address ASC`;
 
     connection.query(sql, (err, results) => {
       if(!!err){  console.log(err);   } else {
