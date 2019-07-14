@@ -57,6 +57,24 @@ initTopMenu();
 // --END-- Top-menu functions.
 
 
+function getUser() {
+	return JSON.parse(localStorage.getItem('user'));
+}
+
+if (document.querySelector("#addresses tbody")) {
+    if (localStorage.getItem('user')) {
+		console.log("login ok");
+		//document.getElementsByName("homePage")[0].style.display = "block";
+		//document.getElementById("searchPage").style.display="none";
+    } else {
+		console.log("login not");
+		//displaySpots();
+		//document.getElementById("loginHome").setAttribute("data-page", "loginPage");
+		//document.getElementsByName("homePage")[0].style.display = "block";
+		//document.getElementsByName("loginPage")[0].style.display = "none";
+    }
+}
+
 function clickLogin(){
 	console.warn("clicked on login", this);	
 
@@ -99,11 +117,13 @@ function submitLogin(lgPhone, lgEmail, lgCar){
 };
 // --END-- Login functions.
 
+
+
+
 //TODO: Search:
 // 1. o functie search spots request
 // 2. search spots (citeste cele 3 inputuri si apeleaza functia din searchSpotReq); sa apeleaza automat
-// 
-
+ 
 
 // "Spots" DB Data transfer handlers:
 // Search on page init.

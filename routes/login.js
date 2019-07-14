@@ -24,6 +24,7 @@ router.post('/', function(req, res, next) {
   
   pool.getConnection((err, connection) => {
     const sql = `SELECT * FROM people WHERE ${lgPhoneQ} ${lgEmailQ} ${lgCarQ}`;
+    console.log("Login js sql: \n", sql);
 
     connection.query(sql, (err, results) => {
       if(!!err){  console.log(err);   } else {

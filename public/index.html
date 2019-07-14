@@ -33,10 +33,10 @@
             <nav id="top-menuBar" class="top-menuBar">
                 <ul id="topMenu" class="topMenu">
                     <!--"data-page" properties point to the page IDs. -->
-                    <li><a href="#" data-page="homePage">Login</a></li>
+                    <li><a href="#" id="loginHome" data-page="homePage">Login / Cont</a></li>
                     <li><a href="#" data-page="_2_Page">Vreau să donez!</a></li>
-                    <li><a href="#" data-page="searchPage">Locuri libere!</a></li>
-                    <li id="menuAbout"><a href="#" data-page="aboutPage">Despre noi!</a></li>
+                    <li><a href="#" data-page="searchPage">Locuri libere</a></li>
+                    <li id="menuAbout"><a href="#" data-page="aboutPage">Despre noi</a></li>
                 </ul>
             </nav> <!-- Top Menu Bar -->
         </header>
@@ -45,7 +45,7 @@
         <section id="centerContent">
 
             <!-- The IDs have to match the connected link's data-page value. -->
-            <div id="homePage" class="page" style="display: block"> <!--Style display "block" ONLY after pressing the "login" link else "none" !! -->
+            <div id="loginPage" class="page" name="loginPage" style="display: block"> <!--Style display "block" ONLY after pressing the "login" link else "none" !! -->
                 <form id="lgForm" onsubmit="return false"> <!--return true ? -->
                     <div><input id="lgPhone" type="text" placeholder="Nr. Telefon" required="required" name="lgPhone" tabindex="1"></div>
                     <div><input id="lgMail" type="text" placeholder="Adresa de mail" required="required" name="lgMail" tabindex="2"></div>
@@ -54,7 +54,8 @@
                 </form>
             </div>
             
-            <div id="homePage" class="page"> <!--Style display "none" ONLY while testing the DB, ELSE "block" !! -->
+            <!--HIDDEN until login works-->
+            <div id="homePage" class="page" name="homePage"> <!--Style display "none" ONLY while testing the DB, ELSE "block" !! -->
                 <h3>Acasă</h3>
             </div>
 
@@ -108,10 +109,6 @@
                         </tr>
                     </tfoot>
                 </table>
-            </div>
-
-            <div id="_3_Page" class="page" style="display: none">
-                <h3>_3_Page</h3>
             </div>
 
             <div id="aboutPage" class="page" style="display: none">
