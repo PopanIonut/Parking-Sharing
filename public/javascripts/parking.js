@@ -73,6 +73,7 @@ function clickLogin(){
 	}
 };
 
+// Login handler
 function submitLogin(lgPhone, lgEmail, lgCar){
 	console.warn("Submit Login got data: ", lgPhone + " " + lgEmail + " " + lgCar);
 	console.log("Matching id: ", lgData.id);
@@ -84,7 +85,6 @@ function submitLogin(lgPhone, lgEmail, lgCar){
 		body = JSON.stringify({ lgPhone, lgEmail, lgCar });
 	}
 
-	// Login handler
 	fetch(API_URL.LOGIN, {
 		method, body, headers: { "Content-Type": "application/json" }
 	}).then(function (resp) {

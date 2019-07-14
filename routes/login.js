@@ -18,7 +18,7 @@ router.post('/', function(req, res, next) {
   const lgEmail = req.body.email;
   const lgCar = req.body.car_nr;
   // internal queries, for sql. 
-  const lgPhoneQ = lgPhone ? ` AND phone = "${lgPhone}"` : ``;
+  const lgPhoneQ = lgPhone ? ` phone = "${lgPhone}"` : ``;
   const lgEmailQ = lgEmail ? ` AND email = "${lgEmail}"` : ``;
   const lgCarQ = lgCar ? ` AND car_nr = "${lgCar}"` : ``;
   
