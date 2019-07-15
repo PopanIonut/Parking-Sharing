@@ -47,11 +47,13 @@
             <!-- The IDs have to match the connected link's data-page value. -->
             <div id="loginPage" class="page" name="loginPage"> <!--Style display "block" ONLY after pressing the "login" link else "none" !! -->
 				<!--<form id="lgForm" method="post" action="" onsubmit="return false">-->
-				<form id="lgForm" method="post" action="auth" onsubmit="return false">
-                    <div><input id="lgPhone" type="text" placeholder="Nr. Telefon" required="required" name="lgPhone" tabindex="1"></div>
-                    <div><input id="lgMail" type="text" placeholder="Adresa de mail" required="required" name="lgMail" tabindex="2"></div>
-                    <div><input id="lgCar" type="text" placeholder="Nr. Masina" required="required" name="lgCar" tabindex="3"></div>
+                <form id="lgForm" method="post" action="auth" onsubmit="return false">
+                    <div><input id="lgPhone" type="text" placeholder="Nr. Telefon" required="required" name="lgPhone" tabindex="1" value="768735915"></div>
+                    <div><input id="lgMail" type="text" placeholder="Adresa de mail" required="required" name="lgMail" tabindex="2" value="Lacatus.Aurel@yahoo.com"></div>
+                    <div><input id="lgCar" type="text" placeholder="Nr. Masina" required="required" name="lgCar" tabindex="3" value="CJ88ZWZ"></div>
                     <input type="submit" name="commit" value="Login" onclick="clickLogin()">
+                    <p>_</p>
+                    <p>Remove this and the static form values after finishing login testing.</p>
                 </form>
             </div>
             

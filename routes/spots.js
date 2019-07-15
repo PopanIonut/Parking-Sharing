@@ -19,9 +19,9 @@ router.post('/', function(req, res, next) {
   const area = req.body.area;
   const address = req.body.address;
   // internal queries, for sql.
-  const cityQ = city ? ` AND city = "${city}"` : ``;
-  const areaQ = area ? ` AND area = "${area}"` : ``;
-  const addressQ = address ? ` AND address = "${address}"` : ``;
+  const cityQ = city ? ` AND city LIKE "${city}%"` : ``;
+  const areaQ = area ? ` AND area LIKE "${area}%"` : ``;
+  const addressQ = address ? ` AND address LIKE "%${address}%"` : ``;
   
   pool.getConnection((err, connection) => {
     /* Select those records from the "spots" table whose "id" value

@@ -4,7 +4,7 @@ const lgData = [];
 
 var API_URL = {
 	ADD: "spots/add",	//	CREATE
-	READ_SPOTS: "spots",
+	READ: "spots",
 	LOGIN: "login",
 	UPDATE: "spots/update",
 	DELETE: "spots/delete"
@@ -12,7 +12,7 @@ var API_URL = {
 
 var API_METHOD = {
 	ADD: "POST",	//	CREATE
-	READ: "GET",
+	READ: "POST",
 	LOGIN: "POST",
 	UPDATE: "PUT",
 	DELETE: "DELETE"
@@ -68,7 +68,7 @@ function clickLogin(){
 	var lgPhone = document.querySelector("[name=lgPhone]").value;
 	var lgEmail = document.querySelector("[name=lgMail]").value;
 	var lgCar = document.querySelector("[name=lgCar]").value;
-	console.warn("Click Login passes data: Phone: ", + lgPhone + " |Email: " + lgEmail + " |Car: " + lgCar);
+	console.warn("Click Login passes data: \n Phone: ", + lgPhone + " |Email: " + lgEmail + " |Car: " + lgCar);
 
 	if(lgPhone == "" || lgEmail == "" || lgCar == "") {
 		alert("Completați toate !");
@@ -78,14 +78,12 @@ function clickLogin(){
 	}
 };
 
-function submitLogin(lgPhone, lgEmail, lgCar){
-	console.warn("Submit Login got data: ", lgPhone + " " + lgEmail + " " + lgCar);
-	
+function submitLogin(phone, email, car_nr){	
 	let body = null;
 	const method = API_METHOD.LOGIN;
 
 	if (method === "POST") {
-		body = JSON.stringify({ lgPhone, lgEmail, lgCar });
+		body = JSON.stringify({ phone, email, car_nr });
 	}
 
 	fetch(API_URL.LOGIN, {
@@ -94,7 +92,7 @@ function submitLogin(lgPhone, lgEmail, lgCar){
 		return resp.json()
 	}).then(function (loginData) { // = the succesfully returned "resp"-onse.
 		console.log("Login input: ", loginData);
-		lgData = loginData;
+		//lgData = loginData;
 		//submitLogin(loginData);
 		console.log("lgData: ", lgData);
 
@@ -137,11 +135,18 @@ if (document.querySelector("#addresses tbody")) {
 // "Spots" DB Data transfer handlers:
 // Search request on page initialization.
 function searchSpotReq(city, area, address){
-	var queryStr = "?city=" + city + "&area=" + area + "?address=" + address;
 	//var queryStr = "?city=Cluj&area=Gruia?address=Str. Buhusi";
 
 	//fetch(API_URL.READ_SPOTS).then(function (resp) {
-	fetch(API_URL.READ_SPOTS + queryStr).then(function (resp) {
+
+	const method = API_METHOD.READ;
+	if (method === "POST") {
+		body = JSON.stringify({ city, area, address });
+	}
+
+	fetch(API_URL.READ, {
+		method, body, headers: { "Content-Type": "application/json" }
+	}).then(function (resp) {
 		return resp.json()
 	}).then(function (parkingData) { // = the succesfully returned "resp"-onse.
 		console.log("All spots: ", parkingData);
@@ -176,9 +181,9 @@ const searchSpot = () => {	/*	If the array only ever has 1 value the parrenthese
 	var city = document.getElementById("searchCity").value;
 	var area = document.getElementById("searchArea").value;
 	var address = document.getElementById("searchAddr").value;
-	console.warn("Dynamic Search passes data: " +"\n"+ "City: ", city , " |Area: " , area , " |Address: " , address);
+	console.warn("Dynamic Search passes data: \n"+ "City: ", city , " |Area: " , area , " |Address: " , address);
 
-	// ?????
+	searchSpotReq(city, area, address);
 };
 // --END-- Search handling.
 

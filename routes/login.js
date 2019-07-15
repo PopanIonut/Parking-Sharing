@@ -14,13 +14,13 @@ const pool = mysql.createPool({
 
 // GET /READ login related data.  http://localhost:3000/get
 router.post('/', function(req, res, next) {
-  const lgPhone = req.body.phone;
-  const lgEmail = req.body.email;
-  const lgCar = req.body.car_nr;
+  const phone = req.body.phone;
+  const email = req.body.email;
+  const car_nr = req.body.car_nr;
   // internal queries, for sql. 
-  const lgPhoneQ = lgPhone ? ` phone = "${lgPhone}"` : ``;
-  const lgEmailQ = lgEmail ? ` AND email = "${lgEmail}"` : ``;
-  const lgCarQ = lgCar ? ` AND car_nr = "${lgCar}"` : ``;
+  const lgPhoneQ = ` phone = "${phone}"`;
+  const lgEmailQ = ` AND email = "${email}"`;
+  const lgCarQ = ` AND car_nr = "${car_nr}"`;
   
   pool.getConnection((err, connection) => {
     const sql = `SELECT * FROM people WHERE ${lgPhoneQ} ${lgEmailQ} ${lgCarQ}`;
