@@ -44,4 +44,33 @@ router.post('/', function(req, res, next) {
   });
 });
  
+// http://localhost:3000/booking/update
+router.post('/book', function(req, res, next) {
+  var id = req.body.id;
+  var person_id = req.body.person_id;
+  var spot_id = req.body.spot_id;
+  var phoneNumber = req.body.phoneNumber;
+  
+  console.warn("Update: ", id, familyName, givenName, phoneNumber);
+  
+  var id = req.body.id;
+    
+  console.warn("Remove: ", id);
+  
+  pool.getConnection((err, connection) => {
+    const sql = `UPDATE contacts 
+    SET familyName = "${familyName}", givenName = "${givenName}", phoneNumber = "${phoneNumber}"
+    WHERE id = ${id}`;
+        
+    connection.query(sql, (err, results) => {
+      res.json({
+        success: true,
+        message: "Done!"
+      });
+        
+      connection.release();
+    });
+  });
+});
+
 module.exports = router;

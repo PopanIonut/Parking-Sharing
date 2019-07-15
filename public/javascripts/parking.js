@@ -6,6 +6,7 @@ var API_URL = {
 	ADD: "spots/add",	//	CREATE
 	READ: "spots",
 	LOGIN: "login",
+	BOOK: "spots/book",
 	UPDATE: "spots/update",
 	DELETE: "spots/delete"
 };
@@ -14,6 +15,7 @@ var API_METHOD = {
 	ADD: "POST",	//	CREATE
 	READ: "POST",
 	LOGIN: "POST",
+	BOOK: "POST",
 	UPDATE: "PUT",
 	DELETE: "DELETE"
 };
@@ -115,6 +117,7 @@ if (document.querySelector("#addresses tbody")) {
 			//searchSpotReq(city, area, address);
 			document.getElementsByName("homePage")[0].style.display = "block";
 			//document.getElementById("searchPage").style.display="none";
+			searchSpot();
 		} else {
 			console.log("login not");
 			//document.getElementById("loginHome").setAttribute("data-page", "loginPage");
@@ -155,6 +158,24 @@ function searchSpotReq(city, area, address){
 	})
 }
 
+function bookSpot(id){
+	const method = API_METHOD.BOOK;
+	if (method === "POST") {
+		body = JSON.stringify({ city, area, address }); //edit
+	}
+
+	fetch(API_URL.BOOK, {
+		method, body, headers: { "Content-Type": "application/json" }
+	}).then(function (resp) {
+		return resp.json()
+	}).then(function (parkingData) { // = the succesfully returned "resp"-onse.
+		console.log("All spots: ", parkingData);
+		allSpots = parkingData;
+		displaySpots(parkingData);
+	})
+}
+
+
 // Show "spots" DB data on page.
 function displaySpots(parkingData) {
 	var list = parkingData.map(function (spot) {
@@ -177,7 +198,7 @@ function displaySpots(parkingData) {
 
 
 // Search "bar".
-const searchSpot = () => {	/*	If the array only ever has 1 value the parrentheses can be left out.	*/	
+function searchSpot() {	/*	If the array only ever has 1 value the parrentheses can be left out.	*/	
 	var city = document.getElementById("searchCity").value;
 	var area = document.getElementById("searchArea").value;
 	var address = document.getElementById("searchAddr").value;
@@ -199,4 +220,22 @@ function initSearch() {
 		}, true);
 	});
 }
+
+function initEvents() {
+	const tbody = document.querySelector("#addresses tbody");
+
+	tbody.addEventListener("click", function(e) {
+		if (e.target.className == "book") {
+			const tr = e.target.parentNode.parentNode;
+			const id = tr.getAttribute("data-id");
+			
+			console.warn("Parent?", id);
+
+			bookSpot(id);
+		}
+		//else release spot..
+	});
+}
+
 initSearch();
+initEvents();
