@@ -132,7 +132,7 @@ if (document.querySelector("#addresses tbody")) {
  
 
 // "Spots" DB Data transfer handlers:
-// Search on page init.
+// Search request on page initialization.
 function searchSpotReq(city, area, address){
 	//var queryStr = "?city=" + city + "&area=" + area + "?address=" + address;
 	//var queryStr = "?city=Cluj&area=Gruia?address=Str. Buhusi";
@@ -167,6 +167,7 @@ function displaySpots(parkingData) {
 }
 // --END-- "spots" DB Data transfer handling.
 
+
 // Search "bar".
 const searchSpot = () => {	/*	If the array only ever has 1 value the parrentheses can be left out.	*/	
 	var city = document.getElementById("searchCity").value;
@@ -179,7 +180,7 @@ const searchSpot = () => {	/*	If the array only ever has 1 value the parrenthese
 // --END-- Search handling.
 
 // Search, dynamic in "Spots" DB - Event listener.
-function initEvents() {
+function initSearch() {
 	// array.
 	let searchBox = document.querySelectorAll(".searchSpot");
 
@@ -190,4 +191,4 @@ function initEvents() {
 		}, true);
 	});
 }
-initEvents();
+initSearch();
