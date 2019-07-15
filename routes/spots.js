@@ -44,24 +44,19 @@ router.post('/', function(req, res, next) {
   });
 });
  
-// http://localhost:3000/booking/update
+// http://localhost:3000/booking/add
 router.post('/book', function(req, res, next) {
   var id = req.body.id;
-  var person_id = req.body.person_id;
-  var spot_id = req.body.spot_id;
-  var phoneNumber = req.body.phoneNumber;
+  var personId = req.body.person_id;
+  var spotId = req.body.spot_id;
   
-  console.warn("Update: ", id, familyName, givenName, phoneNumber);
-  
-  var id = req.body.id;
-    
-  console.warn("Remove: ", id);
-  
+  console.warn("Update: ", id, personId, spotId);
+
   pool.getConnection((err, connection) => {
-    const sql = `UPDATE contacts 
-    SET familyName = "${familyName}", givenName = "${givenName}", phoneNumber = "${phoneNumber}"
+    const sql = `UPDATE reservations 
+    SET person_id = "${personId}", spot_id = "${spotId}"
     WHERE id = ${id}`;
-        
+
     connection.query(sql, (err, results) => {
       res.json({
         success: true,

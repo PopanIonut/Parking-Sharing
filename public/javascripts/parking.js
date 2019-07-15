@@ -110,36 +110,26 @@ function submitLogin(phone, email, car_nr){
 	})
 };
 
+// TODO: swap direct element gets with functions.
+
 if (document.querySelector("#addresses tbody")) {
-	//while (!localStorage.getItem('user')) {
-		if (localStorage.getItem('user')) {
-			console.log("login ok");
-			//searchSpotReq(city, area, address);
-			document.getElementsByName("homePage")[0].style.display = "block";
-			//document.getElementById("searchPage").style.display="none";
-			searchSpot();
-		} else {
-			console.log("login not");
-			//document.getElementById("loginHome").setAttribute("data-page", "loginPage");
-			//document.getElementsByName("homePage")[0].style.display = "none";
-			document.getElementsByName("loginPage")[0].style.display = "block";
-		}
-	//}
+	if (localStorage.getItem('user')) {
+		console.log("login ok");
+		//document.getElementsByName("homePage")[0].style.display = "block";
+		document.getElementById("searchPage").style.display = "block";
+		searchSpot();
+	} else {
+		console.log("login not");
+		//document.getElementById("loginHome").setAttribute("data-page", "loginPage");
+		document.getElementsByName("loginPage")[0].style.display = "block";
+	}
 }
 // --END-- Login functions.
 
-
-//TODO: Search:
-// 1. o functie search spots request;
-// 2. search spots (citeste cele 3 inputuri si apeleaza functia
-//din searchSpotReq); sa apeleaza automat.
- 
-
 // "Spots" DB Data transfer handlers:
-// Search request on page initialization.
+// Search page initialization.
 function searchSpotReq(city, area, address){
 	//var queryStr = "?city=Cluj&area=Gruia?address=Str. Buhusi";
-
 	//fetch(API_URL.READ_SPOTS).then(function (resp) {
 
 	const method = API_METHOD.READ;
@@ -175,7 +165,6 @@ function bookSpot(id){
 	})
 }
 
-
 // Show "spots" DB data on page.
 function displaySpots(parkingData) {
 	var list = parkingData.map(function (spot) {
@@ -195,7 +184,6 @@ function displaySpots(parkingData) {
 	document.querySelector('#addresses tbody').innerHTML = list.join('');
 }
 // --END-- "spots" DB Data transfer handling.
-
 
 // Search "bar".
 function searchSpot() {	/*	If the array only ever has 1 value the parrentheses can be left out.	*/	
