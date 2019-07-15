@@ -62,21 +62,6 @@ function getUser() {
 	return JSON.parse(localStorage.getItem('user'));
 }
 
-if (document.querySelector("#addresses tbody")) {
-    if (localStorage.getItem('user')) {
-		console.log("login ok");
-		//loadSpots();	 //??
-		//document.getElementsByName("homePage")[0].style.display = "block";
-		//document.getElementById("searchPage").style.display="none";
-    } else {
-		console.log("login not");
-		//displaySpots();
-		//document.getElementById("loginHome").setAttribute("data-page", "loginPage");
-		//document.getElementsByName("homePage")[0].style.display = "block";
-		//document.getElementsByName("loginPage")[0].style.display = "none";
-    }
-}
-
 function clickLogin(){
 	console.warn("clicked on login", this);	
 
@@ -123,11 +108,22 @@ function submitLogin(lgPhone, lgEmail, lgCar){
             localStorage.clear();
         }
 	})
-	
 };
+
+if (document.querySelector("#addresses tbody")) {
+    if (localStorage.getItem('user')) {
+		console.log("login ok");
+		//searchSpotReq(city, area, address);
+		//document.getElementsByName("homePage")[0].style.display = "block";
+		//document.getElementById("searchPage").style.display="none";
+    } else {
+		console.log("login not");
+		//document.getElementById("loginHome").setAttribute("data-page", "loginPage");
+		//document.getElementsByName("homePage")[0].style.display = "block";
+		//document.getElementsByName("loginPage")[0].style.display = "none";
+    }
+}
 // --END-- Login functions.
-
-
 
 
 //TODO: Search:
@@ -139,10 +135,10 @@ function submitLogin(lgPhone, lgEmail, lgCar){
 // Search on page init.
 function searchSpotReq(city, area, address){
 	//var queryStr = "?city=" + city + "&area=" + area + "?address=" + address;
-	
-	var queryStr = "?city=Cluj&area=Gruia?address=Str. Buhusi"
+	//var queryStr = "?city=Cluj&area=Gruia?address=Str. Buhusi";
 
-	fetch(API_URL.READ_SPOTS + queryStr).then(function (resp) {
+	fetch(API_URL.READ_SPOTS).then(function (resp) {
+	//fetch(API_URL.READ_SPOTS + queryStr).then(function (resp) {
 		return resp.json()
 	}).then(function (parkingData) { // = the succesfully returned "resp"-onse.
 		console.log("All spots: ", parkingData);
