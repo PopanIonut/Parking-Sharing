@@ -111,7 +111,6 @@ function submitLogin(phone, email, car_nr){
 };
 
 // TODO: swap direct element gets with functions.
-
 if (document.querySelector("#addresses tbody")) {
 	if (localStorage.getItem('user')) {
 		console.log("login ok");
@@ -129,12 +128,10 @@ if (document.querySelector("#addresses tbody")) {
 // "Spots" DB Data transfer handlers:
 // Search page initialization.
 function searchSpotReq(city, area, address){
-	//var queryStr = "?city=Cluj&area=Gruia?address=Str. Buhusi";
-	//fetch(API_URL.READ_SPOTS).then(function (resp) {
-
+	const personId = getUser().id;
 	const method = API_METHOD.READ;
 	if (method === "POST") {
-		body = JSON.stringify({ city, area, address });
+		body = JSON.stringify({ city, area, address, personId });
 	}
 
 	fetch(API_URL.READ, {
@@ -148,27 +145,32 @@ function searchSpotReq(city, area, address){
 	})
 }
 
-function bookSpot(id){
+function bookSpot(spotId){
+	const personId = getUser().id;
+	
+	console.log("Booking data: ", personId, spotId);
+
+
 	const method = API_METHOD.BOOK;
 	if (method === "POST") {
-		body = JSON.stringify({ city, area, address }); //edit
+		body = JSON.stringify({ personId, spotId });
 	}
 
 	fetch(API_URL.BOOK, {
 		method, body, headers: { "Content-Type": "application/json" }
 	}).then(function (resp) {
 		return resp.json()
-	}).then(function (parkingData) { // = the succesfully returned "resp"-onse.
-		console.log("All spots: ", parkingData);
-		allSpots = parkingData;
-		displaySpots(parkingData);
+	}).then(function (resp) { // = the succesfully returned "resp"-onse.
+		console.log("All spots: ", resp);
+		searchSpot();
 	})
 }
 
 // Show "spots" DB data on page.
 function displaySpots(parkingData) {
 	var list = parkingData.map(function (spot) {
-		return `<tr data-id="${spot.id}">
+		const style = spot.person_id ? 'background-color: green' : '';	// if there is pers. swap button to release.
+		return `<tr data-id="${spot.id}" style="${style}">
 			<td>${spot.city}</td>
 			<td>${spot.area}</td>
 			<td>${spot.address}</td>
@@ -190,7 +192,7 @@ function searchSpot() {	/*	If the array only ever has 1 value the parrentheses c
 	var city = document.getElementById("searchCity").value;
 	var area = document.getElementById("searchArea").value;
 	var address = document.getElementById("searchAddr").value;
-	console.warn("Dynamic Search passes data: \n"+ "City: ", city , " |Area: " , area , " |Address: " , address);
+	//console.warn("Dynamic Search passes data: \n"+ "City: ", city , " |Area: " , area , " |Address: " , address);
 
 	searchSpotReq(city, area, address);
 };
