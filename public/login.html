@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Log In</title>
+		<link rel="stylesheet" href="stylesheets/login.css" type="text/css">
+	</head>
+	<body style="background-color: pink">
+		<div class="container">
+			<div id="loginPage" class="page" name="loginPage"> <!--Style display "block" ONLY after pressing the "login" link else "none" !! -->
+                <form id="lgForm" method="post" action="" onsubmit="return false"> <!--return true ? -->
+                    <div><input id="lgPhone" type="text" placeholder="Nr. Telefon" required="required" name="lgPhone" tabindex="1"></div>
+                    <div><input id="lgMail" type="text" placeholder="Adresa de mail" required="required" name="lgMail" tabindex="2"></div>
+                    <div><input id="lgCar" type="text" placeholder="Nr. Masina" required="required" name="lgCar" tabindex="3"></div>
+                    <input type="submit" name="commit" value="Login" onclick="clickLogin()">
+                </form>
+            </div>
+		</div>
+		<!-- JavaScript -->
+        <div><script src="javascripts/parking.js"></script></div>
+	</body>
+</html>

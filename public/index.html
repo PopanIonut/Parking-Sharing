@@ -44,18 +44,9 @@
         <!--Content section-->
         <section id="centerContent">
 
-            <!-- The IDs have to match the connected link's data-page value. -->
-            <div id="loginPage" class="page" name="loginPage" style="display: block"> <!--Style display "block" ONLY after pressing the "login" link else "none" !! -->
-                <form id="lgForm" onsubmit="return false"> <!--return true ? -->
-                    <div><input id="lgPhone" type="text" placeholder="Nr. Telefon" required="required" name="lgPhone" tabindex="1"></div>
-                    <div><input id="lgMail" type="text" placeholder="Adresa de mail" required="required" name="lgMail" tabindex="2"></div>
-                    <div><input id="lgCar" type="text" placeholder="Nr. Masina" required="required" name="lgCar" tabindex="3"></div>
-                    <input type="submit" value="Login" onclick="clickLogin()">
-                </form>
-            </div>
-            
-            <!--HIDDEN until login works-->
-            <div id="homePage" class="page" name="homePage"> <!--Style display "none" ONLY while testing the DB, ELSE "block" !! -->
+            <!-- The IDs have to match the connected link's data-page value. -->            
+            <!--1st page until login works with dynamic page switching in 1 html-->
+            <div id="homePage" class="page" name="homePage" style="display: block"> <!--Style display "none" ONLY while testing the DB, ELSE "block" !! -->
                 <h3>Acasă</h3>
             </div>
 
@@ -94,20 +85,7 @@
                         </tr>
                     </thead>
                     <tbody></tbody> <!-- Table content, script generated. -->
-                    <tfoot>
-                        <tr>
-                            <!-- <td><input type="text" placeholder="Localitatea" required="required" name="cityTown" tabindex="4"></td>
-                            <td><input type="text" placeholder="Cartier" required="required" name="area" tabindex="5"></td>
-                            <td><input type="text" placeholder="Adresa" required="required" name="strAddress" tabindex="6"></td>
-                            <td><input type="text" placeholder="Nr. Loc" required="required" name="spotNr" tabindex="7"></td>
-                            <td><form><input type="time" value="00:00" min="00:00" max="23:59" required="required" name="fromTime" tabindex="8"></form></td>
-                            <td><form><input type="time" value="00:00" min="00:00" max="23:59" required="required" name="toTime" tabindex="9"></form></td>
-                            <td><input type="text" placeholder="Comentariu" required="required" name="description" tabindex="10"></td>
-                            <td><button type="submit" onclick="saveSpot()" aria-colspan="" tabindex="11">Salvare</button></td>
-
-                            <div id="tabIndexReset" tabindex="0"></div> -->
-                        </tr>
-                    </tfoot>
+                    <tfoot><tr></tr></tfoot>
                 </table>
             </div>
 

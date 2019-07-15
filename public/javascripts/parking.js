@@ -57,6 +57,7 @@ initTopMenu();
 // --END-- Top-menu functions.
 
 
+// Login handlers
 function getUser() {
 	return JSON.parse(localStorage.getItem('user'));
 }
@@ -64,6 +65,7 @@ function getUser() {
 if (document.querySelector("#addresses tbody")) {
     if (localStorage.getItem('user')) {
 		console.log("login ok");
+		//loadSpots();	 //??
 		//document.getElementsByName("homePage")[0].style.display = "block";
 		//document.getElementById("searchPage").style.display="none";
     } else {
@@ -85,13 +87,12 @@ function clickLogin(){
 
 	if(lgPhone == "" || lgEmail == "" || lgCar == "") {
 		alert("Completați toate !");
-		return;
+		return false;
 	} else {
 		submitLogin(lgPhone, lgEmail, lgCar);
 	}
 };
 
-// Login handler
 function submitLogin(lgPhone, lgEmail, lgCar){
 	console.warn("Submit Login got data: ", lgPhone + " " + lgEmail + " " + lgCar);
 	console.log("Matching id: ", lgData.id);
@@ -112,6 +113,15 @@ function submitLogin(lgPhone, lgEmail, lgCar){
 		lgData = loginData;
 		//submitLogin(loginData);
 		console.log("lgData: ", lgData);
+
+		if(loginData && loginData.length > 0) {
+            const user = loginData[0];
+            localStorage.setItem('user', JSON.stringify(user));
+            window.location = "index.html";
+        } else {
+            console.warn("Invalid data!");
+            localStorage.clear();
+        }
 	})
 	
 };
