@@ -44,9 +44,19 @@
         <!--Content section-->
         <section id="centerContent">
 
-            <!-- The IDs have to match the connected link's data-page value. -->            
-            <!--1st page until login works with dynamic page switching in 1 html-->
-            <div id="homePage" class="page" name="homePage" style="display: block"> <!--Style display "none" ONLY while testing the DB, ELSE "block" !! -->
+            <!-- The IDs have to match the connected link's data-page value. -->
+            <div id="loginPage" class="page" name="loginPage"> <!--Style display "block" ONLY after pressing the "login" link else "none" !! -->
+				<!--<form id="lgForm" method="post" action="" onsubmit="return false">-->
+				<form id="lgForm" method="post" action="auth" onsubmit="return false">
+                    <div><input id="lgPhone" type="text" placeholder="Nr. Telefon" required="required" name="lgPhone" tabindex="1"></div>
+                    <div><input id="lgMail" type="text" placeholder="Adresa de mail" required="required" name="lgMail" tabindex="2"></div>
+                    <div><input id="lgCar" type="text" placeholder="Nr. Masina" required="required" name="lgCar" tabindex="3"></div>
+                    <input type="submit" name="commit" value="Login" onclick="clickLogin()">
+                </form>
+            </div>
+            
+            <!--SHOULD BE 1st page until login works with dynamic page switching in 1 html file !-->
+            <div id="homePage" class="page" name="homePage"> <!--Style display "none" ONLY while testing the DB, ELSE "block" !! -->
                 <h3>Acasă</h3>
             </div>
 

@@ -80,7 +80,6 @@ function clickLogin(){
 
 function submitLogin(lgPhone, lgEmail, lgCar){
 	console.warn("Submit Login got data: ", lgPhone + " " + lgEmail + " " + lgCar);
-	console.log("Matching id: ", lgData.id);
 	
 	let body = null;
 	const method = API_METHOD.LOGIN;
@@ -99,6 +98,7 @@ function submitLogin(lgPhone, lgEmail, lgCar){
 		//submitLogin(loginData);
 		console.log("lgData: ", lgData);
 
+		// check login input validity vs. DB data.
 		if(loginData && loginData.length > 0) {
             const user = loginData[0];
             localStorage.setItem('user', JSON.stringify(user));
@@ -111,34 +111,37 @@ function submitLogin(lgPhone, lgEmail, lgCar){
 };
 
 if (document.querySelector("#addresses tbody")) {
-    if (localStorage.getItem('user')) {
-		console.log("login ok");
-		//searchSpotReq(city, area, address);
-		//document.getElementsByName("homePage")[0].style.display = "block";
-		//document.getElementById("searchPage").style.display="none";
-    } else {
-		console.log("login not");
-		//document.getElementById("loginHome").setAttribute("data-page", "loginPage");
-		//document.getElementsByName("homePage")[0].style.display = "block";
-		//document.getElementsByName("loginPage")[0].style.display = "none";
-    }
+	//while (!localStorage.getItem('user')) {
+		if (localStorage.getItem('user')) {
+			console.log("login ok");
+			//searchSpotReq(city, area, address);
+			document.getElementsByName("homePage")[0].style.display = "block";
+			//document.getElementById("searchPage").style.display="none";
+		} else {
+			console.log("login not");
+			//document.getElementById("loginHome").setAttribute("data-page", "loginPage");
+			//document.getElementsByName("homePage")[0].style.display = "none";
+			document.getElementsByName("loginPage")[0].style.display = "block";
+		}
+	//}
 }
 // --END-- Login functions.
 
 
 //TODO: Search:
-// 1. o functie search spots request
-// 2. search spots (citeste cele 3 inputuri si apeleaza functia din searchSpotReq); sa apeleaza automat
+// 1. o functie search spots request;
+// 2. search spots (citeste cele 3 inputuri si apeleaza functia
+//din searchSpotReq); sa apeleaza automat.
  
 
 // "Spots" DB Data transfer handlers:
 // Search request on page initialization.
 function searchSpotReq(city, area, address){
-	//var queryStr = "?city=" + city + "&area=" + area + "?address=" + address;
+	var queryStr = "?city=" + city + "&area=" + area + "?address=" + address;
 	//var queryStr = "?city=Cluj&area=Gruia?address=Str. Buhusi";
 
-	fetch(API_URL.READ_SPOTS).then(function (resp) {
-	//fetch(API_URL.READ_SPOTS + queryStr).then(function (resp) {
+	//fetch(API_URL.READ_SPOTS).then(function (resp) {
+	fetch(API_URL.READ_SPOTS + queryStr).then(function (resp) {
 		return resp.json()
 	}).then(function (parkingData) { // = the succesfully returned "resp"-onse.
 		console.log("All spots: ", parkingData);
