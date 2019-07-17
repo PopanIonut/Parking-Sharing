@@ -6,7 +6,7 @@ A simple app using node & express for managing parking space booking.
 
 Registered users can view both their current bookings as well as a list of available parking spaces, and make reservations.
 
-For the moment only the system admin. (who has access to the database) can register new users as well as parking spaces.
+For the moment only the system administrator (who has access to the database) can register both new users and parking spaces.
 
 ## Static live preview
 
@@ -15,34 +15,68 @@ Coming soon ..
 
 ## Content
 
+Once logged in..
+
 - **CRUD** operations:
     - **C**reate new reservation
-    - **R**ead (users,) spots and reservations from .json files
+    - **R**ead users (account data) spots and reservations from .json files
     - **U**pdate reservations
     - **D**elete reservations
 - **Search** available spots & user reservations
     - by: city / area / street name 
 
-**User accounts**
+###### Database **Parking**
 
-###### User
+- **Users**
+    - first name
+    - last name
+    - phone number
+    - e-mail address
+    - vehicle number
+- **Spots**
+    - city / town
+    - area / neighborhood name
+    - address
+    - parking space number / ID
+    - free from time (daily availability)
+    - free until time (daily availability)
+    - description / spot owner's notes
+- **Reservations**
+    - user reference (id)
+    - spot reference (id)
+    - booking time (timestamp)
+    - end time (of reservation release; datetime)
 
-- first name
-- middle name (optional)
-- last name
-- phone number
-- e-mail address
-- vehicle number (optional, required for reservations)
-- parking space details (optional, required for space registration)
+## Features
 
-###### Parking space (details)
+- [x] Use flex box for element arrangement
+- [x] **After** logging in: View available & booked spots
+- [x] Basic login
+- [x] **After** logging in: Dynamic spot search based on any combination of: City, Area (Neighborhood), Address
 
-- city/town
-- street address
-- space number
-- start time (date & time; required)
-- end time (date & time; required)
+### To Do
+
+- [ ] Logout & session end
+- [ ] Login page styling
+- [ ] "Proper" login, session & logout management
+- [ ] View all available Spots even without logging in
+- [ ] View & modify account information **by** the user
+    - Names, phone number, e-mail address, car & parking space data
+- [ ] View Name, phone number & e-amil address of user booking a spot by spot owner
+- [ ] "Send e-mail" type message Form for the Contact page.
 
 ## Setup
 
-*A later version will integrate proper and more secure user account security.*
+```
+git clone git@github.com:popanionut/parking-sharing.git
+cd node-agenda-app
+npm install
+```
+
+## Running app
+
+```
+npm run devstart
+```
+
+open http://localhost:3000/index.html
