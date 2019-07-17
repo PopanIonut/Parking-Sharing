@@ -55,7 +55,7 @@ Once logged in..
 ## Features
 
 - [x] Use flex box for element arrangement
-- [x] Use of MariaDB with MySql for data storage.
+- [x] Use of MariaDB (MySql) for data storage.
 - [x] **After** logging in: View available & booked spots
 - [x] Basic login, storing session data in "local storage"
 - [x] **After** logging in: Dynamic spot search based on any combination of: City, Area (Neighborhood), Address
