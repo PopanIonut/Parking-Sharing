@@ -25,14 +25,16 @@ Once logged in..
 - **Search** available spots & user reservations
     - by: city / area / street name 
 
-###### Database: **Parking**
+###### Database:
+
+**Parking**
 
 - Use a mysql database.
 - Create database named "parking" using encoding "UTF8_general_ci".
 - Import tables & example data from the provided sql file.
     - ```./public/data/parking.sql```
 
-###### - **Users**
+- **Users**
     - first name
     - last name
     - phone number
