@@ -1,6 +1,6 @@
 # Parking-Sharing
 
-A simple app using node & express for managing parking space booking.
+A simple web application using node js & express for managing parking space booking.
 
 ---
 
@@ -10,7 +10,7 @@ For the moment only the system administrator (who has access to the database) ca
 
 ## Static live preview
 
-Coming soon ..
+Coming soon ...
 <!-- Open [index.html](https://popanionut.github.io/parking-sharing/public/index.html) -->
 
 ## Content
@@ -25,7 +25,12 @@ Once logged in..
 - **Search** available spots & user reservations
     - by: city / area / street name 
 
-###### Database **Parking**
+###### Database: **Parking**
+
+- Use a mysql database.
+- Create database named "parking" using encoding "UTF8_general_ci".
+- Import tables & example data from the provided sql file.
+    - ```./public/data/parking.sql```
 
 - **Users**
     - first name
@@ -50,8 +55,9 @@ Once logged in..
 ## Features
 
 - [x] Use flex box for element arrangement
+- [x] Use of MariaDB with MySql for data storage.
 - [x] **After** logging in: View available & booked spots
-- [x] Basic login
+- [x] Basic login, storing session data in "local storage"
 - [x] **After** logging in: Dynamic spot search based on any combination of: City, Area (Neighborhood), Address
 
 ### To Do
