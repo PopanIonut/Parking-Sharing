@@ -32,7 +32,7 @@ Once logged in..
 - Import tables & example data from the provided sql file.
     - ```./public/data/parking.sql```
 
-- **Users**
+###### - **Users**
     - first name
     - last name
     - phone number
