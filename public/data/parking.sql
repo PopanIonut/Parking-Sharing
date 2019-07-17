@@ -45,7 +45,7 @@ INSERT INTO `people` (`id`, `firstName`, `lastName`, `phone`, `email`, `car_nr`)
 (1, 'Ioan', 'Marcel', 744888564, 'Marcel2008@yahoo.com', 'TM90PAW'),
 (2, 'Maria', 'Bob', 744855075, 'MariaBobMaria@yahoo.com', 'BV18MIA'),
 (3, 'Dobrescu', 'Vlad', 769951753, 'Dobrescu.Vlad@gmail.com', 'CJ25DOC'),
-(4, 'Dobrescu', 'Vlad', 769951753, 'Dobrescu.Vlad@gmail.com', 'CJ25DOC'),
+(4, 'Dobrescu', 'Dalv', 760051753, 'Dobrescu.Dalv@gmail.com', 'CK25VOC'),
 (5, 'Munteanu', 'Cristian', 769555426, 'CristianMunteanu@gmail.com', 'CJ01BOS'),
 (6, 'Lacatus', 'Aurel', 768735915, 'Lacatus.Aurel@yahoo.com', 'CJ88ZWZ'),
 (7, 'Vlaicu', 'Ionut', 766447122, 'VlaicuIonut@hotmail.com', 'CJ10NUT'),
