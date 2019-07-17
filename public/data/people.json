@@ -1,0 +1,82 @@
+[
+    {
+        "id": "1",
+        "firstName": "Ioan",
+        "lastName": "Marcel",
+        "phone": "744888564",
+        "email": "Marcel2008@yahoo.com",
+        "car_nr": "TM90PAW"
+    },
+    {
+        "id": "2",
+        "firstName": "Maria",
+        "lastName": "Bob",
+        "phone": "744855075",
+        "email": "MariaBobMaria@yahoo.com",
+        "car_nr": "BV18MIA"
+    },
+    {
+        "id": "3",
+        "firstName": "Dobrescu",
+        "lastName": "Vlad",
+        "phone": "769951753",
+        "email": "Dobrescu.Vlad@gmail.com",
+        "car_nr": "CJ25DOC"
+    },
+    {
+        "id": "4",
+        "firstName": "Dobrescu",
+        "lastName": "Dalv",
+        "phone": "760051753",
+        "email": "Dobrescu.Dalv@gmail.com",
+        "car_nr": "CK25VOC"
+    },
+    {
+        "id": "5",
+        "firstName": "Munteanu",
+        "lastName": "Cristian",
+        "phone": "769555426",
+        "email": "CristianMunteanu@gmail.com",
+        "car_nr": "CJ01BOS"
+    },
+    {
+        "id": "6",
+        "firstName": "Lacatus",
+        "lastName": "Aurel",
+        "phone": "768735915",
+        "email": "Lacatus.Aurel@yahoo.com",
+        "car_nr": "CJ88ZWZ"
+    },
+    {
+        "id": "7",
+        "firstName": "Vlaicu",
+        "lastName": "Ionut",
+        "phone": "766447122",
+        "email": "VlaicuIonut@hotmail.com",
+        "car_nr": "CJ10NUT"
+    },
+    {
+        "id": "8",
+        "firstName": "Vaida",
+        "lastName": "Bogdan",
+        "phone": "766645282",
+        "email": "VaidaBogdan@gmail.com",
+        "car_nr": "CJ20BBB"
+    },
+    {
+        "id": "9",
+        "firstName": "Antonescu",
+        "lastName": "Mircea",
+        "phone": "769246837",
+        "email": "AntonescuMircea@yahoo.com",
+        "car_nr": "CJ15WIZ"
+    },
+    {
+        "id": "10",
+        "firstName": "Botezatu",
+        "lastName": "Alin",
+        "phone": "767850785",
+        "email": "Alin.Botezatu@gmail.com",
+        "car_nr": "BN88ALN"
+    }
+]

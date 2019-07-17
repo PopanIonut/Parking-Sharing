@@ -1,0 +1,782 @@
+[
+    {
+        "id": "1",
+        "city": "Cluj",
+        "area": "Zorilor",
+        "address": "Str. Caisului",
+        "spot_nr": "1",
+        "t_from": "00:00:22",
+        "t_until": "00:00:23",
+        "description": ""
+    },
+    {
+        "id": "2",
+        "city": "Cluj",
+        "area": "Gruia",
+        "address": "Str. 16 Februarie",
+        "spot_nr": "2",
+        "t_from": "02:00:00",
+        "t_until": "00:00:00",
+        "description": ""
+    },
+    {
+        "id": "3",
+        "city": "Cluj",
+        "area": "Marasti",
+        "address": "Str. 13 Septembrie",
+        "spot_nr": "3",
+        "t_from": "08:00:00",
+        "t_until": "06:00:00",
+        "description": ""
+    },
+    {
+        "id": "4",
+        "city": "Cluj",
+        "area": "Marasti",
+        "address": "Str. 13 Septembrie",
+        "spot_nr": "4",
+        "t_from": "08:00:00",
+        "t_until": "06:00:00",
+        "description": ""
+    },
+    {
+        "id": "5",
+        "city": "Cluj",
+        "area": "Gheorgheni",
+        "address": "Str. Actorului",
+        "spot_nr": "5",
+        "t_from": "09:00:00",
+        "t_until": "06:00:00",
+        "description": ""
+    },
+    {
+        "id": "6",
+        "city": "Cluj",
+        "area": "Faget",
+        "address": "Str. Afinului",
+        "spot_nr": "6",
+        "t_from": "08:00:00",
+        "t_until": "06:00:00",
+        "description": ""
+    },
+    {
+        "id": "7",
+        "city": "Cluj",
+        "area": "Manastur",
+        "address": "Str. Agricultorilor",
+        "spot_nr": "7",
+        "t_from": "02:00:00",
+        "t_until": "01:00:00",
+        "description": ""
+    },
+    {
+        "id": "8",
+        "city": "Cluj",
+        "area": "Someseni",
+        "address": "Str. Aiudului",
+        "spot_nr": "8",
+        "t_from": "03:00:00",
+        "t_until": "06:00:00",
+        "description": ""
+    },
+    {
+        "id": "9",
+        "city": "Cluj",
+        "area": "Gruia",
+        "address": "Str. Brizei",
+        "spot_nr": "9",
+        "t_from": "08:00:00",
+        "t_until": "02:00:00",
+        "description": ""
+    },
+    {
+        "id": "10",
+        "city": "Cluj",
+        "area": "Gruia",
+        "address": "Str. Buhusi",
+        "spot_nr": "10",
+        "t_from": "07:00:00",
+        "t_until": "01:00:00",
+        "description": ""
+    },
+    {
+        "id": "11",
+        "city": "Cluj",
+        "area": "Gruia",
+        "address": "Str. Calarasilor",
+        "spot_nr": "12",
+        "t_from": "08:00:00",
+        "t_until": "10:00:00",
+        "description": ""
+    },
+    {
+        "id": "12",
+        "city": "Cluj",
+        "area": "Gruia",
+        "address": "Str. Calarasilor",
+        "spot_nr": "14",
+        "t_from": "08:00:00",
+        "t_until": "10:00:00",
+        "description": ""
+    },
+    {
+        "id": "13",
+        "city": "Cluj",
+        "area": "Gruia",
+        "address": "Str. Campeni",
+        "spot_nr": "13",
+        "t_from": "01:00:00",
+        "t_until": "03:00:00",
+        "description": ""
+    },
+    {
+        "id": "14",
+        "city": "Cluj",
+        "area": "Gruia",
+        "address": "Str. Dornei",
+        "spot_nr": "14",
+        "t_from": "04:00:00",
+        "t_until": "06:00:00",
+        "description": ""
+    },
+    {
+        "id": "15",
+        "city": "Cluj",
+        "area": "Gruia",
+        "address": "Str. Haiducului",
+        "spot_nr": "15",
+        "t_from": "07:00:00",
+        "t_until": "11:00:00",
+        "description": ""
+    },
+    {
+        "id": "16",
+        "city": "Cluj",
+        "area": "Gruia",
+        "address": "Str. Lemnului",
+        "spot_nr": "16",
+        "t_from": "01:00:00",
+        "t_until": "01:00:00",
+        "description": ""
+    },
+    {
+        "id": "17",
+        "city": "Cluj",
+        "area": "Gruia",
+        "address": "Str. Mecanicilor",
+        "spot_nr": "17",
+        "t_from": "04:00:00",
+        "t_until": "03:00:00",
+        "description": ""
+    },
+    {
+        "id": "18",
+        "city": "Cluj",
+        "area": "Gruia",
+        "address": "Str. Pescarilor",
+        "spot_nr": "18",
+        "t_from": "02:00:00",
+        "t_until": "05:00:00",
+        "description": ""
+    },
+    {
+        "id": "19",
+        "city": "Cluj",
+        "area": "Someseni",
+        "address": "Str. Ciocanului",
+        "spot_nr": "19",
+        "t_from": "02:00:00",
+        "t_until": "04:00:00",
+        "description": ""
+    },
+    {
+        "id": "20",
+        "city": "Cluj",
+        "area": "Someseni",
+        "address": "Str. Ciocanului",
+        "spot_nr": "8",
+        "t_from": "02:00:00",
+        "t_until": "01:00:00",
+        "description": ""
+    },
+    {
+        "id": "21",
+        "city": "Cluj",
+        "area": "Someseni",
+        "address": "Str. Dobrogei",
+        "spot_nr": "20",
+        "t_from": "06:00:00",
+        "t_until": "03:00:00",
+        "description": ""
+    },
+    {
+        "id": "22",
+        "city": "Cluj",
+        "area": "Someseni",
+        "address": "Str. Lucernei",
+        "spot_nr": "21",
+        "t_from": "03:00:00",
+        "t_until": "01:00:00",
+        "description": ""
+    },
+    {
+        "id": "23",
+        "city": "Cluj",
+        "area": "Someseni",
+        "address": "Str. Morii",
+        "spot_nr": "22",
+        "t_from": "07:00:00",
+        "t_until": "03:00:00",
+        "description": ""
+    },
+    {
+        "id": "24",
+        "city": "Cluj",
+        "area": "Someseni",
+        "address": "Str. Prieteniei",
+        "spot_nr": "23",
+        "t_from": "05:00:00",
+        "t_until": "02:00:00",
+        "description": ""
+    },
+    {
+        "id": "25",
+        "city": "Cluj",
+        "area": "Someseni",
+        "address": "Str. Rozelor",
+        "spot_nr": "24",
+        "t_from": "09:00:00",
+        "t_until": "06:00:00",
+        "description": ""
+    },
+    {
+        "id": "26",
+        "city": "Cluj",
+        "area": "Someseni",
+        "address": "Str. Sportului",
+        "spot_nr": "25",
+        "t_from": "03:00:00",
+        "t_until": "02:00:00",
+        "description": ""
+    },
+    {
+        "id": "27",
+        "city": "Oradea",
+        "area": "Orasul Nou",
+        "address": "Str. Mihai Pavel",
+        "spot_nr": "1",
+        "t_from": "10:00:00",
+        "t_until": "18:00:00",
+        "description": "sunati-ma"
+    },
+    {
+        "id": "28",
+        "city": "Oradea",
+        "area": "Orasul Nou",
+        "address": "Str. Mihai Pavel",
+        "spot_nr": "2",
+        "t_from": "10:30:00",
+        "t_until": "14:00:00",
+        "description": "scrieti-mi"
+    },
+    {
+        "id": "29",
+        "city": "Oradea",
+        "area": "Orasul Nou",
+        "address": "Str. Mihai Pavel",
+        "spot_nr": "2",
+        "t_from": "10:30:00",
+        "t_until": "14:00:00",
+        "description": "scrieti-mi"
+    },
+    {
+        "id": "30",
+        "city": "Oradea",
+        "area": "Orasul Nou",
+        "address": "Str. Mihai Pavel",
+        "spot_nr": "4",
+        "t_from": "10:30:00",
+        "t_until": "17:00:00",
+        "description": ":0"
+    },
+    {
+        "id": "31",
+        "city": "Oradea",
+        "area": "Orasul Nou",
+        "address": "Piata Unirii",
+        "spot_nr": "2A",
+        "t_from": "06:00:00",
+        "t_until": "18:45:00",
+        "description": "scrieti-mi"
+    },
+    {
+        "id": "32",
+        "city": "Oradea",
+        "area": "Orasul Nou",
+        "address": "Piata Unirii",
+        "spot_nr": "2B",
+        "t_from": "10:30:00",
+        "t_until": "13:00:00",
+        "description": "ocupat 20m d la 12"
+    },
+    {
+        "id": "33",
+        "city": "Oradea",
+        "area": "Orasul Nou",
+        "address": "Piata Unirii",
+        "spot_nr": "23",
+        "t_from": "08:30:00",
+        "t_until": "12:20:00",
+        "description": "scrieti-mi"
+    },
+    {
+        "id": "34",
+        "city": "Oradea",
+        "area": "Orasul Nou",
+        "address": "Piata Unirii",
+        "spot_nr": "8",
+        "t_from": "10:30:00",
+        "t_until": "16:00:00",
+        "description": "scrieti-mi"
+    },
+    {
+        "id": "35",
+        "city": "Oradea",
+        "area": "Dorobantilor",
+        "address": "Str. Horea",
+        "spot_nr": "2",
+        "t_from": "09:30:00",
+        "t_until": "14:50:00",
+        "description": "sunati-ma"
+    },
+    {
+        "id": "36",
+        "city": "Oradea",
+        "area": "Dorobantilor",
+        "address": "Str. Horea",
+        "spot_nr": "5",
+        "t_from": "10:30:00",
+        "t_until": "18:00:00",
+        "description": "scrieti-mi"
+    },
+    {
+        "id": "37",
+        "city": "Oradea",
+        "area": "Dorobantilor",
+        "address": "Str. Horea",
+        "spot_nr": "7",
+        "t_from": "09:30:00",
+        "t_until": "14:30:00",
+        "description": "scrieti-mi"
+    },
+    {
+        "id": "38",
+        "city": "Oradea",
+        "area": "Dorobantilor",
+        "address": "Str. Albacului",
+        "spot_nr": "2A",
+        "t_from": "10:30:00",
+        "t_until": "19:00:00",
+        "description": "sunati-ma"
+    },
+    {
+        "id": "39",
+        "city": "Oradea",
+        "area": "Dorobantilor",
+        "address": "Str. Albacului",
+        "spot_nr": "22",
+        "t_from": "08:00:00",
+        "t_until": "14:40:00",
+        "description": "scrieti-mi"
+    },
+    {
+        "id": "40",
+        "city": "Oradea",
+        "area": "Dorobantilor",
+        "address": "Str. Albacului",
+        "spot_nr": "2B",
+        "t_from": "10:30:00",
+        "t_until": "23:00:00",
+        "description": ":)"
+    },
+    {
+        "id": "41",
+        "city": "Oradea",
+        "area": "Subcetate",
+        "address": "Str. Grivitei",
+        "spot_nr": "1",
+        "t_from": "09:30:00",
+        "t_until": "14:50:00",
+        "description": "sunati-ma"
+    },
+    {
+        "id": "42",
+        "city": "Oradea",
+        "area": "Subcetate",
+        "address": "Str. Grivitei",
+        "spot_nr": "2",
+        "t_from": "10:30:00",
+        "t_until": "18:00:00",
+        "description": "scrieti-mi"
+    },
+    {
+        "id": "43",
+        "city": "Oradea",
+        "area": "Subcetate",
+        "address": "Str. Grivitei",
+        "spot_nr": "4",
+        "t_from": "09:30:00",
+        "t_until": "14:30:00",
+        "description": "scrieti-mi"
+    },
+    {
+        "id": "44",
+        "city": "Oradea",
+        "area": "Subcetate",
+        "address": "Str. Grivitei",
+        "spot_nr": "6",
+        "t_from": "10:30:00",
+        "t_until": "19:00:00",
+        "description": "sunati-ma"
+    },
+    {
+        "id": "45",
+        "city": "Oradea",
+        "area": "Subcetate",
+        "address": "Str. Grivitei",
+        "spot_nr": "15A",
+        "t_from": "08:00:00",
+        "t_until": "14:40:00",
+        "description": "scrieti-mi"
+    },
+    {
+        "id": "46",
+        "city": "Oradea",
+        "area": "Subcetate",
+        "address": "Str. Grivitei",
+        "spot_nr": "15B",
+        "t_from": "10:30:00",
+        "t_until": "23:00:00",
+        "description": ":)"
+    },
+    {
+        "id": "47",
+        "city": "Deva",
+        "area": "Micro 15",
+        "address": "Str. Minerului",
+        "spot_nr": "1",
+        "t_from": "09:30:00",
+        "t_until": "14:50:00",
+        "description": "sunati-ma"
+    },
+    {
+        "id": "48",
+        "city": "Deva",
+        "area": "Micro 15",
+        "address": "Aleea Teilor",
+        "spot_nr": "2",
+        "t_from": "10:30:00",
+        "t_until": "18:00:00",
+        "description": "scrieti-mi"
+    },
+    {
+        "id": "49",
+        "city": "Deva",
+        "area": "Micro 15",
+        "address": "Aleea Armatei",
+        "spot_nr": "4",
+        "t_from": "09:30:00",
+        "t_until": "14:30:00",
+        "description": "scrieti-mi"
+    },
+    {
+        "id": "50",
+        "city": "Deva",
+        "area": "Centrul Vechi",
+        "address": "Str. Aleea Neptun",
+        "spot_nr": "A6B",
+        "t_from": "10:30:00",
+        "t_until": "19:00:00",
+        "description": "str langa biserica"
+    },
+    {
+        "id": "51",
+        "city": "Deva",
+        "area": "Centrul Vechi",
+        "address": "Str. Magnoliei",
+        "spot_nr": "5A",
+        "t_from": "08:00:00",
+        "t_until": "14:40:00",
+        "description": "scrieti-mi"
+    },
+    {
+        "id": "52",
+        "city": "Deva",
+        "area": "Centrul Vechi",
+        "address": "Str. Magnoliei",
+        "spot_nr": "5B",
+        "t_from": "10:30:00",
+        "t_until": "23:00:00",
+        "description": ":)"
+    },
+    {
+        "id": "53",
+        "city": "Oradea",
+        "area": "Orasul Nou",
+        "address": "Str. Mihai Pavel",
+        "spot_nr": "1",
+        "t_from": "10:00:00",
+        "t_until": "18:00:00",
+        "description": "sunati-ma"
+    },
+    {
+        "id": "54",
+        "city": "Oradea",
+        "area": "Orasul Nou",
+        "address": "Str. Mihai Pavel",
+        "spot_nr": "2",
+        "t_from": "10:30:00",
+        "t_until": "14:00:00",
+        "description": "scrieti-mi"
+    },
+    {
+        "id": "55",
+        "city": "Oradea",
+        "area": "Orasul Nou",
+        "address": "Str. Mihai Pavel",
+        "spot_nr": "2",
+        "t_from": "10:30:00",
+        "t_until": "14:00:00",
+        "description": "scrieti-mi"
+    },
+    {
+        "id": "56",
+        "city": "Oradea",
+        "area": "Orasul Nou",
+        "address": "Str. Mihai Pavel",
+        "spot_nr": "4",
+        "t_from": "10:30:00",
+        "t_until": "17:00:00",
+        "description": ":0"
+    },
+    {
+        "id": "57",
+        "city": "Oradea",
+        "area": "Orasul Nou",
+        "address": "Piata Unirii",
+        "spot_nr": "2A",
+        "t_from": "06:00:00",
+        "t_until": "18:45:00",
+        "description": "scrieti-mi"
+    },
+    {
+        "id": "58",
+        "city": "Oradea",
+        "area": "Orasul Nou",
+        "address": "Piata Unirii",
+        "spot_nr": "2B",
+        "t_from": "10:30:00",
+        "t_until": "13:00:00",
+        "description": "ocupat 20m d la 12"
+    },
+    {
+        "id": "59",
+        "city": "Oradea",
+        "area": "Orasul Nou",
+        "address": "Piata Unirii",
+        "spot_nr": "23",
+        "t_from": "08:30:00",
+        "t_until": "12:20:00",
+        "description": "scrieti-mi"
+    },
+    {
+        "id": "60",
+        "city": "Oradea",
+        "area": "Orasul Nou",
+        "address": "Piata Unirii",
+        "spot_nr": "8",
+        "t_from": "10:30:00",
+        "t_until": "16:00:00",
+        "description": "scrieti-mi"
+    },
+    {
+        "id": "61",
+        "city": "Oradea",
+        "area": "Dorobantilor",
+        "address": "Str. Horea",
+        "spot_nr": "2",
+        "t_from": "09:30:00",
+        "t_until": "14:50:00",
+        "description": "sunati-ma"
+    },
+    {
+        "id": "62",
+        "city": "Oradea",
+        "area": "Dorobantilor",
+        "address": "Str. Horea",
+        "spot_nr": "5",
+        "t_from": "10:30:00",
+        "t_until": "18:00:00",
+        "description": "scrieti-mi"
+    },
+    {
+        "id": "63",
+        "city": "Oradea",
+        "area": "Dorobantilor",
+        "address": "Str. Horea",
+        "spot_nr": "7",
+        "t_from": "09:30:00",
+        "t_until": "14:30:00",
+        "description": "scrieti-mi"
+    },
+    {
+        "id": "64",
+        "city": "Oradea",
+        "area": "Dorobantilor",
+        "address": "Str. Albacului",
+        "spot_nr": "2A",
+        "t_from": "10:30:00",
+        "t_until": "19:00:00",
+        "description": "sunati-ma"
+    },
+    {
+        "id": "65",
+        "city": "Oradea",
+        "area": "Dorobantilor",
+        "address": "Str. Albacului",
+        "spot_nr": "22",
+        "t_from": "08:00:00",
+        "t_until": "14:40:00",
+        "description": "scrieti-mi"
+    },
+    {
+        "id": "66",
+        "city": "Oradea",
+        "area": "Dorobantilor",
+        "address": "Str. Albacului",
+        "spot_nr": "2B",
+        "t_from": "10:30:00",
+        "t_until": "23:00:00",
+        "description": ":)"
+    },
+    {
+        "id": "67",
+        "city": "Oradea",
+        "area": "Subcetate",
+        "address": "Str. Grivitei",
+        "spot_nr": "1",
+        "t_from": "09:30:00",
+        "t_until": "14:50:00",
+        "description": "sunati-ma"
+    },
+    {
+        "id": "68",
+        "city": "Oradea",
+        "area": "Subcetate",
+        "address": "Str. Grivitei",
+        "spot_nr": "2",
+        "t_from": "10:30:00",
+        "t_until": "18:00:00",
+        "description": "scrieti-mi"
+    },
+    {
+        "id": "69",
+        "city": "Oradea",
+        "area": "Subcetate",
+        "address": "Str. Grivitei",
+        "spot_nr": "4",
+        "t_from": "09:30:00",
+        "t_until": "14:30:00",
+        "description": "scrieti-mi"
+    },
+    {
+        "id": "70",
+        "city": "Oradea",
+        "area": "Subcetate",
+        "address": "Str. Grivitei",
+        "spot_nr": "6",
+        "t_from": "10:30:00",
+        "t_until": "19:00:00",
+        "description": "sunati-ma"
+    },
+    {
+        "id": "71",
+        "city": "Oradea",
+        "area": "Subcetate",
+        "address": "Str. Grivitei",
+        "spot_nr": "15A",
+        "t_from": "08:00:00",
+        "t_until": "14:40:00",
+        "description": "scrieti-mi"
+    },
+    {
+        "id": "72",
+        "city": "Oradea",
+        "area": "Subcetate",
+        "address": "Str. Grivitei",
+        "spot_nr": "15B",
+        "t_from": "10:30:00",
+        "t_until": "23:00:00",
+        "description": ":)"
+    },
+    {
+        "id": "73",
+        "city": "Deva",
+        "area": "Micro 15",
+        "address": "Str. Minerului",
+        "spot_nr": "1",
+        "t_from": "09:30:00",
+        "t_until": "14:50:00",
+        "description": "sunati-ma"
+    },
+    {
+        "id": "74",
+        "city": "Deva",
+        "area": "Micro 15",
+        "address": "Aleea Teilor",
+        "spot_nr": "2",
+        "t_from": "10:30:00",
+        "t_until": "18:00:00",
+        "description": "scrieti-mi"
+    },
+    {
+        "id": "75",
+        "city": "Deva",
+        "area": "Micro 15",
+        "address": "Aleea Armatei",
+        "spot_nr": "4",
+        "t_from": "09:30:00",
+        "t_until": "14:30:00",
+        "description": "scrieti-mi"
+    },
+    {
+        "id": "76",
+        "city": "Deva",
+        "area": "Centrul Vechi",
+        "address": "Str. Aleea Neptun",
+        "spot_nr": "A6B",
+        "t_from": "10:30:00",
+        "t_until": "19:00:00",
+        "description": "str langa biserica"
+    },
+    {
+        "id": "77",
+        "city": "Deva",
+        "area": "Centrul Vechi",
+        "address": "Str. Magnoliei",
+        "spot_nr": "5A",
+        "t_from": "08:00:00",
+        "t_until": "14:40:00",
+        "description": "scrieti-mi"
+    },
+    {
+        "id": "78",
+        "city": "Deva",
+        "area": "Centrul Vechi",
+        "address": "Str. Magnoliei",
+        "spot_nr": "5B",
+        "t_from": "10:30:00",
+        "t_until": "23:00:00",
+        "description": ":)"
+    }
+]
