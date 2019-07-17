@@ -73,9 +73,9 @@ Once logged in..
 
 ## Setup
 
+Clone project, then install npm inside its root folder to get the current "node_modules" package.
+
 ```
-git clone git@github.com:popanionut/parking-sharing.git
-cd node-agenda-app
 npm install
 ```
 
