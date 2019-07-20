@@ -11,6 +11,10 @@ var API_URL = {
 	DELETE: "spots/delete"
 };
 
+// For preview.
+//if (true || location.host === "popanionut.github.io") {
+if (true || location.host === "localhost:3000") {	API_URL.READ = './public/data/staticSpots.json';	};
+
 var API_METHOD = {
 	ADD: "POST",	//	CREATE
 	READ: "POST",
@@ -18,11 +22,6 @@ var API_METHOD = {
 	BOOK: "POST",
 	UPDATE: "PUT",
 	DELETE: "DELETE"
-};
-
-// For preview.
-if (true || location.host === "localhost") { //"popanionut.github.io") {
-    API_URL.READ = './public/data/staticSpots.json';
 };
 
 // Top-menu handlers:

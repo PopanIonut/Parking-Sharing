@@ -13,8 +13,8 @@ const pool = mysql.createPool({
 });
 
 /* JSON: GET spots listing. */
-router.get('/', function(req, res, next) {
-  res.send('./public/data/staticSpots.json');
+router.get('/spots', function(req, res, next) {
+  res.send('Received a GET HTTP method.');
 });
 
 // DB: GET /READ entire "spots" listed.  http://localhost:3000/get
