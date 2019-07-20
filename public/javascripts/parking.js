@@ -20,6 +20,11 @@ var API_METHOD = {
 	DELETE: "DELETE"
 };
 
+// For preview.
+if (true || location.host === "localhost") { //"popanionut.github.io") {
+    API_URL.READ = './public/data/staticSpots.json';
+};
+
 // Top-menu handlers:
 function initTopMenu() {	// find all top-menu items and handle their "onclick" events.
 	const links = document.querySelectorAll("#topMenu a");

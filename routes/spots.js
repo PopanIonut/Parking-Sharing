@@ -12,7 +12,12 @@ const pool = mysql.createPool({
   timezone: '+00:00'  //set to "neutral".
 });
 
-// GET /READ entire "spots" listed.  http://localhost:3000/get
+/* JSON: GET spots listing. */
+router.get('/', function(req, res, next) {
+  res.send('./public/data/staticSpots.json');
+});
+
+// DB: GET /READ entire "spots" listed.  http://localhost:3000/get
 // Takes into consideration the search inputs too.
 router.post('/', function(req, res, next) {
   const city = req.body.city;
@@ -33,8 +38,6 @@ router.post('/', function(req, res, next) {
      * AND arrange the result of all this so that the 
      * "address" values will be in alphanumerical ASCending order.
      */
-    //const sql = `SELECT * FROM spots WHERE (id not in (SELECT spot_id from reservations WHERE ending IS NULL) 
-    //${cityQ} ${areaQ} ${addressQ}) OR (person_id = ${personId}) ORDER BY address ASC`;
 
     const sql = `SELECT spots.*, reservations.person_id, reservations.start, reservations.ending 
     FROM spots LEFT JOIN reservations ON (spots.id = reservations.spot_id) 
