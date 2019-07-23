@@ -12,9 +12,16 @@ const pool = mysql.createPool({
   timezone: '+00:00'  //set to "neutral".
 });
 
-/* JSON: GET spots listing. */
-router.get('/spots', function(req, res, next) {
-  res.send('Received a GET HTTP method.');
+/* JSON: GET spots listing.    W R O N G   */
+router.get('/', function(req, res, next) {
+  //res.send('Received a GET HTTP method.');
+  pool.getConnection((err, connection) => {
+    const sql = `SELECT spots ORDER BY address ASC`
+    connection.query(sql, (err, results) => {
+      res.json(results);
+      connection.release();
+    });
+  });
 });
 
 // DB: GET /READ entire "spots" listed.  http://localhost:3000/get

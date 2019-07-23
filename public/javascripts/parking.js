@@ -13,7 +13,13 @@ var API_URL = {
 
 // For preview.
 //if (true || location.host === "popanionut.github.io") {
-if (true || location.host === "localhost:3000") {	API_URL.READ = './public/data/staticSpots.json';	};
+if (true || location.host === "localhost:3000" ||
+	location.hostname === "localhost" ||
+	location.hostname === "127.0.0.1" ||
+	location.hostname === "") {
+		console.log("This is a local host.");
+		API_URL.READ = './public/data/staticSpots.json';
+};
 
 var API_METHOD = {
 	ADD: "POST",	//	CREATE
@@ -128,6 +134,18 @@ if (document.querySelector("#addresses tbody")) {
 	}
 }
 // --END-- Login functions.
+
+// Load all spot data.
+function load() {
+	fetch(API_URL.READ).then(function (resp) {
+		return resp.json();
+	}).then(function (spots) {
+		console.log("All spots.", spots);
+		allSpots = spots;
+		displaySpots(spots);
+	});
+}
+load();
 
 // "Spots" DB Data transfer handlers:
 // Search page initialization.
