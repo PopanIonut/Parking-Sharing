@@ -11,7 +11,7 @@ For the moment only the system administrator (who has access to the database) ca
 ## Static live preview
 
 Coming soon ...
-<!-- Open [index.html](https://popanionut.github.io/parking-sharing/public/index.html) -->
+Open [index.html](https://popanionut.github.io/parking-sharing/public/index.html)
 
 ## Content
 
