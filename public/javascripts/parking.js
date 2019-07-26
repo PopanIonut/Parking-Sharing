@@ -74,6 +74,7 @@ function getUser() {
 	return JSON.parse(localStorage.getItem('user'));
 }
 
+//// TODO: static login for demo from json file. 
 function clickLogin(){
 	console.warn("clicked on login", this);	
 
