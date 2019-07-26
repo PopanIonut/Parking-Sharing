@@ -26,6 +26,19 @@
         "ending": null
     },
     {
+        "id": 6,
+        "city": "Cluj",
+        "area": "Faget",
+        "address": "Str. Afinului",
+        "spot_nr": "6",
+        "t_from": "08:00:00",
+        "t_until": "06:00:00",
+        "description": "",
+        "person_id": 6,
+        "start": "2019-07-22T05:06:00.000Z",
+        "ending": null
+    },
+    {
         "id": 49,
         "city": "Deva",
         "area": "Micro 15",

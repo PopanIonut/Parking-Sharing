@@ -35,5 +35,7 @@ router.post('/', function(req, res, next) {
     });
   });
 });
+
+// TODO: logout, clear localstorage.
  
 module.exports = router;

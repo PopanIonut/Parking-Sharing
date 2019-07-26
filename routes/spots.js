@@ -1,5 +1,6 @@
 var express = require('express');
 var mysql = require('mysql');
+var fs = require("fs"); // fs - file system
 
 var router = express.Router();
 
@@ -12,21 +13,14 @@ const pool = mysql.createPool({
   timezone: '+00:00'  //set to "neutral".
 });
 
-/* JSON: GET spots listing.    W R O N G   */
+/* JSON: GET spots listing. */
 router.get('/', function(req, res, next) {
-  //res.send('Received a GET HTTP method.');
-  pool.getConnection((err, connection) => {
-    const sql = `SELECT spots ORDER BY address ASC`
-    connection.query(sql, (err, results) => {
-      res.json(results);
-      connection.release();
-    });
-  });
+  res.send('Respond with a resource of JSON data.');
 });
 
 // DB: GET /READ entire "spots" listed.  http://localhost:3000/get
 // Takes into consideration the search inputs too.
-router.post('/', function(req, res, next) {
+router.post('/s', function(req, res, next) {  // Route '/' changed to '/s' as a hack to make demo JSON GET work.
   const city = req.body.city;
   const area = req.body.area;
   const address = req.body.address;

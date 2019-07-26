@@ -18,7 +18,7 @@ if (true || location.host === "localhost:3000" ||
 	location.hostname === "127.0.0.1" ||
 	location.hostname === "") {
 		console.log("This is a local host.");
-		API_URL.READ = './public/data/staticSpots.json';
+		API_URL.READ = 'data/staticSpots.json';
 };
 
 var API_METHOD = {
@@ -245,7 +245,7 @@ function initEvents() {
 
 			bookSpot(id);
 		}
-		//else release spot..
+		//TODO: else release spot..
 	});
 }
 
