@@ -69,7 +69,7 @@ initTopMenu();
 // --END-- Top-menu functions.
 
 
-// Login handlers
+// Login-Logout handlers
 function getUser() {
 	return JSON.parse(localStorage.getItem('user'));
 }
@@ -120,7 +120,17 @@ function submitLogin(phone, email, car_nr){
 	})
 };
 
-// TODO: swap direct element gets with functions.
+//// TODO: logout, clear localstorage.
+function clickLogout() {
+	console.warn("clicked on logout", this);
+	if(localStorage.getItem("user")) {
+		localStorage.clear();
+		window.location = "index.html"
+	}
+	else { console.log("There is no logged \"user\".");	}
+};
+
+//// TODO: swap direct element gets with functions.
 if (document.querySelector("#addresses tbody")) {
 	if (localStorage.getItem('user')) {
 		console.log("login ok");
@@ -135,7 +145,7 @@ if (document.querySelector("#addresses tbody")) {
 }
 // --END-- Login functions.
 
-// Load all spot data.
+// Demo JSON Load all "static" spot data.
 function load() {
 	fetch(API_URL.READ).then(function (resp) {
 		return resp.json();
