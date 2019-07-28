@@ -107,92 +107,9 @@ h2, h3 {
   padding: 0;
 }
 
-.top-menuBar li:hover .dropdown_1 > li {
-  display: block;
-  top: 0;
-}
-
-.dropdown_1 li {
-  display: none;
-  position: relative;
-  background-color: rgb(44, 47, 63);
-}
-
-.dropdown_1 {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.dropdown_1 li:hover .dropdown_2 li {
-  display: block;
-  background-color: rgb(44, 47, 63);
-}
-
-.dropdown_2 li {
-  display: none;
-}
-
-.dropdown_2 {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 0;
-  left: 100%;
-  width: 200px;
-}
-
 /*  Miscellaneous.  */
 #topMenu a:active { 
 	color: rgb(252, 156, 172);
-}
-
-.divider {
-  height: 0;
-  width: 0;
-  border: 2px solid grey;
-}
-
-/* Little pointing triangle for the dropdown trigger links.
-Made from "non-existent" object's borders with 2 rounded edges (z-index: 2). */
-a.dropTrigger_1:after {
-  position: absolute;
-  bottom: -16px;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 0;
-  width: 0;
-  border: 8px solid transparent;
-  border-top-color: #25283d;
-  z-index: 2;
-}
-
-a.dropTrigger_2:after {
-  position: absolute;
-  left: 103%;
-  transform: translateX(-50%) rotateZ(-90deg);
-  height: 0;
-  width: 0;
-  border: 8px solid transparent;
-  border-top-color: #25283d;
-  z-index: 2;
-}
-
-li:hover a.dropTrigger_1:after {
-  content: "";
-  border-top-color: rgb(77, 83, 117);
-}
-
-/* This doesn't work (keeping the triangle visible & darker when hovering on first drop item), might try again later.
-.firstDrop:hover a.dropTrigger_1:after {
-  content: "";
-  border-top-color: rgb(42, 46, 66);
-} */
-
-li:hover li:hover a.dropTrigger_2:after {
-  content: "";
-  border-top-color: rgb(77, 83, 117);
 }
 /*-------------------------*/
 
@@ -211,11 +128,24 @@ li:hover li:hover a.dropTrigger_2:after {
 }
 /*-------------------------*/
 
+/*  Login-logout page */
+#lgForm {
+  display: flex;
+  padding: 5px 0 5px;  /*  top, right, bottom, left  */
+  justify-content: center;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 24px;
+
+  letter-spacing: 0.2em;  /*  Relative to font size. */
+}
+/*-------------------------*/
+
+/*  DB Content Table  */
 .searchDiv input {
   height: 27px;
 }
 
-/*  DB Content Table  */
 .searchDiv {
   display: flex;
   padding: 5px 0 5px;  /*  top, right, bottom, left  */
