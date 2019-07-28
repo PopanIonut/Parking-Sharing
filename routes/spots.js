@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
 
 // DB: GET /READ entire "spots" listed.  http://localhost:3000/get
 // Takes into consideration the search inputs too.
-router.post('/s', function(req, res, next) {  // Route '/' changed to '/s' as a hack to make demo JSON GET work.
+router.post('/s', function(req, res, next) {  // Route '/' changed to '/s' as a hack to make demo JSON GET to work.
   const city = req.body.city;
   const area = req.body.area;
   const address = req.body.address;

@@ -1,6 +1,8 @@
 var editingSpotsId;
 var allSpots = [];
 const lgData = [];
+var isLocHost = true;	// true = NOT Preview.
+var allPeople = [];
 
 var API_URL = {
 	ADD: "spots/add",	//	CREATE
@@ -18,6 +20,7 @@ if (true || location.host === "localhost:3000" ||
 	location.hostname === "127.0.0.1" ||
 	location.hostname === "") {
 		console.log("This is a local host.");
+		isLocHost = false;
 		API_URL.READ = 'data/staticSpots.json';
 };
 
@@ -74,7 +77,7 @@ function getUser() {
 	return JSON.parse(localStorage.getItem('user'));
 }
 
-//// TODO: static login for demo from json file. 
+// Login.
 function clickLogin(){
 	console.warn("clicked on login", this);	
 
@@ -83,11 +86,24 @@ function clickLogin(){
 	var lgCar = document.querySelector("[name=lgCar]").value;
 	console.warn("Click Login passes data: \n Phone: ", + lgPhone + " |Email: " + lgEmail + " |Car: " + lgCar);
 
-	if(lgPhone == "" || lgEmail == "" || lgCar == "") {
+	if (lgPhone == "" || lgEmail == "" || lgCar == "") {
 		alert("Completați toate !");
 		return false;
 	} else {
-		submitLogin(lgPhone, lgEmail, lgCar);
+		if (isLocHost) {
+			submitLogin(lgPhone, lgEmail, lgCar);	// DB auth.
+		} else {
+			console.log("JSON auth. for Preview ONLY !!");
+			
+			fetch("data/staticPeople.json").then(function(resp){
+				return resp.json();
+			}).then(function(people){ // = the succesfully returned "resp"onse.
+				console.log("All people: ", people);
+				allPeople = people;
+				//
+
+			});
+		}
 	}
 };
 
@@ -121,7 +137,7 @@ function submitLogin(phone, email, car_nr){
 	})
 };
 
-//// TODO: logout, clear localstorage.
+// Logout, clear localstorage.
 function clickLogout() {
 	console.warn("clicked on logout", this);
 	if(localStorage.getItem("user")) {
