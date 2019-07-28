@@ -114,10 +114,10 @@ function submitStaticLogin(lgPhone, lgEmail, lgCar) {
 				p.email == lgEmail &&
 				p.car_nr == lgCar) {
 				console.log("true")
-				const user = p[i];
+				const user = people[i];
             	localStorage.setItem('user', JSON.stringify(user));
 				window.location = "index.html";
-				break;   
+				break;
 			} else {
 				console.log("false")
 				//console.warn("Invalid data!");
