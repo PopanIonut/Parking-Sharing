@@ -2,7 +2,7 @@ var editingSpotsId;
 var allSpots = [];
 const lgData = [];
 var isLocHost = true;	// true = NOT Preview.
-var allPeople = [];
+var allPeople = [];		// JSON, Preview.
 
 var API_URL = {
 	ADD: "spots/add",	//	CREATE
@@ -19,7 +19,7 @@ if (true || location.host === "localhost:3000" ||
 	location.hostname === "localhost" ||
 	location.hostname === "127.0.0.1" ||
 	location.hostname === "") {
-		console.log("This is a local host.");
+		console.warn("This is a local host!");
 		isLocHost = false;
 		API_URL.READ = 'data/staticSpots.json';
 };
@@ -28,6 +28,7 @@ var API_METHOD = {
 	ADD: "POST",	//	CREATE
 	READ: "POST",
 	LOGIN: "POST",
+	//SLOGIN: "GET",	// JSON, Preview.
 	BOOK: "POST",
 	UPDATE: "PUT",
 	DELETE: "DELETE"
@@ -94,18 +95,37 @@ function clickLogin(){
 			submitLogin(lgPhone, lgEmail, lgCar);	// DB auth.
 		} else {
 			console.log("JSON auth. for Preview ONLY !!");
-			
-			fetch("data/staticPeople.json").then(function(resp){
-				return resp.json();
-			}).then(function(people){ // = the succesfully returned "resp"onse.
-				console.log("All people: ", people);
-				allPeople = people;
-				//
-
-			});
+			submitStaticLogin(lgPhone, lgEmail, lgCar);	// JSON auth.
 		}
 	}
 };
+
+function submitStaticLogin(lgPhone, lgEmail, lgCar) {
+	fetch("data/staticPeople.json").then(function(resp){
+		return resp.json();
+	}).then(function(people){ // = the succesfully returned "resp"onse.
+		console.log("All people: ", people);
+		allPeople = people;
+		//
+		var p = [];
+		for(var i = 0; i < allPeople.length; i++){
+			p = allPeople[i];
+			if(p.phone == lgPhone &&
+				p.email == lgEmail &&
+				p.car_nr == lgCar) {
+				console.log("true")
+				const user = p[i];
+            	localStorage.setItem('user', JSON.stringify(user));
+				window.location = "index.html";
+				break;   
+			} else {
+				console.log("false")
+				//console.warn("Invalid data!");
+            	localStorage.clear();
+			}
+		}
+	});
+}
 
 function submitLogin(phone, email, car_nr){	
 	let body = null;
@@ -119,10 +139,8 @@ function submitLogin(phone, email, car_nr){
 		method, body, headers: { "Content-Type": "application/json" }
 	}).then(function (resp) {
 		return resp.json()
-	}).then(function (loginData) { // = the succesfully returned "resp"-onse.
+	}).then(function (loginData) { // = the succesfully returned "resp"onse.
 		console.log("Login input: ", loginData);
-		//lgData = loginData;
-		//submitLogin(loginData);
 		console.log("lgData: ", lgData);
 
 		// check login input validity vs. DB data.
@@ -167,7 +185,7 @@ function load() {
 	fetch(API_URL.READ).then(function (resp) {
 		return resp.json();
 	}).then(function (spots) {
-		console.log("All spots.", spots);
+		console.log("All spots. Reserved by user are colored.", spots);
 		allSpots = spots;
 		displaySpots(spots);
 	});
