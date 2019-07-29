@@ -35,5 +35,10 @@ router.post('/', function(req, res, next) {
     });
   });
 });
- 
+
+// GET static user data, json
+router.get('/', function(req, res, next) {
+  res.send('respond with a resource');
+});
+
 module.exports = router;

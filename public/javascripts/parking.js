@@ -6,14 +6,23 @@ var allPeople = [];		// JSON, Preview.
 
 var API_URL = {
 	ADD: "spots/add",	//	CREATE
-	READ: "spots",
-	LOGIN: "login",
+	READ: "spots",	// "data/staticSpots.json", preview.
+	LOGIN: "login",	// "data/staticPeople.json", preview.
 	BOOK: "spots/book",
 	UPDATE: "spots/update",
 	DELETE: "spots/delete"
 };
 
-// For preview.
+var API_METHOD = {
+	ADD: "POST",	//	CREATE
+	READ: "POST",	// GET, github preview.
+	LOGIN: "POST",	// GET, github preview.
+	BOOK: "POST",
+	UPDATE: "PUT",
+	DELETE: "DELETE"
+};
+
+// For preview, localhost, json.
 //if (true || location.host === "popanionut.github.io") {
 if (true || location.host === "localhost:3000" ||
 	location.hostname === "localhost" ||
@@ -24,14 +33,14 @@ if (true || location.host === "localhost:3000" ||
 		API_URL.READ = 'data/staticSpots.json';
 };
 
-var API_METHOD = {
-	ADD: "POST",	//	CREATE
-	READ: "POST",
-	LOGIN: "POST",
-	//SLOGIN: "GET",	// JSON, Preview.
-	BOOK: "POST",
-	UPDATE: "PUT",
-	DELETE: "DELETE"
+// For preview, github.io, json.
+if (true || location.host === "popanionut.github.io") {
+	console.warn("GitHub is the server!");
+	API_URL.READ = 'data/staticSpots.json';
+	API_URL.LOGIN = 'data/staticPeople.json';
+	
+	API_METHOD.READ = 'GET';
+	API_METHOD.LOGIN = 'GET';
 };
 
 // Top-menu handlers:
@@ -74,9 +83,7 @@ initTopMenu();
 
 
 // Login-Logout handlers
-function getUser() {
-	return JSON.parse(localStorage.getItem('user'));
-}
+function getUser() {	return JSON.parse(localStorage.getItem('user'));	}
 
 // Login.
 function clickLogin(){
