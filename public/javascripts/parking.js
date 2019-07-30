@@ -85,7 +85,7 @@ initTopMenu();
 // Login-Logout handlers
 function getUser() {	return JSON.parse(localStorage.getItem('user'));	}
 
-// Login.
+// Login. Non-local host, .
 function clickLogin(){
 	console.warn("clicked on login", this);	
 
@@ -107,6 +107,7 @@ function clickLogin(){
 	}
 };
 
+// Preview, localhost, json.
 function submitStaticLogin(lgPhone, lgEmail, lgCar) {
 	fetch("data/staticPeople.json").then(function(resp){
 		return resp.json();
