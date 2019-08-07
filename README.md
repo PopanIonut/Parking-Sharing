@@ -1,5 +1,7 @@
 # Parking-Sharing
 
+(Discontinued. The new repository is [here](https://github.com/Zsombi55/Parking-Sharing).)
+
 A simple web application using node js & express for managing parking space booking.
 
 ---
